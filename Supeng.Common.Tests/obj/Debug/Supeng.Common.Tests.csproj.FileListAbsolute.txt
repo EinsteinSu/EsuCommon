@@ -1,0 +1,16 @@
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.Tests.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.Tests.pdb
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\nunit.framework.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Caliburn.Micro.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Newtonsoft.Json.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\System.Windows.Interactivity.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.pdb
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\nunit.framework.xml
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Caliburn.Micro.pdb
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Caliburn.Micro.xml
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\Newtonsoft.Json.xml
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\bin\Debug\System.Windows.Interactivity.xml
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\obj\Debug\Supeng.Common.Tests.csprojResolveAssemblyReference.cache
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\obj\Debug\Supeng.Common.Tests.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common.Tests\obj\Debug\Supeng.Common.Tests.pdb

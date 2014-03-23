@@ -1,0 +1,12 @@
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\Supeng.Common.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\Supeng.Common.pdb
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\Newtonsoft.Json.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\System.Windows.Interactivity.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.pdb
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.xml
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\Newtonsoft.Json.xml
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\bin\Debug\System.Windows.Interactivity.xml
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.csprojResolveAssemblyReference.cache
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.dll
+c:\users\einstein\documents\visual studio 2012\Projects\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.pdb
