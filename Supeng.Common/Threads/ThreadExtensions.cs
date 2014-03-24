@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,19 +6,19 @@ namespace Supeng.Common.Threads
 {
   public static class ThreadExtensions
   {
-    public static void HandleTaskResult<T>(this Task<T> task, CancellationTokenSource tokenSource,
-      TaskScheduler scheduler, IBackgroundData<T> backgroundData)
+    public static void HandleTaskResult<T>(this Task<T> task, TaskScheduler scheduler, IBackgroundData<T> backgroundData)
     {
-      task.ContinueWith(t => backgroundData.EndExecute(t.Result), tokenSource.Token,
+      task.ContinueWith(t => backgroundData.EndExecute(t.Result), CancellationToken.None,
         TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
 
-      task.ContinueWith(t => backgroundData.CancelExecute(), TaskContinuationOptions.OnlyOnCanceled);
+      task.ContinueWith(t => backgroundData.CancelExecute(), CancellationToken.None,
+        TaskContinuationOptions.OnlyOnCanceled, scheduler);
 
       task.ContinueWith(t =>
       {
         if (task.Exception != null)
           backgroundData.HandleException(task.Exception.InnerExceptions.ToArray());
-      }, TaskContinuationOptions.OnlyOnFaulted);
+      }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, scheduler);
     }
   }
 }

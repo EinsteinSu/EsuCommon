@@ -35,7 +35,7 @@ namespace Supeng.Common.DataOperations
       var task = new Task<int>(() => Execute(sql), cancellation.Token);
       task.Start();
 
-      task.HandleTaskResult(cancellation, Scheduler, backgroundData);
+      task.HandleTaskResult(Scheduler, backgroundData);
     }
 
     public abstract EsuInfoCollection<T> ReadToCollection(string sql, IDataCreator<T> dataCreator,
@@ -47,7 +47,7 @@ namespace Supeng.Common.DataOperations
       var task = new Task<EsuInfoCollection<T>>(() => ReadToCollection(sql, dataCreator, parameters), cancellation.Token);
       task.Start();
 
-      task.HandleTaskResult(cancellation, Scheduler, backgroundData);
+      task.HandleTaskResult(Scheduler, backgroundData);
     }
   }
 }
