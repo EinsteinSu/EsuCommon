@@ -33,6 +33,9 @@
     <Reference Include="Caliburn.Micro">
       <HintPath>..\Supeng.Common\bin\Debug\Caliburn.Micro.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionTest.cs" />
     <Compile Include="TestBackgroudData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData.cs" />

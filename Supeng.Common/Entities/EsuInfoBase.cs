@@ -12,6 +12,17 @@ namespace Supeng.Common.Entities
     private string id;
     private string description;
 
+    public EsuInfoBase()
+    {
+      
+    }
+
+    public EsuInfoBase(bool initalizeID)
+    {
+      if (initalizeID)
+        id = Guid.NewGuid().ToString();
+    }
+
     #region properties
     [Display(AutoGenerateField = false)]
     public string ID
@@ -64,6 +75,11 @@ namespace Supeng.Common.Entities
         var xs = new XmlSerializer(GetType());
         xs.Serialize(writer, this);
       }
+    }
+
+    public void SerializeToText(string fileName)
+    {
+      File.AppendAllText(fileName, ToString());
     }
     #endregion
 

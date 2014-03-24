@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
 using Supeng.Common.DataOperations;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
@@ -11,20 +13,21 @@ namespace Supeng.Data.Sql
 {
   public class SqlDataStorage<T> : DataStorageBase<T> where T : EsuInfoBase, new()
   {
-    protected SqlConnection Connection;
+    private readonly string connectionString;
 
-    public SqlDataStorage(string connectionString)
-      : base(connectionString)
+    public SqlDataStorage(string connectionString, TaskScheduler scheduler = null)
+      : base(connectionString, scheduler)
     {
-      Connection = new SqlConnection(connectionString);
+      this.connectionString = connectionString;
     }
 
     public override int Execute(string sql, IExceptionHandle exceptionHandle = null)
     {
-      Connection.Open();
+      var conn = new SqlConnection(connectionString);
+      conn.Open();
       try
       {
-        var command = new SqlCommand(sql, Connection);
+        var command = new SqlCommand(sql, conn);
         return command.ExecuteNonQuery();
       }
       catch (SqlException exception)
@@ -39,16 +42,17 @@ namespace Supeng.Data.Sql
       }
       finally
       {
-        if (Connection != null)
-          Connection.Close();
+        conn.Close();
+        conn.Dispose();
       }
     }
 
-    public virtual void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData)
+    public override void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData)
     {
       backgroundData.BeginExecute();
-      Connection.Open();
-      var command = new SqlCommand(sql, Connection);
+      var conn = new SqlConnection(connectionString);
+      conn.Open();
+      var command = new SqlCommand(sql, conn);
       command.BeginExecuteNonQuery(ThreadHelper.SyncContextCallback(ar =>
       {
         try
@@ -68,8 +72,8 @@ namespace Supeng.Data.Sql
         }
         finally
         {
-          if (Connection != null)
-            Connection.Close();
+          conn.Close();
+          conn.Dispose();
         }
       }), command);
     }
@@ -77,14 +81,15 @@ namespace Supeng.Data.Sql
     public override EsuInfoCollection<T> ReadToCollection(string sql, IDataCreator<T> dataCreator,
       IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null)
     {
-      Connection.Open();
+      var conn = new SqlConnection(connectionString);
+      conn.Open();
       var collection = new EsuInfoCollection<T>();
       try
       {
         CommandType type = parameters == null
           ? CommandType.Text
           : CommandType.StoredProcedure;
-        var command = new SqlCommand(sql, Connection) {CommandType = type};
+        var command = new SqlCommand(sql, conn) { CommandType = type };
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
         {
@@ -102,21 +107,22 @@ namespace Supeng.Data.Sql
       }
       finally
       {
-        if (Connection != null)
-          Connection.Close();
+        conn.Close();
+        conn.Dispose();
       }
       return collection;
     }
 
-    public virtual void ReadToCollectionWithAPM(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
+    public override void ReadToCollectionWithAPM(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
       IBackgroundData<EsuInfoCollection<T>> backgroundData)
     {
       backgroundData.BeginExecute();
-      Connection.Open();
+      var conn = new SqlConnection(connectionString);
+      conn.Open();
       CommandType type = parameters == null
         ? CommandType.Text
         : CommandType.StoredProcedure;
-      var command = new SqlCommand(sql, Connection) {CommandType = type};
+      var command = new SqlCommand(sql, conn) { CommandType = type };
       command.BeginExecuteReader(ThreadHelper.SyncContextCallback(ar =>
       {
         try
@@ -141,8 +147,8 @@ namespace Supeng.Data.Sql
         }
         finally
         {
-          if (Connection != null)
-            Connection.Close();
+          conn.Close();
+          conn.Dispose();
         }
       }), command);
     }
