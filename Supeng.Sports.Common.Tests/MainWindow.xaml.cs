@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Caliburn.Micro;
 using Supeng.Common.Entities;
 using Supeng.Sports.Common.Timers;
 
 namespace Supeng.Sports.Common.Tests
 {
   /// <summary>
-  /// Interaction logic for MainWindow.xaml
+  ///   Interaction logic for MainWindow.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class MainWindow
   {
-    private TestTimeViewModel viewModel;
+    private readonly TestTimeViewModel viewModel;
+
     public MainWindow()
     {
       InitializeComponent();
@@ -52,19 +41,17 @@ namespace Supeng.Sports.Common.Tests
   public class TestTimeViewModel : EsuInfoBase
   {
     private readonly List<EsuTimerBase> timers;
+
     public TestTimeViewModel()
     {
       timers = new List<EsuTimerBase>();
       for (int i = 0; i < 100; i++)
       {
-        if (i == 11)
-          timers.Add(new EsuAscTimer(TaskCreationOptions.LongRunning) { ID = i.ToString() });
-        else
-        {
-          timers.Add(new EsuAscTimer(TaskCreationOptions.None) { ID = i.ToString() });
-        }
+        timers.Add(i == 11
+          ? new EsuAscTimer(TaskCreationOptions.LongRunning) {ID = i.ToString(CultureInfo.InvariantCulture)}
+          : new EsuAscTimer(TaskCreationOptions.None) {ID = i.ToString(CultureInfo.InvariantCulture)});
       }
-      foreach (var esuTimer in timers)
+      foreach (EsuTimerBase esuTimer in timers)
       {
         esuTimer.Start();
       }
