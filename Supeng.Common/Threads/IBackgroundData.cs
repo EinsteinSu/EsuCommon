@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Supeng.Common.Threads
 {
@@ -11,6 +10,6 @@ namespace Supeng.Common.Threads
 
     void CancelExecute();
 
-    void HandleException(Exception[] exceptions);
+    void HandleBackgroundException(Exception[] exceptions);
   }
 }

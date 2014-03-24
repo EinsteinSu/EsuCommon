@@ -17,7 +17,7 @@ namespace Supeng.Common.Threads
       task.ContinueWith(t =>
       {
         if (task.Exception != null)
-          backgroundData.HandleException(task.Exception.InnerExceptions.ToArray());
+          backgroundData.HandleBackgroundException(task.Exception.InnerExceptions.ToArray());
       }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, scheduler);
     }
   }

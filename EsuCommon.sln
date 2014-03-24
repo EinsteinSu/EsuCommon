@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsuCommon", "EsuCommon\EsuCommon.csproj", "{C968E74E-C48D-4DB4-8801-EA612F94B713}"
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Common", "Supeng.Common\Supeng.Common.csproj", "{808C1F27-1D44-44B5-BDDA-3047AA98052A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Common.Tests", "Supeng.Common.Tests\Supeng.Common.Tests.csproj", "{CD1D5895-1B0F-4FD4-9616-11B697953291}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Data.Sql", "Supeng.Data.Sql\Supeng.Data.Sql.csproj", "{9779D126-3BC9-4225-8BDB-FEEEBDACD7AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Common", "Test.Common\Test.Common.csproj", "{D49A4623-34FD-43A0-86DB-44104A6225A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C968E74E-C48D-4DB4-8801-EA612F94B713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C968E74E-C48D-4DB4-8801-EA612F94B713}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C968E74E-C48D-4DB4-8801-EA612F94B713}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C968E74E-C48D-4DB4-8801-EA612F94B713}.Release|Any CPU.Build.0 = Release|Any CPU
 		{808C1F27-1D44-44B5-BDDA-3047AA98052A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{808C1F27-1D44-44B5-BDDA-3047AA98052A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{808C1F27-1D44-44B5-BDDA-3047AA98052A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,8 +27,20 @@ Global
 		{CD1D5895-1B0F-4FD4-9616-11B697953291}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD1D5895-1B0F-4FD4-9616-11B697953291}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD1D5895-1B0F-4FD4-9616-11B697953291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9779D126-3BC9-4225-8BDB-FEEEBDACD7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9779D126-3BC9-4225-8BDB-FEEEBDACD7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9779D126-3BC9-4225-8BDB-FEEEBDACD7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9779D126-3BC9-4225-8BDB-FEEEBDACD7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D49A4623-34FD-43A0-86DB-44104A6225A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D49A4623-34FD-43A0-86DB-44104A6225A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D49A4623-34FD-43A0-86DB-44104A6225A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D49A4623-34FD-43A0-86DB-44104A6225A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD1D5895-1B0F-4FD4-9616-11B697953291} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
+		{D49A4623-34FD-43A0-86DB-44104A6225A8} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 	EndGlobalSection
 EndGlobal

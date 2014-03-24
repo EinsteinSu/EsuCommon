@@ -61,6 +61,10 @@
       <Project>{808c1f27-1d44-44b5-bdda-3047aa98052a}</Project>
       <Name>Supeng.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Test.Common\Test.Common.csproj">
+      <Project>{D49A4623-34FD-43A0-86DB-44104A6225A8}</Project>
+      <Name>Test.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

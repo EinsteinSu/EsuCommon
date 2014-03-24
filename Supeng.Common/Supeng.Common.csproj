@@ -54,7 +54,11 @@
     <Compile Include="DataOperations\IDataSave.cs" />
     <Compile Include="Entities\EsuInfoBase.cs" />
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
+    <Compile Include="Exceptions\IExceptionHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Threads\IBackgroundData.cs" />
+    <Compile Include="Threads\ThreadExtensions.cs" />
+    <Compile Include="Threads\ThreadHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

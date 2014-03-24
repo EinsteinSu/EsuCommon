@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
+using Test.Common;
 
 namespace Supeng.Common.Tests
 {
@@ -34,10 +35,5 @@ namespace Supeng.Common.Tests
       Assert.AreEqual(collection.ChangedCollection.Count, 1);
 
     }
-  }
-
-  internal sealed class TestData : EsuInfoBase
-  {
-
   }
 }

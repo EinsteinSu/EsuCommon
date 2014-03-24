@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
+using Supeng.Common.Exceptions;
 using Supeng.Common.Threads;
 
 namespace Supeng.Common.DataOperations
@@ -28,7 +26,7 @@ namespace Supeng.Common.DataOperations
       get { return cancellation; }
     }
 
-    public abstract int Execute(string sql);
+    public abstract int Execute(string sql, IExceptionHandle exceptionHandle = null);
 
     public void ExecuteInBackground(string sql, IBackgroundData<int> backgroundData)
     {
@@ -39,10 +37,10 @@ namespace Supeng.Common.DataOperations
     }
 
     public abstract EsuInfoCollection<T> ReadToCollection(string sql, IDataCreator<T> dataCreator,
-      IDataParameter[] parameters = null);
+      IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null);
 
-    public void ReadToCollectionInBackground(string sql, IDataCreator<T> dataCreator,
-      IBackgroundData<EsuInfoCollection<T>> backgroundData, IDataParameter[] parameters = null)
+    public void ReadToCollectionInBackground(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
+      IBackgroundData<EsuInfoCollection<T>> backgroundData)
     {
       var task = new Task<EsuInfoCollection<T>>(() => ReadToCollection(sql, dataCreator, parameters), cancellation.Token);
       task.Start();
