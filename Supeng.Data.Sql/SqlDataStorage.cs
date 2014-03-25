@@ -93,6 +93,8 @@ namespace Supeng.Data.Sql
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
         {
+          if (Cancellation.Token.IsCancellationRequested)
+            break;
           collection.Add(dataCreator.CreateData(reader));
         }
       }
@@ -131,7 +133,10 @@ namespace Supeng.Data.Sql
           var collection = new EsuInfoCollection<T>();
           while (reader.Read())
           {
+            if (Cancellation.Token.IsCancellationRequested)
+              break;
             collection.Add(dataCreator.CreateData(reader));
+            Thread.Sleep(1000);
           }
           backgroundData.EndExecute(collection);
         }

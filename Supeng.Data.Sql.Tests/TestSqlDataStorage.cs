@@ -27,6 +27,13 @@ namespace Supeng.Data.Sql.Tests
       Assert.AreEqual(1, result);
     }
 
-  
+    [Test, RequiresThread]
+    public void TestWithAPMCancel()
+    {
+      var storage = new SqlDataStorage<ParameterInfo<string>>(ConnectionString);
+      string sql = "Select * from parameter";
+      storage.ReadToCollectionWithAPM(sql,new ParameterInfoCreator<string>(),null, new TestBackgroudCollection<ParameterInfo<string>>());
+      storage.Cancellation.Cancel();
+    }
   }
 }

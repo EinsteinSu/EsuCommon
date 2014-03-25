@@ -2,7 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Supeng.Common.Entities;
 using Supeng.Common.Entities.BasesEntities.DataEntities;
+using Supeng.Common.Entities.ObserveCollection;
 using Supeng.Common.Exceptions;
 using Supeng.Common.Threads;
 using Supeng.Data.Sql;
@@ -36,9 +38,9 @@ namespace TestInWindows
     {
       string guid = Guid.NewGuid().ToString();
       string sql = string.Format("Insert into parameter(id) values('{0}')", guid);
-      
+
       storage.ExecuteWithAPM(sql, new TestInWindowsBackgroudData(1, "Insert Thread", richTextBox1));
-      
+
       sql = string.Format("Delete from parameter where id = '{0}'", guid);
       storage.ExecuteWithAPM(sql, new TestInWindowsBackgroudData(1, "Delete Thread", richTextBox1));
     }
@@ -71,6 +73,58 @@ namespace TestInWindows
     public void EndExecute(int result)
     {
       if (result - assertResult != 0)
+        AppendText(@"Error result.");
+      else
+        AppendText(string.Format("Execute success the effect result has {0} records.", result));
+    }
+
+    public void CancelExecute()
+    {
+      AppendText(@"Execute has canceled.");
+    }
+
+    public void HandleBackgroundException(Exception[] exceptions)
+    {
+      foreach (Exception exception in exceptions)
+      {
+        AppendText(exception.Message + Environment.NewLine);
+      }
+    }
+
+    public void Handle(Exception ex)
+    {
+      AppendText(ex.Message);
+    }
+
+    protected virtual void AppendText(string text)
+    {
+      outputControl.AppendText(string.Format("[{0}]:{1} [{2}]{3}", head, text, DateTime.Now, Environment.NewLine));
+    }
+  }
+
+
+  public class TestBackgroudCollection<T> : IBackgroundData<EsuInfoCollection<T>>, IExceptionHandle where T : EsuInfoBase, new()
+  {
+    private readonly int assertResult;
+    private readonly string head;
+    private readonly RichTextBox outputControl;
+
+    public TestBackgroudCollection(int assertResult, string head, RichTextBox outputControl)
+    {
+      this.assertResult = assertResult;
+      this.head = head;
+      this.outputControl = outputControl;
+    }
+
+    public void BeginExecute()
+    {
+      AppendText(@"Begin execute");
+
+    }
+
+    public void EndExecute(EsuInfoCollection<T> result)
+    {
+      if (result.Count - assertResult != 0)
         AppendText(@"Error result.");
       else
         AppendText(string.Format("Execute success the effect result has {0} records.", result));

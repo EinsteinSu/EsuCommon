@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data;
+using Supeng.Common.DataOperations;
 
 namespace Supeng.Common.Entities.BasesEntities.DataEntities
 {
@@ -9,6 +11,7 @@ namespace Supeng.Common.Entities.BasesEntities.DataEntities
     private int orderID;
     private T value;
 
+    #region properties
     [Display(Name = @"分组")]
     public string Category
     {
@@ -55,6 +58,19 @@ namespace Supeng.Common.Entities.BasesEntities.DataEntities
         orderID = value;
         NotifyOfPropertyChange(() => OrderID);
       }
+    }
+    #endregion
+
+  }
+
+  public sealed class ParameterInfoCreator<T> : IDataCreator<ParameterInfo<T>>
+  {
+    public ParameterInfo<T> CreateData(IDataReader reader)
+    {
+      ParameterInfo<T> data = new ParameterInfo<T>();
+      data.ID = reader["ID"].ToString();
+      data.Name = reader["Name"].ToString();
+      return data;
     }
   }
 }
