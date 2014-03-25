@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Supeng.Sports.Common.Timers
 {
-  public class EsuAscTimer : EsuTimerBase
+  public sealed class EsuAscTimer : EsuTimerBase
   {
     public EsuAscTimer(TaskCreationOptions creationOptions)
       : base(0, 0, 0, 1000, creationOptions)
