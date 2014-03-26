@@ -21,3 +21,15 @@ C:\Users\ESU\Downloads\Software\EsuCommon\Supeng.Common\bin\Debug\Newtonsoft.Jso
 C:\Users\ESU\Downloads\Software\EsuCommon\Supeng.Common\bin\Debug\System.Windows.Interactivity.xml
 C:\Users\ESU\Downloads\Software\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.dll
 C:\Users\ESU\Downloads\Software\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.pdb
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Supeng.Common.dll
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Supeng.Common.pdb
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.dll
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.pdb
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.xml
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.csprojResolveAssemblyReference.cache
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.dll
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.pdb

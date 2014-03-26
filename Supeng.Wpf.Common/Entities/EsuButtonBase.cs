@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using DevExpress.Xpf.Bars;
 using Supeng.Common.Entities;
 using Supeng.Common.IOs;
@@ -78,6 +80,14 @@ namespace Supeng.Wpf.Common.Entities
         if (value == imageUrl) return;
         imageUrl = value;
         NotifyOfPropertyChange(() => ImageUrl);
+      }
+    }
+
+    public ImageSource Image
+    {
+      get
+      {
+        return new BitmapImage(new Uri(ImageUrl, UriKind.Absolute));
       }
     }
 

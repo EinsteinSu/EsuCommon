@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Common", "Supeng.Common\Supeng.Common.csproj", "{808C1F27-1D44-44B5-BDDA-3047AA98052A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Common.Tests", "Supeng.Common.Tests\Supeng.Common.Tests.csproj", "{CD1D5895-1B0F-4FD4-9616-11B697953291}"
@@ -22,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Sports.Common.Tests", "Supeng.Sports.Common.Tests\Supeng.Sports.Common.Tests.csproj", "{A10B32EE-F64F-42D1-BF80-9F1341C16341}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Wpf.Common", "Supeng.Wpf.Common\Supeng.Wpf.Common.csproj", "{7369654A-D9EF-4A30-9B6C-FC46BA6590B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Wpf.Common.Tests", "Supeng.Wpf.Common.Tests\Supeng.Wpf.Common.Tests.csproj", "{3F476D06-2742-434D-BE0A-3473DDE86AB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +65,10 @@ Global
 		{7369654A-D9EF-4A30-9B6C-FC46BA6590B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7369654A-D9EF-4A30-9B6C-FC46BA6590B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7369654A-D9EF-4A30-9B6C-FC46BA6590B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F476D06-2742-434D-BE0A-3473DDE86AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F476D06-2742-434D-BE0A-3473DDE86AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F476D06-2742-434D-BE0A-3473DDE86AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F476D06-2742-434D-BE0A-3473DDE86AB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,5 +79,6 @@ Global
 		{F89F4E82-CD19-45E6-9D54-5B64DFBCAB66} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 		{90B126D5-0033-4049-AD39-FE4D2F70C55C} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 		{A10B32EE-F64F-42D1-BF80-9F1341C16341} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
+		{3F476D06-2742-434D-BE0A-3473DDE86AB4} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 	EndGlobalSection
 EndGlobal
