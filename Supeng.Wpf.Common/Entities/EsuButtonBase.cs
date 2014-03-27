@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,6 +24,7 @@ namespace Supeng.Wpf.Common.Entities
 
     public EsuButtonBase(Action action)
     {
+      enable = true;
       command = new DelegateCommand(action, () => true);
     }
 
@@ -87,7 +89,9 @@ namespace Supeng.Wpf.Common.Entities
     {
       get
       {
-        return new BitmapImage(new Uri(ImageUrl, UriKind.Absolute));
+        if (File.Exists(ImageUrl))
+          return new BitmapImage(new Uri(ImageUrl, UriKind.Absolute));
+        return null;
       }
     }
 

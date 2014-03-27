@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Supeng.Common.Entities;
+using Supeng.Wpf.Common.Entities;
 
 namespace Supeng.Wpf.Common.Tests
 {
@@ -23,6 +25,25 @@ namespace Supeng.Wpf.Common.Tests
     public MainWindow()
     {
       InitializeComponent();
+
+      EsuToolBarButtonCollection collection = new EsuToolBarButtonCollection(EsuButtonToolBarType.TextAndImage);
+      EsuButtonBase button = new EsuButtonBase("Test", 0, DoAction){Description = "Test button"};
+      collection.Add(button);
+      collection.Add((EsuButtonBase)button.Clone());
+      collection.Add((EsuButtonBase)button.Clone());
+      collection.Add((EsuButtonBase)button.Clone());
+
+      DataContext = collection;
     }
+
+    private void DoAction()
+    {
+      MessageBox.Show("Button Click");
+    }
+  }
+
+  public class TestData : EsuInfoBase
+  {
+
   }
 }

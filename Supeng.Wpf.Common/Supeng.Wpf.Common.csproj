@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\EsuButtonBase.cs" />
-    <Compile Include="Entities\EsuButtonToolBarViewModel.cs" />
+    <Compile Include="Entities\EsuToolBarButtonCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -48,7 +48,6 @@
     <Compile Include="Timers\EsuDescTimer.cs" />
     <Compile Include="Timers\EsuTimerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Timers\Extensions\EsuDescTimerWithButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Supeng.Common\Supeng.Common.csproj">

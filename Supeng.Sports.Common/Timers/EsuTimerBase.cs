@@ -88,9 +88,20 @@ namespace Supeng.Sports.Common.Timers
 
     protected abstract bool BreakeCondition { get; }
 
+    protected virtual void BeforeStart()
+    {
+
+    }
+
+    protected virtual void TimeRuning(DateTime? dateTime)
+    {
+
+    }
+
     public void Start()
     {
       cancellationTokenSource = new CancellationTokenSource();
+      BeforeStart();
       var task = new Task(() =>
       {
         while (true)
@@ -100,6 +111,7 @@ namespace Supeng.Sports.Common.Timers
             if (cancellationTokenSource.IsCancellationRequested || BreakeCondition)
               break;
             time = TimeRun(time);
+            TimeRuning(time);
             NotifyOfPropertyChange(() => Time);
             NotifyOfPropertyChange(() => DisplayTime);
             Thread.Sleep(interval);
@@ -109,10 +121,23 @@ namespace Supeng.Sports.Common.Timers
       task.Start();
     }
 
+    protected virtual void Stoped()
+    {
+
+    }
+
     public void Stop()
     {
       if (cancellationTokenSource != null)
+      {
         cancellationTokenSource.Cancel();
+        Stoped();
+      }
+    }
+
+    protected virtual void Reseted()
+    {
+
     }
 
     public void Reset()
@@ -122,6 +147,7 @@ namespace Supeng.Sports.Common.Timers
       time = null;
       NotifyOfPropertyChange(() => Time);
       NotifyOfPropertyChange(() => DisplayTime);
+      Reseted();
     }
   }
 }

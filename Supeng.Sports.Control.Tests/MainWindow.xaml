@@ -1,4 +1,4 @@
-﻿<Window x:Class="Supeng.Wpf.Common.Tests.MainWindow"
+﻿<Window x:Class="Supeng.Sports.Control.Tests.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
@@ -7,7 +7,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ToolBar ItemsSource="{Binding Collection}" ItemTemplate="{Binding Template}" />
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Collection}"/>
+        <ToolBar ItemsSource="{Binding ButtonCollection.Collection}" ItemTemplate="{Binding ButtonCollection.Template}"/>
+        <TextBlock FontSize ="68"  Grid.Row="1" Text="{Binding DisplayTime}"/>
+        <!--<DataGrid Grid.Row="1" ItemsSource="{Binding ButtonCollection.Collection}"/>-->
     </Grid>
 </Window>

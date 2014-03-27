@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3F476D06-2742-434D-BE0A-3473DDE86AB4}</ProjectGuid>
+    <ProjectGuid>{7F9A995D-7BDB-4610-B2F5-429046BB877B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Supeng.Wpf.Common.Tests</RootNamespace>
-    <AssemblyName>Supeng.Wpf.Common.Tests</AssemblyName>
+    <RootNamespace>Supeng.Sports.Control.Tests</RootNamespace>
+    <AssemblyName>Supeng.Sports.Control.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -105,9 +105,13 @@
       <Project>{808c1f27-1d44-44b5-bdda-3047aa98052a}</Project>
       <Name>Supeng.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supeng.Wpf.Common\Supeng.Wpf.Common.csproj">
-      <Project>{7369654a-d9ef-4a30-9b6c-fc46ba6590b6}</Project>
-      <Name>Supeng.Wpf.Common</Name>
+    <ProjectReference Include="..\Supeng.Sports.Common\Supeng.Sports.Common.csproj">
+      <Project>{7be56da6-993f-4be3-881b-9d51aa4bc3d8}</Project>
+      <Name>Supeng.Sports.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supeng.Sports.Control\Supeng.Sports.Control.csproj">
+      <Project>{f688e171-5923-482b-b48c-6270b3192ee4}</Project>
+      <Name>Supeng.Sports.Control</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

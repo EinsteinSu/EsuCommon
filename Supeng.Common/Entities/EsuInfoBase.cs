@@ -7,14 +7,14 @@ using Newtonsoft.Json;
 
 namespace Supeng.Common.Entities
 {
-  public class EsuInfoBase : PropertyChangedBase
+  public class EsuInfoBase : PropertyChangedBase, ICloneable
   {
     private string id;
     private string description;
 
     public EsuInfoBase()
     {
-      
+
     }
 
     public EsuInfoBase(bool initalizeID)
@@ -60,6 +60,11 @@ namespace Supeng.Common.Entities
     public override string ToString()
     {
       return GetSerializeString();
+    }
+
+    public object Clone()
+    {
+      return JsonConvert.DeserializeObject(GetSerializeString(), GetType());
     }
 
     #region serialize
