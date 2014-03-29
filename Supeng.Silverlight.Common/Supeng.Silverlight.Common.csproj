@@ -79,7 +79,9 @@
     <Compile Include="Entities\ObserveCollection\EsuDataState.cs" />
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
+    <Compile Include="IOs\StreamHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings\StringExtensions.cs" />
     <Compile Include="Threads\IBackgroundData.cs" />
     <Compile Include="Threads\ThreadExtensions.cs" />
     <Compile Include="Threads\ThreadHelper.cs" />

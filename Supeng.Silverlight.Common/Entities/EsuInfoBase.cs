@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using Caliburn.Micro;
 using Newtonsoft.Json;
+using Supeng.Silverlight.Common.IOs;
 
 namespace Supeng.Silverlight.Common.Entities
 {
@@ -74,7 +75,7 @@ namespace Supeng.Silverlight.Common.Entities
 
     public void SerializeToText(string fileName)
     {
-      File.AppendAllText(fileName, ToString());
+      StreamHelper.WriteText(fileName, GetSerializeString());
     }
     #endregion
 
