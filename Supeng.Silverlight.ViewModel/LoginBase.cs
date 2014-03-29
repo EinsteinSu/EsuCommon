@@ -16,7 +16,7 @@ namespace Supeng.Silverlight.ViewModel
 
     protected LoginBase()
     {
-      loginCommand = new DelegateCommand(LoginClick, () => true);
+      loginCommand = new DelegateCommand(Login, () => true);
     }
 
     #region properties
@@ -94,17 +94,17 @@ namespace Supeng.Silverlight.ViewModel
       return errMsg;
     }
 
-    protected virtual void LoginClick()
+    protected virtual bool ShowCheckLoginError()
     {
       string errMsg = CheckLoginError();
       if (string.IsNullOrEmpty(errMsg))
       {
         MessageBox.Show(errMsg);
-        return;
+        return false;
       }
-      Login();
+      return true;
     }
 
-    protected abstract bool Login();
+    protected abstract void Login();
   }
 }
