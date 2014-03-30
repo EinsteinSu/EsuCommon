@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.IsolatedStorage;
+using Newtonsoft.Json;
 
 namespace Supeng.Silverlight.Common.IOs
 {
@@ -34,6 +35,13 @@ namespace Supeng.Silverlight.Common.IOs
         throw new Exception(ex.Message);
       }
       return text;
+    }
+
+    public static T ReadFromText<T>(this string fileName)
+    {
+      string data = ReadText(fileName);
+      var result = JsonConvert.DeserializeObject<T>(data);
+      return result;
     }
   }
 }

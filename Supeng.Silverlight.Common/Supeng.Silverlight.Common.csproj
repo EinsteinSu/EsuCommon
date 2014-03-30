@@ -28,7 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Build Dlls For SL\</OutputPath>
+    <OutputPath>..\Build Dlls For SL\</OutputPath>
     <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
@@ -54,6 +54,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\portable-net40+sl5+wp80+win8+monotouch+monoandroid\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core">
@@ -68,11 +69,14 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildWindows\IChildWindow.cs" />
     <Compile Include="Datetimes\DateTimeExtensions.cs" />
     <Compile Include="Entities\BasesEntities\ActionBase.cs" />
+    <Compile Include="Entities\BasesEntities\DataEntities\ContactInfo.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ParameterInfo.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\PersonalInfo.cs" />
     <Compile Include="Entities\BasesEntities\TreeEntityBase.cs" />
+    <Compile Include="Entities\BasesEntities\DataEntities\UserInfoBase.cs" />
     <Compile Include="Entities\EsuInfoBase.cs" />
     <Compile Include="Entities\ObserveCollection\ChangeData.cs" />
     <Compile Include="Entities\ObserveCollection\ChangesCollection.cs" />
@@ -85,6 +89,7 @@
     <Compile Include="Threads\IBackgroundData.cs" />
     <Compile Include="Threads\ThreadExtensions.cs" />
     <Compile Include="Threads\ThreadHelper.cs" />
+    <Compile Include="Webs\WcfClientAddressBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

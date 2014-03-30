@@ -30,8 +30,8 @@ C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.pdb
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Caliburn.Micro.xml
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\bin\Debug\System.Windows.Interactivity.xml
-C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.csprojResolveAssemblyReference.cache
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.dll
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.pdb
 C:\Users\Einstein\Desktop\EsuCommon\Build Dlls For Windows\Supeng.Common.dll
 C:\Users\Einstein\Desktop\EsuCommon\Build Dlls For Windows\Supeng.Common.pdb
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.csprojResolveAssemblyReference.cache

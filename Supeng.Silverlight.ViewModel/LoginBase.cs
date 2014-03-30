@@ -21,6 +21,12 @@ namespace Supeng.Silverlight.ViewModel
 
     #region properties
 
+    [Display(AutoGenerateField = false)]
+    public virtual string LoginButtonContent
+    {
+      get { return "登录"; }
+    }
+
     [Display(Name = @"用户名", Order = 0)]
     public string UserName
     {
@@ -72,6 +78,13 @@ namespace Supeng.Silverlight.ViewModel
       }
     }
 
+    [Display(AutoGenerateField = false)]
+    public new string Description
+    {
+      get { return base.Description; }
+      set { base.Description = value; }
+    }
+
     #endregion
 
     #region commands
@@ -97,7 +110,7 @@ namespace Supeng.Silverlight.ViewModel
     protected virtual bool ShowCheckLoginError()
     {
       string errMsg = CheckLoginError();
-      if (string.IsNullOrEmpty(errMsg))
+      if (!string.IsNullOrEmpty(errMsg))
       {
         MessageBox.Show(errMsg);
         return false;
