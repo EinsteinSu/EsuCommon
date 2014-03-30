@@ -87,6 +87,15 @@ namespace Supeng.Common.Entities.BasesEntities
     {
       SerializeToText(SaveFileName);
     }
+
+    public virtual string ConnectionString
+    {
+      get
+      {
+        return string.Format("Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
+          DataSource, InitialCatalog, UserID, Password);
+      }
+    }
   }
 
   public class EsuConnection : EsuConnectionBase
@@ -96,7 +105,7 @@ namespace Supeng.Common.Entities.BasesEntities
       get { return "Connection.xml"; }
     }
 
-    public string ConnectionString
+    public override string ConnectionString
     {
       get
       {

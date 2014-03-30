@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Build Dlls For Windows\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,8 +55,10 @@
     <Compile Include="DataOperations\IDataSave.cs" />
     <Compile Include="Datetimes\DateTimeExtensions.cs" />
     <Compile Include="Entities\BasesEntities\ActionBase.cs" />
+    <Compile Include="Entities\BasesEntities\DataEntities\ContactInfo.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ParameterInfo.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\PersonalInfo.cs" />
+    <Compile Include="Entities\BasesEntities\DataEntities\UserInfoBase.cs" />
     <Compile Include="Entities\BasesEntities\EsuConnectionBase.cs" />
     <Compile Include="Entities\BasesEntities\TreeEntityBase.cs" />
     <Compile Include="Entities\EsuInfoBase.cs" />
@@ -66,7 +68,9 @@
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
     <Compile Include="IOs\DirectoryHelper.cs" />
+    <Compile Include="IOs\FileExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strings\StringSecurity.cs" />
     <Compile Include="Threads\IBackgroundData.cs" />
     <Compile Include="Threads\ThreadExtensions.cs" />
     <Compile Include="Threads\ThreadHelper.cs" />
