@@ -4,7 +4,7 @@ using System.Windows;
 using DevExpress.Xpf.Bars;
 using Supeng.Silverlight.Common.Entities;
 
-namespace Supeng.Silverlight.ViewModel
+namespace Supeng.Silverlight.ViewModel.WindowViewModels
 {
   public abstract class LoginBase : EsuInfoBase
   {

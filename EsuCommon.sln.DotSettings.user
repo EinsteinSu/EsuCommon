@@ -13,10 +13,12 @@
 	
 	
 	
+	
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=D3A9F5821ABA44E0937D0C2AE1720BFE/Name/@EntryValue">TestExecuteSqlInBackground</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=D3A9F5821ABA44E0937D0C2AE1720BFE/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements&gt;&lt;UnitTestElement Provider="nUnit" Id="Supeng.Data.Sql.Tests.TestSqlDataStorage" type="NUnitTestFixtureElement" Project="F89F4E82-CD19-45E6-9D54-5B64DFBCAB66" /&gt;&lt;UnitTestElement Provider="nUnit" Id="Supeng.Data.Sql.Tests.TestSqlDataStorage.TestExecuteSql" ParentId="Supeng.Data.Sql.Tests.TestSqlDataStorage" type="NUnitTestElement" TypeName="Supeng.Data.Sql.Tests.TestSqlDataStorage" MethodName="TestExecuteSql" Project="F89F4E82-CD19-45E6-9D54-5B64DFBCAB66" /&gt;&lt;UnitTestElement Provider="nUnit" Id="Supeng.Data.Sql.Tests.TestSqlDataStorage.TestWithAPMCancel" ParentId="Supeng.Data.Sql.Tests.TestSqlDataStorage" type="NUnitTestElement" TypeName="Supeng.Data.Sql.Tests.TestSqlDataStorage" MethodName="TestWithAPMCancel" Project="F89F4E82-CD19-45E6-9D54-5B64DFBCAB66" /&gt;&lt;/Elements&gt;&lt;/Session&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=F74FF2E107B941779D2D4467632549F1/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=F74FF2E107B941779D2D4467632549F1/BuildPolicy/@EntryValue">Always</s:String>
+	
 	
 	
 	
