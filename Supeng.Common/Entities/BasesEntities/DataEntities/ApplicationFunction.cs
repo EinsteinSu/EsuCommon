@@ -1,4 +1,7 @@
-﻿namespace Supeng.Silverlight.Common.Entities.BasesEntities.DataEntities
+﻿using System.Data;
+using Supeng.Common.DataOperations;
+
+namespace Supeng.Common.Entities.BasesEntities.DataEntities
 {
   public class ApplicationFunction : EsuInfoBase
   {
@@ -57,5 +60,18 @@
     }
   }
 
- 
+  public class ApplicationFunctionCreator : IDataCreator<ApplicationFunction>
+  {
+    public ApplicationFunction CreateData(IDataReader reader)
+    {
+      return new ApplicationFunction
+      {
+        ID = reader["ID"].ToString(),
+        Name = reader["Name"].ToString(),
+        Model = reader["Model"].ToString(),
+        Type = reader["Type"].ToString(),
+        Category = int.Parse(reader["Category"].ToString())
+      };
+    }
+  }
 }

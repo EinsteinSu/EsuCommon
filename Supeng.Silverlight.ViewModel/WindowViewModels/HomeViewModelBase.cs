@@ -25,9 +25,13 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
 
     #region function
 
-    public ObservableCollection<EsuDisplayNavBarGroup<ApplicationFunction>> FunctionCollection
+    public virtual ObservableCollection<EsuDisplayNavBarGroup<ApplicationFunction>> FunctionCollection
     {
-      get { return functionCollection ?? (functionCollection = GetNavBarFunctionCollection()); }
+      get
+      {
+        return functionCollection ??
+          (functionCollection = new ObservableCollection<EsuDisplayNavBarGroup<ApplicationFunction>>());
+      }
     }
 
     public virtual void FunctionClick(ApplicationFunction function)
@@ -43,9 +47,8 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
       {
         Header = function.Name,
         Data = function,
+        Content = GetContentFromFunction(function),
       };
-
-      control.Content = GetContentFromFunction(function);
 
       var showProgress = control.Content.DataContext as IShowProgress;
       if (showProgress != null)
@@ -109,8 +112,6 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
     public abstract string Title { get; }
 
     public abstract ImageSource Image { get; }
-
-    public abstract ObservableCollection<EsuDisplayNavBarGroup<ApplicationFunction>> GetNavBarFunctionCollection();
 
     public abstract FrameworkElement GetContentFromFunction(ApplicationFunction function);
   }

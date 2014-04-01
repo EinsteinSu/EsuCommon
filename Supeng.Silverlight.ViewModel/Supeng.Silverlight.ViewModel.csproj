@@ -68,7 +68,7 @@
   <ItemGroup>
     <Compile Include="Controls\EsuProgressViewModel.cs" />
     <Compile Include="WindowViewModels\HomeViewModelBase.cs" />
-    <Compile Include="WindowViewModels\LoginBase.cs" />
+    <Compile Include="LoginBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\UserControlFunctionItem.cs" />
   </ItemGroup>
