@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
@@ -32,6 +35,13 @@ namespace Supeng.Common.IOs
     public static T LoadDataFromTextInDataPath<T>(this string fileName)
     {
       return string.Format("{0}\\{1}", DirectoryHelper.DataDirectory, fileName).LoadDataFromText<T>();
+    }
+
+    public static ImageSource GetImageSourceByName(this string fileName)
+    {
+      if (File.Exists(fileName))
+        return new BitmapImage(new Uri(fileName, UriKind.Absolute));
+      return null;
     }
   }
 }

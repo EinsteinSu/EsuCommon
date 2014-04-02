@@ -49,7 +49,12 @@
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\sl5\Caliburn.Micro.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v12.1, Version=12.1.11.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v12.1.Core, Version=12.1.11.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.11.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="devexpress.xpf.grid.v12.1, Version=12.1.11.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v12.1.Core, Version=12.1.11.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="devexpress.xpf.layoutcontrol.v12.1, Version=12.1.11.5, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
     <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
@@ -58,6 +63,7 @@
       <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Interactivity, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\sl5\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -67,6 +73,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\EsuProgressViewModel.cs" />
+    <Compile Include="Controls\ManagementControls\DataEditWithWindowViewModel.cs" />
+    <Compile Include="Controls\ManagementControls\ManagementWithToolbarViewModelBase.cs" />
+    <Compile Include="Extentions\DataReturnWindowExtensions.cs" />
+    <Compile Include="Interfaces\IReturnChildWindow.cs" />
+    <Compile Include="WindowViewModels\DataReturnWindowViewModelBase.cs" />
     <Compile Include="WindowViewModels\HomeViewModelBase.cs" />
     <Compile Include="LoginBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

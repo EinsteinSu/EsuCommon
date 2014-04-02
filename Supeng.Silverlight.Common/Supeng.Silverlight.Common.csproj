@@ -79,6 +79,7 @@
     <Compile Include="Entities\BasesEntities\DataEntities\PersonalInfo.cs" />
     <Compile Include="Entities\BasesEntities\TreeEntityBase.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\UserInfoBase.cs" />
+    <Compile Include="Entities\ControlEntities\EsuToolbarButton.cs" />
     <Compile Include="Entities\ControlEntities\NavBarGroupItem\EsuDisplayNavBarGroup.cs" />
     <Compile Include="Entities\EsuInfoBase.cs" />
     <Compile Include="Entities\ObserveCollection\ChangeData.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Threads\IBackgroundData.cs" />
     <Compile Include="Threads\ThreadExtensions.cs" />
     <Compile Include="Threads\ThreadHelper.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="Webs\WcfClientAddressBase.cs" />
   </ItemGroup>
   <ItemGroup>
