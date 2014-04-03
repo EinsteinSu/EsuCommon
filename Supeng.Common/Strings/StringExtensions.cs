@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Supeng.Silverlight.Common.Strings
+namespace Supeng.Common.Strings
 {
   public static class StringExtensions
   {
@@ -19,7 +21,7 @@ namespace Supeng.Silverlight.Common.Strings
       return collection.Aggregate(string.Empty, (current, s) => current + string.Format("{0}{1}", s, c)).TrimEnd(c);
     }
 
-    public static List<string> GetStringCollection(this string str,char c)
+    public static List<string> GetStringCollection(this string str, char c)
     {
       return str.Split(c).ToList();
     }
