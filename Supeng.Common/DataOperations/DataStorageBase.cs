@@ -9,7 +9,7 @@ using Supeng.Common.Threads;
 
 namespace Supeng.Common.DataOperations
 {
-  public abstract class DataStorageBase<T> where T : EsuInfoBase, new()
+  public abstract class DataStorageBase
   {
     protected readonly string ConnectionString;
     protected readonly TaskScheduler Scheduler;
@@ -62,11 +62,11 @@ namespace Supeng.Common.DataOperations
       }, func);
     }
 
-    public abstract EsuInfoCollection<T> ReadToCollection(string sql, IDataCreator<T> dataCreator,
-      IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null);
+    public abstract EsuInfoCollection<T> ReadToCollection<T>(string sql, IDataCreator<T> dataCreator,
+      IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null) where T : EsuInfoBase, new();
 
-    public void ReadToCollectionInBackground(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
-      IBackgroundData<EsuInfoCollection<T>> backgroundData)
+    public void ReadToCollectionInBackground<T>(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
+      IBackgroundData<EsuInfoCollection<T>> backgroundData) where T : EsuInfoBase, new()
     {
       backgroundData.BeginExecute();
       var task = new Task<EsuInfoCollection<T>>(() => ReadToCollection(sql, dataCreator, parameters), cancellation.Token);
@@ -74,8 +74,8 @@ namespace Supeng.Common.DataOperations
       task.HandleTaskResult(Scheduler, backgroundData);
     }
 
-    public virtual void ReadToCollectionWithAPM(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
-      IBackgroundData<EsuInfoCollection<T>> backgroundData)
+    public virtual void ReadToCollectionWithAPM<T>(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
+      IBackgroundData<EsuInfoCollection<T>> backgroundData) where T : EsuInfoBase, new()
     {
       Func<string, IDataCreator<T>, IDataParameter[], EsuInfoCollection<T>> func =
         (s, creator, p) => ReadToCollection(s, creator, p);

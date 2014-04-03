@@ -13,13 +13,13 @@ namespace TestInWindows
 {
   public partial class Form1 : Form
   {
-    private readonly SqlDataStorage<ParameterInfo<string>> storage;
+    private readonly SqlDataStorage storage;
     public Form1()
     {
       InitializeComponent();
       TaskScheduler scheduler = TaskScheduler.FromCurrentSynchronizationContext();
       storage =
-       new SqlDataStorage<ParameterInfo<string>>(
+       new SqlDataStorage(
          "Data Source=116.54.125.122;Initial Catalog=DataTests;Persist Security Info=True;User ID=sa;Password=hrmaster");
       cancellationTokenSource = storage.Cancellation;
     }

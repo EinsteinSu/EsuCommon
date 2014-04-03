@@ -17,7 +17,7 @@ namespace Supeng.Data.Sql.Tests
     [Test]
     public void TestExecuteSql()
     {
-      var storage = new SqlDataStorage<ParameterInfo<string>>(ConnectionString);
+      var storage = new SqlDataStorage(ConnectionString);
       string guid = Guid.NewGuid().ToString();
       string sql = string.Format("Insert into parameter(id) values('{0}')", guid);
       int result = storage.Execute(sql, new TestBackgroudData(1));
@@ -30,7 +30,7 @@ namespace Supeng.Data.Sql.Tests
     [Test, RequiresThread]
     public void TestWithAPMCancel()
     {
-      var storage = new SqlDataStorage<ParameterInfo<string>>(ConnectionString);
+      var storage = new SqlDataStorage(ConnectionString);
       string sql = "Select * from parameter";
       storage.ReadToCollectionWithAPM(sql,new ParameterInfoCreator<string>(),null, new TestBackgroudCollection<ParameterInfo<string>>());
       storage.Cancellation.Cancel();

@@ -4,14 +4,13 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using Supeng.Common.DataOperations;
-using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
 using Supeng.Common.Exceptions;
 using Supeng.Common.Threads;
 
 namespace Supeng.Data.Sql
 {
-  public class SqlDataStorage<T> : DataStorageBase<T> where T : EsuInfoBase, new()
+  public class SqlDataStorage: DataStorageBase
   {
     private readonly string connectionString;
 
@@ -78,7 +77,7 @@ namespace Supeng.Data.Sql
       }), command);
     }
 
-    public override EsuInfoCollection<T> ReadToCollection(string sql, IDataCreator<T> dataCreator,
+    public override EsuInfoCollection<T> ReadToCollection<T>(string sql, IDataCreator<T> dataCreator,
       IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null)
     {
       var conn = new SqlConnection(connectionString);
@@ -115,7 +114,7 @@ namespace Supeng.Data.Sql
       return collection;
     }
 
-    public override void ReadToCollectionWithAPM(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
+    public override void ReadToCollectionWithAPM<T>(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
       IBackgroundData<EsuInfoCollection<T>> backgroundData)
     {
       backgroundData.BeginExecute();
