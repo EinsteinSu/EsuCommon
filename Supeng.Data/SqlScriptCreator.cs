@@ -34,5 +34,10 @@ namespace Supeng.Data
       }
       return string.Format("Select {0} from {1}", columns, tableName);
     }
+
+    public string GetSqlScript(string order)
+    {
+      return string.Format("{0} {1}", GetSqlScript(), order);
+    }
   }
 }
