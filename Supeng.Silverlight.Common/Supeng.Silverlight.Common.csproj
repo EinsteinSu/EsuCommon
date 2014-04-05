@@ -96,6 +96,7 @@
     <Compile Include="Threads\IBackgroundData.cs" />
     <Compile Include="Threads\ThreadExtensions.cs" />
     <Compile Include="Threads\ThreadHelper.cs" />
+    <Compile Include="Types\TypeConvertHelper.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Webs\WcfClientAddressBase.cs" />
   </ItemGroup>

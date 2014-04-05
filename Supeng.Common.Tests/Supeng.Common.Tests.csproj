@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataConvertTests.cs" />
     <Compile Include="EsuInfoCollectionTests.cs" />
     <Compile Include="ICreateReaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
