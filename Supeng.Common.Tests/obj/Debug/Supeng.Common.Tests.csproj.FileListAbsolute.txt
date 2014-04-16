@@ -68,3 +68,7 @@ C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Newtonsoft.Js
 C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\obj\Debug\Supeng.Common.Tests.csprojResolveAssemblyReference.cache
 C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\obj\Debug\Supeng.Common.Tests.dll
 C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\obj\Debug\Supeng.Common.Tests.pdb
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.dll
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.dll
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.pdb
+C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.pdb

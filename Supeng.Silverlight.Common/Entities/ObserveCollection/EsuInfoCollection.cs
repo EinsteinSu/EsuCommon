@@ -25,9 +25,13 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
       get { return changedCollection; }
     }
 
+    public Action<EsuDataState, T> EsuCollectionChanged { get; set; }
+
     protected override void InsertItem(int index, T item)
     {
       base.InsertItem(index, item);
+      if (EsuCollectionChanged != null)
+        EsuCollectionChanged(EsuDataState.Added, item);
       changedCollection.Add(new ChangeData<T> { Data = item, ChangeTime = DateTime.Now, State = EsuDataState.Added });
       var notifyPropertyChanged = item as INotifyPropertyChanged;
       if (notifyPropertyChanged != null)
@@ -37,6 +41,8 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
     public virtual void DataChanged(object sender, PropertyChangedEventArgs e)
     {
       var data = (T)sender;
+      if (EsuCollectionChanged != null)
+        EsuCollectionChanged(EsuDataState.Modified, data);
       if (changedCollection.Any(w => data.Equals(w.Data)))
         return;
       changedCollection.Add(new ChangeData<T>
@@ -51,6 +57,8 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
     protected override void RemoveItem(int index)
     {
       T data = Items[index];
+      if (EsuCollectionChanged != null)
+        EsuCollectionChanged(EsuDataState.Deleted, data);
       while (true)
       {
         if (!changedCollection.Any(w => data.Equals(w.Data)))

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Supeng.Common.DataOperations;
@@ -10,7 +11,7 @@ using Supeng.Common.Threads;
 
 namespace Supeng.Data.Sql
 {
-  public class SqlDataStorage: DataStorageBase
+  public class SqlDataStorage : DataStorageBase
   {
     private readonly string connectionString;
 
@@ -20,13 +21,19 @@ namespace Supeng.Data.Sql
       this.connectionString = connectionString;
     }
 
-    public override int Execute(string sql, IExceptionHandle exceptionHandle = null)
+    public override int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null)
     {
       var conn = new SqlConnection(connectionString);
       conn.Open();
       try
       {
         var command = new SqlCommand(sql, conn);
+        if (parameters != null && parameters.Any())
+        {
+          command.CommandType = CommandType.StoredProcedure;
+          foreach (var parameter in parameters)
+            command.Parameters.Add(parameter);
+        }
         return command.ExecuteNonQuery();
       }
       catch (SqlException exception)
@@ -46,7 +53,7 @@ namespace Supeng.Data.Sql
       }
     }
 
-    public override void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData)
+    public override void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null)
     {
       backgroundData.BeginExecute();
       var conn = new SqlConnection(connectionString);
@@ -89,6 +96,11 @@ namespace Supeng.Data.Sql
           ? CommandType.Text
           : CommandType.StoredProcedure;
         var command = new SqlCommand(sql, conn) { CommandType = type };
+        if (parameters != null)
+        {
+          foreach (IDataParameter parameter in parameters)
+            command.Parameters.Add(parameter);
+        }
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
         {

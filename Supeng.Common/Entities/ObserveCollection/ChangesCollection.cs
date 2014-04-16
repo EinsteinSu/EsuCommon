@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 
 namespace Supeng.Common.Entities.ObserveCollection
 {
@@ -12,6 +13,11 @@ namespace Supeng.Common.Entities.ObserveCollection
       base.InsertItem(index, item);
       if (DataAdded != null)
         DataAdded();
+    }
+
+    public override string ToString()
+    {
+      return JsonConvert.SerializeObject(this);
     }
   }
 }

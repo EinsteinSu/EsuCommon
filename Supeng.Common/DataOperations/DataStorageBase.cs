@@ -27,19 +27,24 @@ namespace Supeng.Common.DataOperations
       get { return cancellation; }
     }
 
-    public abstract int Execute(string sql, IExceptionHandle exceptionHandle = null);
+    public abstract int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null);
 
-    public void ExecuteInBackground(string sql, IBackgroundData<int> backgroundData)
+    public void ExecuteInBackground(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null)
     {
       backgroundData.BeginExecute();
-      var task = new Task<int>(() => Execute(sql), cancellation.Token);
+      var task = new Task<int>(() => Execute(sql, parameters), cancellation.Token);
       task.Start();
       task.HandleTaskResult(Scheduler, backgroundData);
     }
 
-    public virtual void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData)
+    /// <summary>
+    /// execute sql script with APM
+    /// </summary>
+    /// <param name="sql">sql script</param>
+    /// <param name="backgroundData">How to handle the exceptions with APM</param>
+    public virtual void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null)
     {
-      Func<string, int> func = s => Execute(s);
+      Func<string, int> func = s => Execute(s, parameters);
       backgroundData.BeginExecute();
       func.BeginInvoke(sql, ar =>
       {
@@ -100,5 +105,10 @@ namespace Supeng.Common.DataOperations
         }
       }, func);
     }
+  }
+
+  public enum ExecuteType
+  {
+    Normal, Background, WithAPM
   }
 }

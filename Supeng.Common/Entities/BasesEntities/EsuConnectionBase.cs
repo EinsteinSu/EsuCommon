@@ -100,6 +100,13 @@ namespace Supeng.Common.Entities.BasesEntities
 
   public class EsuConnection : EsuConnectionBase
   {
+    [Display(AutoGenerateField = false)]
+    public new string Description
+    {
+      get { return base.Description; }
+      set { base.Description = value; }
+    }
+
     protected override string FileName
     {
       get { return "Connection.xml"; }

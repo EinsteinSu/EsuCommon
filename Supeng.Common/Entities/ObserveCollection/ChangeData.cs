@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Supeng.Common.Entities.ObserveCollection
 {
@@ -7,6 +9,7 @@ namespace Supeng.Common.Entities.ObserveCollection
     private EsuDataState state;
     private T data;
     private DateTime changeTime;
+    private IDictionary<string, string> extensions = new Dictionary<string, string>();
 
     #region properties
     public EsuDataState State
@@ -41,13 +44,25 @@ namespace Supeng.Common.Entities.ObserveCollection
         NotifyOfPropertyChange(() => ChangeTime);
       }
     }
+
+    public IDictionary<string, string> Extensions
+    {
+      get { return extensions; }
+      set
+      {
+        if (Equals(value, extensions)) return;
+        extensions = value;
+        NotifyOfPropertyChange(() => Extensions);
+      }
+    }
+
     #endregion
 
     public override string ToString()
     {
       if (!string.IsNullOrEmpty(Description))
-        return string.Format("{0} is {1}, changed on {2}({3}).", Data, State, ChangeTime, Description);
-      return string.Format("{0} is {1}, changed on {2}.", Data, State, ChangeTime);
+        return string.Format("{0} is {1}, changed on {2}({3}).", Data.ID, State, ChangeTime, Description);
+      return string.Format("{0} is {1}, changed on {2}.", Data.ID, State, ChangeTime);
     }
   }
 }

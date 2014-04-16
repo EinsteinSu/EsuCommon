@@ -82,6 +82,7 @@
     <Compile Include="LoginBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\UserControlFunctionItem.cs" />
+    <Compile Include="WindowViewModels\TreeSelectionWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Supeng.Silverlight.Common\Supeng.Silverlight.Common.csproj">

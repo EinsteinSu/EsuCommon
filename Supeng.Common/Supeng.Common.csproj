@@ -55,11 +55,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\IProgress.cs" />
+    <Compile Include="DataOperations\DataSaveExtensions.cs" />
+    <Compile Include="DataOperations\IDataSave.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ApplicationFunction.cs" />
     <Compile Include="Entities\ControlEntities\NavBarGroupItem\EsuDisplayNavBarGroup.cs" />
     <Compile Include="DataOperations\DataStorageBase.cs" />
     <Compile Include="DataOperations\IDataCreator.cs" />
-    <Compile Include="DataOperations\IDataSave.cs" />
     <Compile Include="Datetimes\DateTimeExtensions.cs" />
     <Compile Include="Entities\BasesEntities\ActionBase.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ContactInfo.cs" />

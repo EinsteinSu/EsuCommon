@@ -1,0 +1,32 @@
+﻿<controls:ChildWindow
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+           xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+           xmlns:controls1="clr-namespace:Supeng.Silverlight.Views.Controls"
+           x:Class="Supeng.Silverlight.Views.WindowControls.TreeSelectionView"
+           Width="400" Height="400" 
+           Title="{Binding Title}">
+    <Grid Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <dxg:TreeListControl AutoPopulateColumns="True" ItemsSource="{Binding Collection}">
+                <dxg:TreeListControl.View>
+                    <dxg:TreeListView AutoExpandAllNodes="True" AutoWidth="True" AllowEditing="False" FocusedRow="{Binding CurrentItem,Mode=TwoWay}" KeyFieldName="ID" ParentFieldName="PID" ShowFocusedRectangle="True"/>
+                </dxg:TreeListControl.View>
+            </dxg:TreeListControl>
+            <controls1:EsuProgressView Grid.Row="1" DataContext ="{Binding Progress}"/>
+        </Grid>
+
+        <Button Content="取消" Command="{Binding CancelCommand}" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+        <Button Content="确定" Command="{Binding OkCommand}" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,79,0" Grid.Row="1" />
+
+    </Grid>
+</controls:ChildWindow>

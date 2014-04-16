@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using Newtonsoft.Json;
 
 namespace Supeng.Common.Strings
@@ -16,6 +17,17 @@ namespace Supeng.Common.Strings
       return JsonConvert.DeserializeObject<T>(data);
     }
 
+    public static string GetPascalName(this string name)
+    {
+      if (!string.IsNullOrEmpty(name))
+      {
+        string first = name.Substring(0, 1);
+        string other = name.Substring(1, name.Length - 1);
+        return string.Format("{0}{1}", first.ToUpper(), other.ToLower());
+      }
+      return string.Empty;
+    }
+
     public static string SplitToString(this IList<string> collection, char c)
     {
       return collection.Aggregate(string.Empty, (current, s) => current + string.Format("{0}{1}", s, c)).TrimEnd(c);
@@ -24,6 +36,11 @@ namespace Supeng.Common.Strings
     public static List<string> GetStringCollection(this string str, char c)
     {
       return str.Split(c).ToList();
+    }
+
+    public static void EsuAppendFormat(this StringBuilder sb, string data, params object[] strs)
+    {
+      sb.AppendLine(string.Format(data, strs));
     }
 
     public static string Package(this IDictionary<string, string> dictionary)

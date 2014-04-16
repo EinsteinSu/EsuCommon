@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Supeng.Silverlight.Common.Entities.ObserveCollection
 {
@@ -7,6 +8,7 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
     private EsuDataState state;
     private T data;
     private DateTime changeTime;
+    private Dictionary<string, object> extensions = new Dictionary<string, object>();
 
     #region properties
     public EsuDataState State
@@ -41,6 +43,18 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
         NotifyOfPropertyChange(() => ChangeTime);
       }
     }
+
+    public Dictionary<string, object> Extensions
+    {
+      get { return extensions; }
+      set
+      {
+        if (Equals(value, extensions)) return;
+        extensions = value;
+        NotifyOfPropertyChange(() => Extensions);
+      }
+    }
+
     #endregion
 
     public override string ToString()

@@ -36,8 +36,11 @@
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="devexpress.xpf.layoutcontrol.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -55,8 +58,19 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\EsuMemoText.cs" />
+    <Compile Include="Controls\ViewModels\EsuProgressViewModel.cs" />
+    <Compile Include="Controls\Views\EsuProgressView.xaml.cs">
+      <DependentUpon>EsuProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\DialogWindowHelper.cs" />
+    <Compile Include="DialogWindows\Views\EntityEditView.xaml.cs">
+      <DependentUpon>EntityEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\ViewModels\EntityEditViewModelBase.cs" />
     <Compile Include="Entities\EsuButtonBase.cs" />
     <Compile Include="Entities\EsuToolBarButtonCollection.cs" />
+    <Compile Include="Interfaces\IWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,8 +102,16 @@
       <Name>Supeng.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Controls\" />
+    <Page Include="Controls\Views\EsuProgressView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DialogWindows\Views\EntityEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
