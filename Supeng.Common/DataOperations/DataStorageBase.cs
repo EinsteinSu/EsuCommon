@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Supeng.Common.Entities;
@@ -69,6 +70,51 @@ namespace Supeng.Common.DataOperations
 
     public abstract EsuInfoCollection<T> ReadToCollection<T>(string sql, IDataCreator<T> dataCreator,
       IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null) where T : EsuInfoBase, new();
+
+    public T ReadSingleRecord<T>(string sql, IDataCreator<T> dataCreator,
+      IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null) where T : EsuInfoBase, new()
+    {
+      var collection = ReadToCollection(sql, dataCreator, parameters, exceptionHandle);
+      if (collection.Any())
+        return collection[0];
+      return new T();
+    }
+
+    public void ReadSingleRecordInBackground<T>(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
+      IBackgroundData<T> backgroundData) where T : EsuInfoBase, new()
+    {
+      backgroundData.BeginExecute();
+      var task = new Task<T>(() => ReadSingleRecord(sql, dataCreator, parameters), cancellation.Token);
+      task.Start();
+      task.HandleTaskResult(Scheduler, backgroundData);
+    }
+
+    public virtual void ReadSingleRecordWithAPM<T>(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
+      IBackgroundData<T> backgroundData) where T : EsuInfoBase, new()
+    {
+      Func<string, IDataCreator<T>, IDataParameter[], T> func =
+        (s, creator, p) => ReadSingleRecord(s, creator, p);
+      backgroundData.BeginExecute();
+      func.BeginInvoke(sql, dataCreator, parameters, ar =>
+      {
+        try
+        {
+          var f = (Func<string, IDataCreator<T>, IDataParameter[], T>)ar.AsyncState;
+          var result = f.EndInvoke(ar);
+          backgroundData.EndExecute(result);
+        }
+        catch (Exception exception)
+        {
+          var exceptionHandle = backgroundData as IExceptionHandle;
+          if (exceptionHandle != null)
+            exceptionHandle.Handle(exception);
+          else
+          {
+            throw new Exception(exception.Message);
+          }
+        }
+      }, func);
+    }
 
     public void ReadToCollectionInBackground<T>(string sql, IDataCreator<T> dataCreator, IDataParameter[] parameters,
       IBackgroundData<EsuInfoCollection<T>> backgroundData) where T : EsuInfoBase, new()

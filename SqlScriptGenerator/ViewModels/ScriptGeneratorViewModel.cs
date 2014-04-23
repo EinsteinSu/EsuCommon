@@ -155,7 +155,7 @@ namespace SqlScriptGenerator.ViewModels
       }
     }
 
-    public override string DataCheck()
+    protected override string DataCheck()
     {
       Data.SaveToXml();
       return string.Empty;

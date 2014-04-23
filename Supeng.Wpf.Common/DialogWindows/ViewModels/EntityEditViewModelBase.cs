@@ -1,43 +1,16 @@
 ﻿using System.Windows;
-using DevExpress.Xpf.Bars;
-using Supeng.Common.Entities;
-using Supeng.Wpf.Common.Interfaces;
+using Supeng.Wpf.Common.DialogWindows.Views;
 
 namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 {
-  public abstract class EntityEditViewModelBase<T> : EsuInfoBase, IWindowViewModel
+  public abstract class EntityEditViewModelBase<T> : DialogWindowBase
   {
-    private readonly DelegateCommand cancelCommand;
-    private readonly DelegateCommand okCommand;
     private T data;
 
     protected EntityEditViewModelBase(T data)
     {
       this.data = data;
-      okCommand = new DelegateCommand(Ok, () => true);
-      cancelCommand = new DelegateCommand(Cancel, () => true);
     }
-
-    #region IWindowViewModel implement
-
-    public virtual string Title
-    {
-      get { return string.Empty; }
-    }
-
-    public virtual int Height
-    {
-      get { return 400; }
-    }
-
-    public virtual int Width
-    {
-      get { return 400; }
-    }
-
-    #endregion
-
-    public Window Window { get; set; }
 
     public T Data
     {
@@ -50,36 +23,14 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
       }
     }
 
-    public abstract string DataCheck();
-
-    protected virtual void Ok()
+    public override FrameworkElement Content
     {
-      string errMsg = DataCheck();
-      if (!string.IsNullOrEmpty(errMsg))
-      {
-        MessageBox.Show(errMsg);
-        return;
-      }
-      Window.DialogResult = true;
+      get { return new EntityEditControl(); }
     }
 
-    protected virtual void Cancel()
+    protected override string DataCheck()
     {
-      Window.DialogResult = false;
+      return string.Empty;
     }
-
-    #region commands
-
-    public DelegateCommand OkCommand
-    {
-      get { return okCommand; }
-    }
-
-    public DelegateCommand CancelCommand
-    {
-      get { return cancelCommand; }
-    }
-
-    #endregion
   }
 }

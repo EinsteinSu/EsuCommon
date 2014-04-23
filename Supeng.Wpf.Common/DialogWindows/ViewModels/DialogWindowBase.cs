@@ -1,0 +1,146 @@
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using DevExpress.Xpf.Bars;
+using Newtonsoft.Json;
+using Supeng.Common.Entities;
+using Supeng.Common.Interfaces;
+using Supeng.Common.IOs;
+using Supeng.Common.Strings;
+using Supeng.Common.Types;
+using Supeng.Wpf.Common.Interfaces;
+
+namespace Supeng.Wpf.Common.DialogWindows.ViewModels
+{
+  /// <summary>
+  /// implement 
+  /// 1. add id property
+  /// 2. storage the width and height when user change the window resize
+  /// </summary>
+  public abstract class DialogWindowBase : EsuInfoBase, IWindowViewModel, IDataLoad
+  {
+    private readonly DelegateCommand cancelCommand;
+    private readonly DelegateCommand okCommand;
+    private Window window;
+    private bool result;
+
+    protected string TemplateFileName;
+
+    protected DialogWindowBase()
+    {
+      TemplateFileName =
+      string.Format("{0}{1}.txt", DirectoryHelper.TemplateDirectory, TemplateName);
+
+      okCommand = new DelegateCommand(OkClick, () => true);
+      cancelCommand = new DelegateCommand(CancelClick, () => true);
+    }
+
+    protected virtual string TemplateName
+    {
+      get { return "DialogWindowBase"; }
+    }
+
+    [JsonIgnore]
+    public Window Window
+    {
+      get { return window; }
+      set
+      {
+        window = value;
+        if (window != null)
+        {
+          window.Title = Title;
+          window.Closed += (sender, args) => SaveLayout();
+          if (File.Exists(TemplateFileName))
+          {
+            string text = File.ReadAllText(TemplateFileName);
+            var list = text.GetStringCollection(',');
+            if (list.Any())
+            {
+              window.Width = list[0].ConvertData(0);
+              window.Height = list[1].ConvertData(0);
+            }
+          }
+          else
+          {
+            window.Height = Height;
+            window.Width = Width;
+          }
+        }
+      }
+    }
+
+    #region IWindowViewModel implement
+
+    public virtual string Title
+    {
+      get { return string.Empty; }
+    }
+
+    public int Height
+    {
+      get { return 400; }
+    }
+
+    public int Width
+    {
+      get { return 400; }
+    }
+
+    #endregion
+
+    [JsonIgnore]
+    public bool Result
+    {
+      get { return result; }
+    }
+
+    [JsonIgnore]
+    public DelegateCommand OkCommand
+    {
+      get { return okCommand; }
+    }
+
+    [JsonIgnore]
+    public DelegateCommand CancelCommand
+    {
+      get { return cancelCommand; }
+    }
+
+    [JsonIgnore]
+    public abstract FrameworkElement Content { get; }
+
+    public virtual void Load()
+    {
+      if (Content.DataContext == null)
+        Content.DataContext = this;
+    }
+
+    protected abstract string DataCheck();
+
+    protected virtual void OkClick()
+    {
+      string errMsg = DataCheck();
+      if (!string.IsNullOrEmpty(errMsg))
+      {
+        MessageBox.Show(errMsg);
+        return;
+      }
+      result = true;
+      window.DialogResult = true;
+    }
+
+    public virtual void CancelClick()
+    {
+      result = false;
+      window.DialogResult = false;
+    }
+
+    public void SaveLayout()
+    {
+      string layout = string.Format("{0},{1}", window.Width, window.Height);
+      File.WriteAllText(TemplateFileName, layout);
+    }
+  }
+}

@@ -84,7 +84,7 @@ namespace Supeng.Common.Entities
 
     public void SerializeToText(string fileName)
     {
-      File.AppendAllText(fileName, ToString());
+      File.WriteAllText(fileName, ToString());
     }
     #endregion
 

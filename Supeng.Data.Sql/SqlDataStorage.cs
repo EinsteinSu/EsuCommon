@@ -108,6 +108,7 @@ namespace Supeng.Data.Sql
             break;
           collection.Add(dataCreator.CreateData(reader));
         }
+        collection.AcceptChanges();
       }
       catch (Exception exception)
       {
@@ -136,6 +137,11 @@ namespace Supeng.Data.Sql
         ? CommandType.Text
         : CommandType.StoredProcedure;
       var command = new SqlCommand(sql, conn) { CommandType = type };
+      if (parameters != null)
+      {
+        foreach (IDataParameter parameter in parameters)
+          command.Parameters.Add(parameter);
+      }
       command.BeginExecuteReader(ThreadHelper.SyncContextCallback(ar =>
       {
         try
@@ -147,7 +153,6 @@ namespace Supeng.Data.Sql
             if (Cancellation.Token.IsCancellationRequested)
               break;
             collection.Add(dataCreator.CreateData(reader));
-            Thread.Sleep(1000);
           }
           backgroundData.EndExecute(collection);
         }

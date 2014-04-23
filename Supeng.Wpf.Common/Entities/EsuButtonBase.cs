@@ -16,6 +16,7 @@ namespace Supeng.Wpf.Common.Entities
     private Thickness thickness = new Thickness(0);
     private string imageUrl;
     private readonly DelegateCommand command;
+    private string name;
 
     public EsuButtonBase()
     {
@@ -33,6 +34,7 @@ namespace Supeng.Wpf.Common.Entities
     {
       this.text = text;
       thickness = new Thickness(left, 0, 0, 0);
+      NotifyOfPropertyChange(()=>Thickness);
     }
 
     #region properties
@@ -44,6 +46,17 @@ namespace Supeng.Wpf.Common.Entities
         if (value == text) return;
         text = value;
         NotifyOfPropertyChange(() => Text);
+      }
+    }
+
+    public string Name
+    {
+      get { return name; }
+      set
+      {
+        if (value == name) return;
+        name = value;
+        NotifyOfPropertyChange(() => Name);
       }
     }
 
@@ -69,12 +82,20 @@ namespace Supeng.Wpf.Common.Entities
       }
     }
 
+    public Thickness ContextMenuThickness
+    {
+      get
+      {
+        return new Thickness(0, thickness.Left, 0, 0);
+      }
+    }
+
     public string ImageUrl
     {
       get
       {
         if (string.IsNullOrEmpty(imageUrl))
-          return string.Format("{0}Buttons\\{1}.png", DirectoryHelper.ImageDirectory, Text);
+          return string.Format("{0}Buttons\\{1}.png", DirectoryHelper.ImageDirectory, name);
         return imageUrl;
       }
       set

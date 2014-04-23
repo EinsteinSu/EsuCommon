@@ -1,0 +1,18 @@
+﻿<Window x:Class="Supeng.Wpf.Common.DialogWindows.Views.DialogWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DialogWindowView" Height="300" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ContentControl Content="{Binding Content}"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Margin="5" Content="确定" Width="80" Command="{Binding OkCommand}"/>
+                <Button Margin="5" Content="取消" Width="80" Command="{Binding CancelCommand}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

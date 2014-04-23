@@ -10,11 +10,11 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
 {
   public abstract class TreeSelectionViewModel<T> : EsuInfoBase, IDataLoad where T : TreeEntityBase, new()
   {
+    private readonly DelegateCommand cancelCommand;
+    private readonly DelegateCommand okCommand;
+    private readonly EsuProgressViewModel progress;
     private EsuInfoCollection<T> collection;
     private T currentItem;
-    private readonly DelegateCommand okCommand;
-    private readonly DelegateCommand cancelCommand;
-    private readonly EsuProgressViewModel progress;
     private ChildWindow window;
 
     protected TreeSelectionViewModel()
@@ -72,6 +72,13 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
       get { return cancelCommand; }
     }
 
+    public abstract string Title { get; }
+
+    public void Load()
+    {
+      Collection = GetCollection();
+    }
+
     protected virtual void OkClick()
     {
       if (currentItem != null)
@@ -86,12 +93,5 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
     }
 
     public abstract EsuInfoCollection<T> GetCollection();
-
-    public abstract string Title { get; }
-
-    public void Load()
-    {
-      Collection = GetCollection();
-    }
   }
 }

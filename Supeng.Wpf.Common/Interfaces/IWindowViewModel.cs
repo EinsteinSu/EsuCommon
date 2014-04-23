@@ -1,4 +1,6 @@
-﻿namespace Supeng.Wpf.Common.Interfaces
+﻿using System.Windows;
+
+namespace Supeng.Wpf.Common.Interfaces
 {
   public interface IWindowViewModel
   {
@@ -7,5 +9,7 @@
     int Height { get; }
 
     int Width { get; }
+
+    Window Window { get; set; }
   }
 }

@@ -39,6 +39,10 @@
     <Reference Include="DevExpress.Data.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="devexpress.xpf.layoutcontrol.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -60,16 +64,24 @@
   <ItemGroup>
     <Compile Include="Controls\EsuMemoText.cs" />
     <Compile Include="Controls\ViewModels\EsuProgressViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
+    <Compile Include="HomeViewModelBase.cs" />
+    <Compile Include="Controls\ViewModels\UserControlFunctionItem.cs" />
     <Compile Include="Controls\Views\EsuProgressView.xaml.cs">
       <DependentUpon>EsuProgressView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\ViewModels\DialogWindowBase.cs" />
     <Compile Include="DialogWindows\DialogWindowHelper.cs" />
-    <Compile Include="DialogWindows\Views\EntityEditView.xaml.cs">
-      <DependentUpon>EntityEditView.xaml</DependentUpon>
+    <Compile Include="DialogWindows\Views\DialogWindowView.xaml.cs">
+      <DependentUpon>DialogWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\ViewModels\EntityEditViewModelBase.cs" />
+    <Compile Include="DialogWindows\Views\EntityEditControl.xaml.cs">
+      <DependentUpon>EntityEditControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\EsuButtonBase.cs" />
     <Compile Include="Entities\EsuToolBarButtonCollection.cs" />
+    <Compile Include="Interfaces\IButtonCollection.cs" />
     <Compile Include="Interfaces\IWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -108,7 +120,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="DialogWindows\Views\EntityEditView.xaml">
+    <Page Include="DialogWindows\Views\DialogWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\EntityEditControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

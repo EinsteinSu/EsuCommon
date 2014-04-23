@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 using Newtonsoft.Json;
 
 namespace Supeng.Common.Entities.ObserveCollection
@@ -25,9 +27,13 @@ namespace Supeng.Common.Entities.ObserveCollection
       get { return changedCollection; }
     }
 
+    public Action<EsuDataState, T> EsuCollectionChanged { get; set; }
+
     protected override void InsertItem(int index, T item)
     {
       base.InsertItem(index, item);
+      if (EsuCollectionChanged != null)
+        EsuCollectionChanged(EsuDataState.Added, item);
       changedCollection.Add(new ChangeData<T> { Data = item, ChangeTime = DateTime.Now, State = EsuDataState.Added });
       var notifyPropertyChanged = item as INotifyPropertyChanged;
       if (notifyPropertyChanged != null)
@@ -37,6 +43,8 @@ namespace Supeng.Common.Entities.ObserveCollection
     public virtual void DataChanged(object sender, PropertyChangedEventArgs e)
     {
       var data = (T)sender;
+      if (EsuCollectionChanged != null)
+        EsuCollectionChanged(EsuDataState.Modified, data);
       if (changedCollection.Any(w => data.Equals(w.Data)))
         return;
       changedCollection.Add(new ChangeData<T>
@@ -51,6 +59,8 @@ namespace Supeng.Common.Entities.ObserveCollection
     protected override void RemoveItem(int index)
     {
       T data = Items[index];
+      if (EsuCollectionChanged != null)
+        EsuCollectionChanged(EsuDataState.Deleted, data);
       while (true)
       {
         if (!changedCollection.Any(w => data.Equals(w.Data)))
@@ -90,6 +100,20 @@ namespace Supeng.Common.Entities.ObserveCollection
     public override string ToString()
     {
       return JsonConvert.SerializeObject(this);
+    }
+
+    public void SerializeToXml(string fileName)
+    {
+      using (var writer = new StreamWriter(fileName))
+      {
+        var xs = new XmlSerializer(GetType());
+        xs.Serialize(writer, this);
+      }
+    }
+
+    public void SerializeToText(string fileName)
+    {
+      File.AppendAllText(fileName, ToString());
     }
   }
 }
