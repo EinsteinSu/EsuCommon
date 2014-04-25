@@ -19,17 +19,9 @@ namespace Supeng.Wpf.Common.Controls
       return view;
     }
 
-    public static FrameworkElement GetCollectionEditControl<T>(CollectionEditViewModel<T> viewModel, IBackgroundData<EsuInfoCollection<T>> background = null) where T : EsuInfoBase, new()
+    public static FrameworkElement GetCollectionEditControl<T>(CollectionEditViewModel<T> viewModel) where T : EsuInfoBase, new()
     {
-      var view = new ToolbarWithContentView { DataContext = viewModel };
-      var dataLoad = viewModel as IDataLoad;
-      if (dataLoad != null)
-      {
-        dataLoad.Load();
-        if (viewModel.Data != null)
-          viewModel.Data.BackgroundHandler = background;
-      }
-      return view;
+      return GetToolbarWithContentControl(viewModel);
     }
   }
 }

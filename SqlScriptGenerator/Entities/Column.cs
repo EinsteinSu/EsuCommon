@@ -275,7 +275,7 @@ order by object_name(a.id),a.colorder";
       var sb = new StringBuilder();
       var sbPrivate = new StringBuilder();
       sb.AppendLine("#region properties");
-      foreach (Column column in this)
+      foreach (Column column in this.Where(w => w.Choice))
       {
         if (column.Name.Equals("id", StringComparison.InvariantCultureIgnoreCase) ||
           column.Name.Equals("guid", StringComparison.InvariantCultureIgnoreCase) ||

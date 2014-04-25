@@ -2,7 +2,6 @@
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
 using Supeng.Common.Interfaces;
-using Supeng.Common.Threads;
 
 namespace Supeng.Data
 {
@@ -11,22 +10,10 @@ namespace Supeng.Data
     protected readonly DataStorageBase Storage;
     private EsuInfoCollection<T> collection;
     private T currentItem;
-    private IBackgroundData<EsuInfoCollection<T>> backgroundHandler;
 
     protected EsuDataEditCollection(DataStorageBase storage)
     {
       Storage = storage;
-    }
-
-    public IBackgroundData<EsuInfoCollection<T>> BackgroundHandler
-    {
-      get { return backgroundHandler; }
-      set
-      {
-        if (Equals(value, backgroundHandler)) return;
-        backgroundHandler = value;
-        NotifyOfPropertyChange(() => BackgroundHandler);
-      }
     }
 
     public EsuInfoCollection<T> Collection

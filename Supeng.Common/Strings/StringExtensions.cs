@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 using Newtonsoft.Json;
 
 namespace Supeng.Common.Strings
@@ -17,20 +15,30 @@ namespace Supeng.Common.Strings
       return JsonConvert.DeserializeObject<T>(data);
     }
 
+    public static string BytesToString(this byte[] data)
+    {
+      return Encoding.UTF8.GetString(data);
+    }
+
+    public static byte[] StringToBytes(this string data)
+    {
+      return Encoding.UTF8.GetBytes(data);
+    }
+
     public static string GetPascalName(this string name)
     {
-      if (!string.IsNullOrEmpty(name))
+      if (!String.IsNullOrEmpty(name))
       {
         string first = name.Substring(0, 1);
         string other = name.Substring(1, name.Length - 1);
-        return string.Format("{0}{1}", first.ToUpper(), other.ToLower());
+        return String.Format("{0}{1}", first.ToUpper(), other.ToLower());
       }
-      return string.Empty;
+      return String.Empty;
     }
 
     public static string SplitToString(this IList<string> collection, char c)
     {
-      return collection.Aggregate(string.Empty, (current, s) => current + string.Format("{0}{1}", s, c)).TrimEnd(c);
+      return collection.Aggregate(String.Empty, (current, s) => current + String.Format("{0}{1}", s, c)).TrimEnd(c);
     }
 
     public static List<string> GetStringCollection(this string str, char c)
@@ -40,13 +48,13 @@ namespace Supeng.Common.Strings
 
     public static void EsuAppendFormat(this StringBuilder sb, string data, params object[] strs)
     {
-      sb.AppendLine(string.Format(data, strs));
+      sb.AppendLine(String.Format(data, strs));
     }
 
     public static string Package(this IDictionary<string, string> dictionary)
     {
       var sb = new StringBuilder(dictionary.Count * 2);
-      foreach (KeyValuePair<string, string> valuePair in dictionary)
+      foreach (var valuePair in dictionary)
       {
         sb.AppendFormat("{0}{1}{2}{1}", valuePair.Key, Split, valuePair.Value);
       }
