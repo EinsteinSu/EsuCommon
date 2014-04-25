@@ -3,11 +3,13 @@ using Supeng.Wpf.Common.DialogWindows.Views;
 
 namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 {
-  public abstract class EntityEditViewModelBase<T> : DialogWindowBase
+  public class EntityEditViewModelBase<T> : DialogWindowBase
   {
     private T data;
 
-    protected EntityEditViewModelBase(T data)
+    public EntityEditViewModelBase() { }
+
+    public EntityEditViewModelBase(T data)
     {
       this.data = data;
     }

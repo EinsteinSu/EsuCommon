@@ -9,6 +9,13 @@ namespace Supeng.Wpf.Common.DialogWindows
 {
   public static class DialogWindowHelper
   {
+    public static Window ShowDialogWindow(EsuInfoBase viewModel)
+    {
+      var window = new DialogWindowView();
+      ShowDialogWindow(window, viewModel);
+      return window;
+    }
+
     public static void ShowDialogWindow(this Window window, EsuInfoBase viewModel)
     {
       var windowViewModel = viewModel as IWindowViewModel;
@@ -19,6 +26,13 @@ namespace Supeng.Wpf.Common.DialogWindows
       if (dataLoad != null)
         dataLoad.Load();
       window.ShowDialog();
+    }
+
+    public static Window ShowWindow(EsuInfoBase viewModel)
+    {
+      var window = new DialogWindowView();
+      ShowWindow(window, viewModel);
+      return window;
     }
 
     public static void ShowWindow(this  Window window, EsuInfoBase viewModel)

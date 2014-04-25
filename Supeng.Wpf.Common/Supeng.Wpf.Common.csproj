@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="DevExpress.Data.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="devexpress.xpf.layoutcontrol.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -63,7 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\EsuMemoText.cs" />
+    <Compile Include="Controls\ToolbarWithContentHelper.cs" />
+    <Compile Include="Controls\ViewModels\CollectionEditViewModel.cs" />
+    <Compile Include="Controls\ViewModels\CollectionEditWithWindowViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuProgressViewModel.cs" />
+    <Compile Include="Controls\ViewModels\ToolbarWithContentViewModelBase.cs" />
+    <Compile Include="Controls\Views\CollectionEditGrid.xaml.cs">
+      <DependentUpon>CollectionEditGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
     <Compile Include="HomeViewModelBase.cs" />
     <Compile Include="Controls\ViewModels\UserControlFunctionItem.cs" />
@@ -97,6 +105,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Templates\TeamplateExtensions.cs" />
+    <Compile Include="Controls\Views\ToolbarWithContentView.xaml.cs">
+      <DependentUpon>ToolbarWithContentView.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -113,9 +124,16 @@
       <Project>{808c1f27-1d44-44b5-bdda-3047aa98052a}</Project>
       <Name>Supeng.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Supeng.Data\Supeng.Data.csproj">
+      <Project>{2861daf5-bb1a-4fba-a479-707b5c7ecf3e}</Project>
+      <Name>Supeng.Data</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Page Include="Controls\Views\CollectionEditGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Views\EsuProgressView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogWindows\Views\EntityEditControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\ToolbarWithContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

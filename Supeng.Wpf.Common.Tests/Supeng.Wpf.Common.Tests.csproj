@@ -38,6 +38,7 @@
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -59,6 +60,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="DataCollectionEditTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataCollectionEditWindowTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,6 +75,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataCollectionEditTest.xaml.cs">
+      <DependentUpon>DataCollectionEditTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataCollectionEditWindowTest.xaml.cs">
+      <DependentUpon>DataCollectionEditWindowTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -104,6 +119,10 @@
     <ProjectReference Include="..\Supeng.Common\Supeng.Common.csproj">
       <Project>{808c1f27-1d44-44b5-bdda-3047aa98052a}</Project>
       <Name>Supeng.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supeng.Data\Supeng.Data.csproj">
+      <Project>{2861daf5-bb1a-4fba-a479-707b5c7ecf3e}</Project>
+      <Name>Supeng.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Supeng.Wpf.Common\Supeng.Wpf.Common.csproj">
       <Project>{7369654a-d9ef-4a30-9b6c-fc46ba6590b6}</Project>

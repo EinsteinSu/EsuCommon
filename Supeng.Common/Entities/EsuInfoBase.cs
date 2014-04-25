@@ -36,8 +36,7 @@ namespace Supeng.Common.Entities
       }
     }
 
-    [DataType(DataType.MultilineText)]
-    [Display(Name = "备注", Order = 999)]
+    [Display(AutoGenerateField = false)]
     public string Description
     {
       get { return description; }
@@ -87,6 +86,7 @@ namespace Supeng.Common.Entities
       File.WriteAllText(fileName, ToString());
     }
     #endregion
+
 
     public static T InitailizeDefaultData<T>() where T : EsuInfoBase, new()
     {

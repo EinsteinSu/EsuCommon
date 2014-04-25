@@ -49,7 +49,7 @@
                 </dxg:GridControl>
             </Grid>
             <Grid Grid.Column="1">
-                <dxe:TextEdit Text="{Binding Result}" IsReadOnly="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                <dxe:TextEdit Text="{Binding Result}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
             </Grid>
         </Grid>
         <views:EsuProgressView Grid.Row="2" DataContext="{Binding Progress}"/>

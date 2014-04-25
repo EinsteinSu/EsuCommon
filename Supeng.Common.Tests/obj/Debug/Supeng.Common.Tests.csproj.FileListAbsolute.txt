@@ -72,3 +72,7 @@ C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.dl
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.dll
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.pdb
 C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.pdb
+C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.dll
+C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.dll
+C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.pdb
+C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.pdb

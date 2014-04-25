@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +29,7 @@ namespace Supeng.Wpf.Common.Tests
       InitializeComponent();
 
       EsuToolBarButtonCollection collection = new EsuToolBarButtonCollection(EsuButtonToolBarType.TextAndImage);
-      EsuButtonBase button = new EsuButtonBase("Test", 0, DoAction){Description = "Test button"};
+      EsuButtonBase button = new EsuButtonBase("Test", 0, DoAction) { Description = "Test button" };
       collection.Add(button);
       collection.Add((EsuButtonBase)button.Clone());
       collection.Add((EsuButtonBase)button.Clone());
@@ -44,6 +46,18 @@ namespace Supeng.Wpf.Common.Tests
 
   public class TestData : EsuInfoBase
   {
+    [Display(Name = @"ID")]
+    public new string ID
+    {
+      get { return base.ID; }
+      set { base.ID = value; }
+    }
 
+    [Display(Name = @"Description")]
+    public new string Description
+    {
+      get { return base.Description; }
+      set { base.Description = value; }
+    }
   }
 }
