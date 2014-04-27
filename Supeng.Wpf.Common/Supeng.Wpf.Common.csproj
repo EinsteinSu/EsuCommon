@@ -72,7 +72,11 @@
     <Compile Include="Controls\Views\CollectionEditGrid.xaml.cs">
       <DependentUpon>CollectionEditGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\ViewModels\CollectionEditWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
+    <Compile Include="DialogWindows\Views\ListEditControl.xaml.cs">
+      <DependentUpon>ListEditControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeViewModelBase.cs" />
     <Compile Include="Controls\ViewModels\UserControlFunctionItem.cs" />
     <Compile Include="Controls\Views\EsuProgressView.xaml.cs">
@@ -147,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Views\ToolbarWithContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\ListEditControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

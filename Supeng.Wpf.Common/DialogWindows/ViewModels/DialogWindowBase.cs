@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Windows;
 using DevExpress.Xpf.Bars;
@@ -25,12 +24,12 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     private Window window;
     private bool result;
 
-    protected string TemplateFileName;
+    
 
     protected DialogWindowBase()
     {
-      TemplateFileName =
-      string.Format("{0}{1}.txt", DirectoryHelper.TemplateDirectory, TemplateName);
+      
+      
 
       okCommand = new DelegateCommand(OkClick, () => true);
       cancelCommand = new DelegateCommand(CancelClick, () => true);
@@ -52,9 +51,10 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
         {
           window.Title = Title;
           window.Closed += (sender, args) => SaveLayout();
-          if (File.Exists(TemplateFileName))
+          string templateFileName = string.Format("{0}{1}.txt", DirectoryHelper.TemplateDirectory, TemplateName);
+          if (File.Exists(templateFileName))
           {
-            string text = File.ReadAllText(TemplateFileName);
+            string text = File.ReadAllText(templateFileName);
             var list = text.GetStringCollection(',');
             if (list.Any())
             {
@@ -139,8 +139,9 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 
     public void SaveLayout()
     {
+      string templateFileName = string.Format("{0}{1}.txt", DirectoryHelper.TemplateDirectory, TemplateName);
       string layout = string.Format("{0},{1}", window.Width, window.Height);
-      File.WriteAllText(TemplateFileName, layout);
+      File.WriteAllText(templateFileName, layout);
     }
   }
 }
