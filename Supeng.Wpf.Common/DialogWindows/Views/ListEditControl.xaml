@@ -3,10 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="Supeng.Wpf.Common.DialogWindows.Views.ListEditControl" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="Supeng.Wpf.Common.DialogWindows.Views.ListEditControl" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <dxe:ListBoxEdit ItemsSource="{Binding Data.Collection,Mode=TwoWay}" SelectedItem="{Binding Data.CurrentItem}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ToolBar ItemsSource="{Binding ButtonCollection.Collection}" ItemTemplate="{Binding ButtonCollection.Template}"/>
+        <dxe:ListBoxEdit Grid.Row="1" ItemsSource="{Binding Data.Collection, Mode=TwoWay}" ItemTemplate="{Binding ItemTemplate}" SelectedItem="{Binding Data.CurrentItem}" HorizontalContentAlignment="Stretch">
+            <dxe:ListBoxEdit.ContextMenu>
+                <ContextMenu ItemsSource="{Binding ButtonCollection.Collection}" >
+                    <ContextMenu.ItemContainerStyle>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <Setter Property="Command" Value="{Binding Command}" />
+                            <Setter Property="IsEnabled" Value="{Binding Enable, Mode=TwoWay}"/>
+                        </Style>
+                    </ContextMenu.ItemContainerStyle>
+                    <ContextMenu.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"  Margin="{Binding ContextMenuThickness}">
+                                <Image Source="{Binding Image}" Height="16"/>
+                                <TextBlock Text ="{Binding Text}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ContextMenu.ItemTemplate>
+                </ContextMenu>
+            </dxe:ListBoxEdit.ContextMenu>
+        </dxe:ListBoxEdit>
     </Grid>
 </UserControl>

@@ -137,6 +137,7 @@ namespace Supeng.Common.DataOperations
         {
           var f = (Func<string, IDataCreator<T>, IDataParameter[], EsuInfoCollection<T>>)ar.AsyncState;
           var collection = f.EndInvoke(ar);
+          collection.AcceptChanges();
           backgroundData.EndExecute(collection);
         }
         catch (Exception exception)

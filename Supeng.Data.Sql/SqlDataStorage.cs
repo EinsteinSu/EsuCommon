@@ -154,6 +154,7 @@ namespace Supeng.Data.Sql
               break;
             collection.Add(dataCreator.CreateData(reader));
           }
+          collection.AcceptChanges();
           backgroundData.EndExecute(collection);
         }
         catch (Exception exception)
