@@ -21,16 +21,15 @@ namespace Supeng.Data.Sql
       this.connectionString = connectionString;
     }
 
-    public override int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null)
+    public override int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null, CommandType type = CommandType.Text)
     {
       var conn = new SqlConnection(connectionString);
       conn.Open();
       try
       {
-        var command = new SqlCommand(sql, conn);
+        var command = new SqlCommand(sql, conn) {CommandType = type};
         if (parameters != null && parameters.Any())
         {
-          command.CommandType = CommandType.StoredProcedure;
           foreach (var parameter in parameters)
             command.Parameters.Add(parameter);
         }
@@ -53,12 +52,17 @@ namespace Supeng.Data.Sql
       }
     }
 
-    public override void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null)
+    public override void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null, CommandType type = CommandType.Text)
     {
       backgroundData.BeginExecute();
       var conn = new SqlConnection(connectionString);
       conn.Open();
-      var command = new SqlCommand(sql, conn);
+      var command = new SqlCommand(sql, conn){CommandType = type};
+      if (parameters != null && parameters.Any())
+      {
+        foreach (var parameter in parameters)
+          command.Parameters.Add(parameter);
+      }
       command.BeginExecuteNonQuery(ThreadHelper.SyncContextCallback(ar =>
       {
         try

@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Text;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
@@ -15,7 +16,6 @@ namespace Supeng.Common.DataOperations
       Action<ChangeData<T>> doSave = null, Action allDone = null)
       where T : EsuInfoBase, new()
     {
-      var sb = new StringBuilder();
       if (startSave != null)
         startSave();
       foreach (var change in collection)
@@ -23,27 +23,24 @@ namespace Supeng.Common.DataOperations
         switch (change.State)
         {
           case EsuDataState.Added:
-            sb.AppendLine(dataSave.InsertSqlScript(change.Data) + ";");
+            ExecuteSqlScriptByType(dataSave.InsertSqlScript(), dataSave.MappingParameters(change.Data), storage, type,
+              handleException);
             break;
           case EsuDataState.Modified:
-            sb.AppendLine(dataSave.UpdateSqlScript(change.Data) + ";");
+            ExecuteSqlScriptByType(dataSave.UpdateSqlScript(), dataSave.MappingParameters(change.Data), storage, type,
+              handleException);
             break;
           case EsuDataState.Deleted:
-            sb.AppendLine(dataSave.DeleteSqlScript(change.Data) + ";");
+            ExecuteSqlScriptByType(dataSave.DeleteSqlScript(), dataSave.MappingParameters(change.Data), storage, type,
+              handleException);
             break;
         }
         if (log != null)
-          sb.AppendLine(log.DataOperationLog(change, userID) + ";");
+          ExecuteSqlScriptByType(log.LogSqlScript(), log.MappingParameters(change,userID), storage, type,
+             handleException);
         if (doSave != null)
           doSave(change);
-        if (sb.Length > 1000)
-        {
-          ExecuteSqlScriptByType(sb.ToString(), storage, type, handleException);
-          sb = new StringBuilder();
-        }
       }
-      if (!string.IsNullOrEmpty(sb.ToString()))
-        ExecuteSqlScriptByType(sb.ToString(), storage, type, handleException);
       if (allDone != null)
         allDone();
     }
@@ -54,7 +51,6 @@ namespace Supeng.Common.DataOperations
       Action<ChangeData<T>> doSave = null, Action allDone = null)
       where T : EsuInfoBase, new()
     {
-      var sb = new StringBuilder();
       if (startSave != null)
         startSave();
       foreach (var change in collection.ChangedCollection)
@@ -62,27 +58,24 @@ namespace Supeng.Common.DataOperations
         switch (change.State)
         {
           case EsuDataState.Added:
-            sb.AppendLine(dataSave.InsertSqlScript(change.Data) + ";");
+            ExecuteSqlScriptByType(dataSave.InsertSqlScript(), dataSave.MappingParameters(change.Data), storage, type,
+             handleException);
             break;
           case EsuDataState.Modified:
-            sb.AppendLine(dataSave.UpdateSqlScript(change.Data) + ";");
+            ExecuteSqlScriptByType(dataSave.UpdateSqlScript(), dataSave.MappingParameters(change.Data), storage, type,
+            handleException);
             break;
           case EsuDataState.Deleted:
-            sb.AppendLine(dataSave.DeleteSqlScript(change.Data) + ";");
+            ExecuteSqlScriptByType(dataSave.DeleteSqlScript(), dataSave.MappingParameters(change.Data), storage, type,
+            handleException);
             break;
         }
         if (log != null)
-          sb.AppendLine(log.DataOperationLog(change, userID) + ";");
+          ExecuteSqlScriptByType(log.LogSqlScript(), log.MappingParameters(change, userID), storage, type,
+            handleException);
         if (doSave != null)
           doSave(change);
-        if (sb.Length > 1000)
-        {
-          ExecuteSqlScriptByType(sb.ToString(), storage, type, handleException);
-          sb = new StringBuilder();
-        }
       }
-      if (!string.IsNullOrEmpty(sb.ToString()))
-        ExecuteSqlScriptByType(sb.ToString(), storage, type, handleException);
       collection.AcceptChanges();
       if (allDone != null)
         allDone();
@@ -92,25 +85,30 @@ namespace Supeng.Common.DataOperations
       IDataSaveLog<T> log = null, ExecuteType type = ExecuteType.Normal, string userID = "System",
       IExceptionHandle handleException = null, Action startSave = null, Action allDone = null) where T : EsuInfoBase
     {
-      StringBuilder sb = new StringBuilder();
       if (startSave != null)
         startSave();
       switch (state)
       {
         case EsuDataState.Added:
-          sb.AppendLine(dataSave.InsertSqlScript(data));
+          ExecuteSqlScriptByType(dataSave.InsertSqlScript(), dataSave.MappingParameters(data), storage, type,
+            handleException);
           break;
         case EsuDataState.Modified:
-          sb.AppendLine(dataSave.UpdateSqlScript(data));
+          ExecuteSqlScriptByType(dataSave.UpdateSqlScript(), dataSave.MappingParameters(data), storage, type,
+           handleException);
           break;
         case EsuDataState.Deleted:
-          sb.AppendLine(dataSave.DeleteSqlScript(data));
+          ExecuteSqlScriptByType(dataSave.DeleteSqlScript(), dataSave.MappingParameters(data), storage, type,
+           handleException);
           break;
       }
       if (log != null)
-        sb.AppendLine(log.DataOperationLog(new ChangeData<T> { State = state, Data = data, ChangeTime = DateTime.Now }, userID) + ";");
-      if (!string.IsNullOrEmpty(sb.ToString()))
-        ExecuteSqlScriptByType(sb.ToString(), storage, type, handleException);
+
+      {
+        var change = new ChangeData<T> { State = state, Data = data, ChangeTime = DateTime.Now };
+        ExecuteSqlScriptByType(log.LogSqlScript(), log.MappingParameters(change, userID), storage, type,
+           handleException); 
+      }
       if (allDone != null)
         allDone();
     }
@@ -133,18 +131,18 @@ namespace Supeng.Common.DataOperations
       SaveSingleRecord(data, EsuDataState.Deleted, storage, dataSave, log, type, userID, handleException, startSave, allDone);
     }
 
-    private static void ExecuteSqlScriptByType(string sql, DataStorageBase storage, ExecuteType type, IExceptionHandle handleException)
+    private static void ExecuteSqlScriptByType(string sql, IDataParameter[] parameters, DataStorageBase storage, ExecuteType type, IExceptionHandle handleException)
     {
       switch (type)
       {
         case ExecuteType.Normal:
-          storage.Execute(sql, exceptionHandle: handleException);
+          storage.Execute(sql, parameters, handleException);
           break;
         case ExecuteType.Background:
-          storage.ExecuteInBackground(sql, handleException as IBackgroundData<int>);
+          storage.ExecuteInBackground(sql, handleException as IBackgroundData<int>, parameters);
           break;
         case ExecuteType.WithAPM:
-          storage.ExecuteWithAPM(sql, handleException as IBackgroundData<int>);
+          storage.ExecuteWithAPM(sql, handleException as IBackgroundData<int>, parameters);
           break;
       }
     }

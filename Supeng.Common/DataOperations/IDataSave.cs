@@ -1,19 +1,24 @@
-﻿using Supeng.Common.Entities;
+﻿using System.Data;
+using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
 
 namespace Supeng.Common.DataOperations
 {
   public interface IDataSave<in T>
   {
-    string InsertSqlScript(T data);
+    IDataParameter[] MappingParameters(T data);
 
-    string UpdateSqlScript(T data);
+    string InsertSqlScript();
 
-    string DeleteSqlScript(T data);
+    string UpdateSqlScript();
+
+    string DeleteSqlScript();
   }
 
   public interface IDataSaveLog<T> where T : EsuInfoBase
   {
-    string DataOperationLog(ChangeData<T> data, string userID);
+    IDataParameter[] MappingParameters(ChangeData<T> data, string userID);
+
+    string LogSqlScript();
   }
 }

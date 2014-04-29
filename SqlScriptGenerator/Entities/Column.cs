@@ -118,6 +118,11 @@ namespace SqlScriptGenerator.Entities
       }
     }
 
+    public string ParameterName
+    {
+      get { return string.Format("@{0}", name.ToLower()); }
+    }
+
     public string DataEntityName
     {
       get
@@ -145,14 +150,14 @@ namespace SqlScriptGenerator.Entities
       return column;
     }
 
-    public string GetSetValue(int sequnce)
+    public string GetSetValue()
     {
-      return string.Format("{0} = {1}", name.ToLower(), sequnce.QuoteSequnce(type));
+      return string.Format("{0} = {1}", name.ToLower(), ParameterName);
     }
 
-    public string GetWhereCondition(int sequence)
+    public string GetWhereCondition()
     {
-      return string.Format("Where {0} = {1}", name, sequence.QuoteSequnce(type));
+      return string.Format("Where {0} = {1}", name, ParameterName);
     }
   }
 
@@ -217,14 +222,23 @@ order by object_name(a.id),a.colorder";
         .Aggregate(string.Empty, (current, column) => current + (column.CreatorString + Environment.NewLine));
     }
 
-    private string GetDataColumns(bool includePk = false)
+    #region get sql scripts
+
+    public string GetMappingParameters()
     {
-      string data = this.Where(w => (includePk || !w.Pk) && w.Choice)
-        .Aggregate(string.Empty, (current, column) => current + string.Format("{0},", column.DataEntityName));
-      return data.TrimEnd(',');
+      StringBuilder sb = new StringBuilder();
+      sb.AppendLine(string.Format("IDataParameter[] parameters = new IDataParameter[{0}];", Count));
+      int i = 0;
+      foreach (var column in this.Where(w => w.Choice))
+      {
+        sb.AppendLine(string.Format("parameters[{0}] = new SqlParameter(\"{1}\", {2});", i, column.ParameterName,
+          column.DataEntityName));
+        i++;
+      }
+      sb.AppendLine("return parameters;");
+      return sb.ToString();
     }
 
-    #region get sql scripts
     public string GetInsertSqlScript()
     {
       string insertColumns = string.Empty;
@@ -233,11 +247,11 @@ order by object_name(a.id),a.colorder";
       foreach (Column column in this.Where(w => w.Choice))
       {
         insertColumns += string.Format("{0},", column.Name.ToLower());
-        insertValue += string.Format("{0},", i.QuoteSequnce(column.Type));
+        insertValue += string.Format("{0},", column.ParameterName);
         i++;
       }
-      return string.Format("string.Format(\"Insert into {0}({1}) values({2})\",{3});", tableName,
-        insertColumns.TrimEnd(','), insertValue.TrimEnd(','), GetDataColumns(true));
+      return string.Format("return \"Insert into {0}({1}) values({2})\";", tableName,
+        insertColumns.TrimEnd(','), insertValue.TrimEnd(','));
     }
 
     public string GetUpdateSql()
@@ -246,15 +260,14 @@ order by object_name(a.id),a.colorder";
       int i = 0;
       foreach (Column column in this.Where(w => !w.Pk && w.Choice))
       {
-        setColumns += string.Format("{0},", column.GetSetValue(i));
+        setColumns += string.Format("{0},", column.GetSetValue());
         i++;
       }
       Column pk = this.FirstOrDefault(f => f.Pk);
       if (pk != null)
-        return string.Format("string.Format(\"Update {0} set {1} {2}\",{3});", tableName, setColumns.TrimEnd(','),
-          pk.GetWhereCondition(i), GetDataColumns() + ',' + pk.DataEntityName);
-      return string.Format("string.Format(\"Update {0} set {1} \",{2});", tableName, setColumns.TrimEnd(','),
-        GetDataColumns());
+        return string.Format("return \"Update {0} set {1} {2};\"", tableName, setColumns.TrimEnd(','),
+          pk.GetWhereCondition());
+      return string.Format("return \"Update {0} set {1} \";", tableName, setColumns.TrimEnd(','));
     }
 
     public string GetDeleteSql()
@@ -262,9 +275,8 @@ order by object_name(a.id),a.colorder";
       Column pk = this.FirstOrDefault(f => f.Pk);
       if (pk != null)
       {
-        string whereCondition = pk.GetWhereCondition(0);
-        return string.Format("string.Format(\"Delete from {0} {1}\",{2});", tableName, whereCondition,
-          pk.DataEntityName);
+        string whereCondition = pk.GetWhereCondition();
+        return string.Format("return \"Delete from {0} {1}\";", tableName, whereCondition);
       }
       return string.Empty;
     }

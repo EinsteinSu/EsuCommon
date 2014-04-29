@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Caliburn.Micro;
 using NUnit.Framework;
 using Supeng.Common.DataOperations;
 using Supeng.Common.Entities;
@@ -132,6 +134,30 @@ namespace Supeng.Common.Tests
     public string DeleteSqlScript(TestData data)
     {
       return string.Format("Delete from SaveTable Where ID = '{0}'", data.ID);
+    }
+
+    public IDataParameter[] MappingParameters(TestData data)
+    {
+      IDataParameter[] parameters = new IDataParameter[3];
+      parameters[0] = new SqlParameter("@id", data.ID);
+      parameters[1] = new SqlParameter("@name", data.Name);
+      parameters[2] = new SqlParameter("@age", data.Age);
+      return parameters;
+    }
+
+    public string InsertSqlScript()
+    {
+      return "Insert into SaveTable(id,name,age) values(@id,@name,@age)";
+    }
+
+    public string UpdateSqlScript()
+    {
+      return "Update SaveTable set name = @name,age = @age Where ID = @id";
+    }
+
+    public string DeleteSqlScript()
+    {
+      return "Delete from SaveTable Where ID = @id";
     }
   }
 }

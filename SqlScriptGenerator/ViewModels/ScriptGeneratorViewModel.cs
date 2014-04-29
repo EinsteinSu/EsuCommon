@@ -126,6 +126,7 @@ namespace SqlScriptGenerator.ViewModels
       var sb = new StringBuilder();
       if (columnCollection != null)
       {
+        sb.AppendLine(columnCollection.GetMappingParameters());
         sb.AppendLine(columnCollection.GetInsertSqlScript());
         sb.AppendLine(columnCollection.GetUpdateSql());
         sb.AppendLine(columnCollection.GetDeleteSql());
