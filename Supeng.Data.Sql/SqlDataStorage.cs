@@ -27,11 +27,15 @@ namespace Supeng.Data.Sql
       conn.Open();
       try
       {
-        var command = new SqlCommand(sql, conn) {CommandType = type};
+        var command = new SqlCommand(sql, conn) { CommandType = type };
         if (parameters != null && parameters.Any())
         {
           foreach (var parameter in parameters)
+          {
+            if (parameter.Value == null)
+              parameter.Value = DBNull.Value;
             command.Parameters.Add(parameter);
+          }
         }
         return command.ExecuteNonQuery();
       }
@@ -57,11 +61,15 @@ namespace Supeng.Data.Sql
       backgroundData.BeginExecute();
       var conn = new SqlConnection(connectionString);
       conn.Open();
-      var command = new SqlCommand(sql, conn){CommandType = type};
+      var command = new SqlCommand(sql, conn) { CommandType = type };
       if (parameters != null && parameters.Any())
       {
         foreach (var parameter in parameters)
+        {
+          if (parameter.Value == null)
+            parameter.Value = DBNull.Value;
           command.Parameters.Add(parameter);
+        }
       }
       command.BeginExecuteNonQuery(ThreadHelper.SyncContextCallback(ar =>
       {
@@ -103,7 +111,11 @@ namespace Supeng.Data.Sql
         if (parameters != null)
         {
           foreach (IDataParameter parameter in parameters)
+          {
+            if (parameter.Value == null)
+              parameter.Value = DBNull.Value;
             command.Parameters.Add(parameter);
+          }
         }
         SqlDataReader reader = command.ExecuteReader();
         while (reader.Read())
@@ -144,7 +156,11 @@ namespace Supeng.Data.Sql
       if (parameters != null)
       {
         foreach (IDataParameter parameter in parameters)
+        {
+          if (parameter.Value == null)
+            parameter.Value = DBNull.Value;
           command.Parameters.Add(parameter);
+        }
       }
       command.BeginExecuteReader(ThreadHelper.SyncContextCallback(ar =>
       {

@@ -227,7 +227,7 @@ order by object_name(a.id),a.colorder";
     public string GetMappingParameters()
     {
       StringBuilder sb = new StringBuilder();
-      sb.AppendLine(string.Format("IDataParameter[] parameters = new IDataParameter[{0}];", Count));
+      sb.AppendLine(string.Format("IDataParameter[] parameters = new IDataParameter[{0}];", this.Count(w => w.Choice)));
       int i = 0;
       foreach (var column in this.Where(w => w.Choice))
       {
@@ -265,7 +265,7 @@ order by object_name(a.id),a.colorder";
       }
       Column pk = this.FirstOrDefault(f => f.Pk);
       if (pk != null)
-        return string.Format("return \"Update {0} set {1} {2};\"", tableName, setColumns.TrimEnd(','),
+        return string.Format("return \"Update {0} set {1} {2}\";", tableName, setColumns.TrimEnd(','),
           pk.GetWhereCondition());
       return string.Format("return \"Update {0} set {1} \";", tableName, setColumns.TrimEnd(','));
     }
