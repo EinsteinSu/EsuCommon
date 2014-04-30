@@ -28,9 +28,6 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 
     protected DialogWindowBase()
     {
-      
-      
-
       okCommand = new DelegateCommand(OkClick, () => true);
       cancelCommand = new DelegateCommand(CancelClick, () => true);
     }

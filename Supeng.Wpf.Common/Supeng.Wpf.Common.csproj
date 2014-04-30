@@ -73,9 +73,17 @@
       <DependentUpon>CollectionEditGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\ViewModels\CollectionEditWindowViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
+    <Compile Include="DialogWindows\ViewModels\TreeCollectionSelectionWindowViewModel.cs" />
+    <Compile Include="DialogWindows\Views\GridSelectionControl.xaml.cs">
+      <DependentUpon>GridSelectionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogWindows\Views\ListEditControl.xaml.cs">
       <DependentUpon>ListEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\TreeSelectionControl.xaml.cs">
+      <DependentUpon>TreeSelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomeViewModelBase.cs" />
     <Compile Include="Controls\ViewModels\UserControlFunctionItem.cs" />
@@ -154,7 +162,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DialogWindows\Views\GridSelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DialogWindows\Views\ListEditControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\TreeSelectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
