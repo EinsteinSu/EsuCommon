@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <dxg:TreeListControl  AutoPopulateColumns="True"  ItemsSource="{Binding Collection,Mode=TwoWay}">
             <dxg:TreeListControl.View>
-                <dxg:TreeListView AutoWidth="True" AllowEditing="False" KeyFieldName="{Binding KeyName}" ParentFieldName="{Binding ParentKeyName}" FocusedRow="{Binding CurrentItem,Mode=TwoWay}"/>
+                <dxg:TreeListView AutoExpandAllNodes="True" AutoWidth="True" AllowEditing="False" KeyFieldName="{Binding KeyName}" ParentFieldName="{Binding ParentKeyName}" FocusedRow="{Binding CurrentItem,Mode=TwoWay}"/>
             </dxg:TreeListControl.View>
         </dxg:TreeListControl>
         <views:EsuProgressView Grid.Row="1" DataContext="{Binding Progress}"/>

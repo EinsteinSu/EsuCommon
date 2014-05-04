@@ -24,7 +24,10 @@ namespace Supeng.Common.Entities.ObserveCollection
 
     public ChangesCollection<T> ChangedCollection
     {
-      get { return changedCollection; }
+      get
+      {
+        return changedCollection;
+      }
     }
 
     public Action<EsuDataState, T> EsuCollectionChanged { get; set; }

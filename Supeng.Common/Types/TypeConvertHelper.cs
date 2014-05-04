@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.ServiceModel;
 
 namespace Supeng.Common.Types
 {
@@ -31,6 +32,39 @@ namespace Supeng.Common.Types
     public static DateTime ConvertToDateTime(this string data)
     {
       return data.ConvertData(new DateTime(1900, 1, 1));
+    }
+
+    public static string ConvertToCnNumber(this int num)
+    {
+      switch (num)
+      {
+        case 1:
+          return "一";
+        case 2:
+          return "二";
+        case 3:
+          return "三";
+        case 4:
+          return "四";
+        case 5:
+          return "五";
+        case 6:
+          return "六";
+        case 7:
+          return "七";
+        case 8:
+          return "八";
+        case 9:
+          return "九";
+        case 10:
+          return "十";
+      }
+      return string.Empty;
+    }
+
+    public static string ConvertToCnString(this bool data)
+    {
+      return data ? "是" : "否";
     }
   }
 }
