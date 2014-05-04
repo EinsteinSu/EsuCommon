@@ -19,5 +19,12 @@ namespace Supeng.Common.Tests
       sb.EsuAppendFormat(data, "1", "2");
       Assert.AreEqual("Test1,2" + Environment.NewLine, sb.ToString());
     }
+
+    [Test]
+    public void TestJedx()
+    {
+       decimal data = (decimal) 11234115.12D;
+      Console.WriteLine(data.GetJedx());
+    }
   }
 }
