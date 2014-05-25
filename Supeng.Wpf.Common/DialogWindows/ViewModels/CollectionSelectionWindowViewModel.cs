@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
-using Supeng.Wpf.Common.Controls.ViewModels;
 using Supeng.Wpf.Common.DialogWindows.Views;
 
 namespace Supeng.Wpf.Common.DialogWindows.ViewModels
@@ -10,18 +9,6 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
   {
     private EsuInfoCollection<T> collection;
     private T currentItem;
-    private EsuProgressViewModel progress;
-
-    public EsuProgressViewModel Progress
-    {
-      get { return progress; }
-      set
-      {
-        if (Equals(value, progress)) return;
-        progress = value;
-        NotifyOfPropertyChange(() => Progress);
-      }
-    }
 
     public override FrameworkElement Content
     {

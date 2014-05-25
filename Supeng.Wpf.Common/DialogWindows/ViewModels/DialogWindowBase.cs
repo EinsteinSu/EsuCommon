@@ -8,6 +8,7 @@ using Supeng.Common.Interfaces;
 using Supeng.Common.IOs;
 using Supeng.Common.Strings;
 using Supeng.Common.Types;
+using Supeng.Wpf.Common.Controls.ViewModels;
 using Supeng.Wpf.Common.Interfaces;
 
 namespace Supeng.Wpf.Common.DialogWindows.ViewModels
@@ -23,8 +24,8 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     private readonly DelegateCommand okCommand;
     private Window window;
     private bool result;
+    private EsuProgressViewModel progress;
 
-    
 
     protected DialogWindowBase()
     {
@@ -65,6 +66,18 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
             window.Width = Width;
           }
         }
+      }
+    }
+
+    [JsonIgnore]
+    public EsuProgressViewModel Progress
+    {
+      get { return progress; }
+      set
+      {
+        if (Equals(value, progress)) return;
+        progress = value;
+        NotifyOfPropertyChange(() => Progress);
       }
     }
 
