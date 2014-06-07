@@ -75,7 +75,9 @@
     <Compile Include="Entities\EsuInfoBase.cs" />
     <Compile Include="Entities\ObserveCollection\ChangeData.cs" />
     <Compile Include="Entities\ObserveCollection\ChangesCollection.cs" />
+    <Compile Include="Entities\ObserveCollection\CollectionWithCurrentItem.cs" />
     <Compile Include="Entities\ObserveCollection\EsuDataState.cs" />
+    <Compile Include="Entities\ObserveCollection\EsuEditCollection.cs" />
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
     <Compile Include="Interfaces\IDataLoad.cs" />

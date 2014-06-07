@@ -19,7 +19,7 @@ namespace Supeng.Office.Tests
 
     private void CreateNewModel()
     {
-      File.Copy(modleFileName,fileName,true);
+      File.Copy(modleFileName, fileName, true);
     }
 
     [Test]
@@ -43,7 +43,7 @@ namespace Supeng.Office.Tests
       {
         word.Open(fileName, true);
         var tableInsert = new TestTableInsert();
-        var table = word.InsertTable("TableBookMark", tableInsert);
+        var table = word.InsertTable("TableBookMark", tableInsert, -20);
         table.Cell(tableInsert.RowCount + 1, 1).Merge(table.Cell(tableInsert.RowCount + 1, 5));
         table.Cell(tableInsert.RowCount + 1, 1).Range.Text = "This is a cell that has been merged.";
       }
@@ -70,7 +70,7 @@ namespace Supeng.Office.Tests
         var collection = new ObservableCollection<WordTableCellInfo>();
         for (int i = 0; i < 5; i++)
         {
-          collection.Add(new WordTableCellInfo { Widht = 100, Header = "Column:" + i });
+          collection.Add(new WordTableCellInfo { Widht = 36, Header = "Column:" + i });
         }
         return collection;
       }
@@ -108,7 +108,7 @@ namespace Supeng.Office.Tests
     public static List<TestData> GetTestDatas()
     {
       var list = new List<TestData>();
-      for (int i = 0; i < 10; i++)
+      for (int i = 0; i < 100; i++)
       {
         list.Add(new TestData(i, "Name" + i));
       }

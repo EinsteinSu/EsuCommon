@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Supeng.Common.Entities.ObserveCollection
 {
-  public class EsuInfoCollection<T> : ObservableCollection<T> where T : EsuInfoBase, new()
+  public class EsuInfoCollection<T> : ObservableCollection<T> where T : EsuInfoBase
   {
     private ChangesCollection<T> changedCollection;
 

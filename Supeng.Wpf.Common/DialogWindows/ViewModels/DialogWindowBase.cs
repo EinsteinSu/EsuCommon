@@ -31,6 +31,7 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     {
       okCommand = new DelegateCommand(OkClick, () => true);
       cancelCommand = new DelegateCommand(CancelClick, () => true);
+      progress = new EsuProgressViewModel();
     }
 
     protected virtual string TemplateName

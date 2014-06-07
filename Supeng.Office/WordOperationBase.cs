@@ -41,14 +41,13 @@ namespace Supeng.Office
       return result;
     }
 
-    public virtual Table InsertTable(string bookMark, IWordTableOperates table)
+    public virtual Table InsertTable(string bookMark, IWordTableOperates table, int headerStart = 1)
     {
       Object nothing = Missing.Value;
       Range rang = Document.Bookmarks.get_Item(bookMark).Range;
       Table newTable = Document.Tables.Add(rang, table.RowCount + 1, table.CellCollection.Count, ref nothing, ref nothing);
       newTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
       newTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
-
       #region set column width and header
       int i = 1;
       foreach (var cell in table.CellCollection)
@@ -59,7 +58,7 @@ namespace Supeng.Office
       }
       #endregion
 
-      SetDefaultTableHeader(newTable, table.CellCollection.Count);
+      SetDefaultTableHeader(newTable, table.CellCollection.Count, headerStart);
 
       table.FillData(newTable);
       return newTable;
