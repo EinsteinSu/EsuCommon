@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Supeng.Common.Strings
 {
-  public class PinYingHelper
+  public static class PinYingHelper
   {
     private static readonly int[] FirstTable =
     {
@@ -120,7 +120,7 @@ namespace Supeng.Common.Strings
       -20257, -20265, -20283, -20292, -20295, -20304, -20317, -20319
     };
 
-    public static string GetAllPy(string gb2312)
+    public static string GetAllPy(this string gb2312)
     {
       if (null == gb2312 || "".Equals(gb2312.Trim()))
       {
@@ -182,7 +182,7 @@ namespace Supeng.Common.Strings
     /// </summary>
     /// <param name="src"></param>
     /// <returns></returns>
-    public static string GetFirstPy(string src)
+    public static string GetFirstPy(this string src)
     {
       var sb = new StringBuilder();
       int len = src.Length;

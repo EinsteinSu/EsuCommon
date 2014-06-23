@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,18 @@ namespace Supeng.Common.Tests
     [Test]
     public void TestJedx()
     {
-       decimal data = (decimal) 11234115.12D;
+      decimal data = (decimal)11234115.12D;
       Console.WriteLine(data.GetJedx());
+    }
+
+    [Test]
+    public void TestGetFiles()
+    {
+      string fileName = @"C:\Users\Einstein\Desktop\EsuCommon\Update";
+      foreach (var str in Directory.GetFiles(fileName, "*", SearchOption.AllDirectories))
+      {
+        Console.WriteLine(str);
+      }
     }
   }
 }

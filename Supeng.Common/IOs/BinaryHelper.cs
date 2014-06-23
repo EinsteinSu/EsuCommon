@@ -1,11 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Supeng.Common.IOs
 {
-  public class BinaryHelper
+  public static class BinaryHelper
   {
-    public static byte[] FileToByte(string fileName)
+    public static byte[] FileToByte(this string fileName)
     {
       using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
       {
@@ -15,7 +14,7 @@ namespace Supeng.Common.IOs
       }
     }
 
-    public static void ByteToFile(byte[] data, string fileName)
+    public static void ByteToFile(this byte[] data, string fileName)
     {
       using (var fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write))
       {

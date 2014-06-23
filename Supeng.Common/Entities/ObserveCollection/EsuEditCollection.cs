@@ -44,6 +44,8 @@ namespace Supeng.Common.Entities.ObserveCollection
       {
         if (Equals(value, currentItem)) return;
         currentItem = value;
+        if (value != null && currentItemChangedAction != null)
+          currentItemChangedAction(value);
         NotifyOfPropertyChange(() => CurrentItem);
       }
     }

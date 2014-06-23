@@ -60,6 +60,7 @@
     <Compile Include="DataOperations\DataSaveExtensions.cs" />
     <Compile Include="DataOperations\IDataSave.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ApplicationFunction.cs" />
+    <Compile Include="Entities\BasesEntities\EsuUpgradeInfo.cs" />
     <Compile Include="Entities\BasesEntities\UpdateFile.cs" />
     <Compile Include="Entities\ControlEntities\NavBarGroupItem\EsuDisplayNavBarGroup.cs" />
     <Compile Include="DataOperations\DataStorageBase.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
     <Compile Include="Interfaces\IDataLoad.cs" />
+    <Compile Include="Interfaces\IUpgrade.cs" />
     <Compile Include="IOs\BinaryHelper.cs" />
     <Compile Include="IOs\DirectoryHelper.cs" />
     <Compile Include="IOs\FileExtensions.cs" />

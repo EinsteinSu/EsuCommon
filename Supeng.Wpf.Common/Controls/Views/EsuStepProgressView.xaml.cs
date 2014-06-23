@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Update
+namespace Supeng.Wpf.Common.Controls.Views
 {
   /// <summary>
-  /// Interaction logic for MainWindow.xaml
+  /// Interaction logic for EsuStepProgressView.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class EsuStepProgressView : UserControl
   {
-    public MainWindow()
+    public EsuStepProgressView()
     {
       InitializeComponent();
     }

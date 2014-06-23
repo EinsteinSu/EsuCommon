@@ -59,7 +59,7 @@ namespace Supeng.Common.Entities.BasesEntities.DataEntities
     {
       get
       {
-        return string.Format("{0}\\Images\\Function\\{1}.png", Environment.CurrentDirectory, name);
+        return string.Format("{0}\\Images\\Functionalities\\{1}.png", Environment.CurrentDirectory, name);
       }
     }
   }
