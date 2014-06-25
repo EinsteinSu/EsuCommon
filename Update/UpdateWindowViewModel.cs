@@ -163,6 +163,7 @@ namespace Update
           Progress.StepAdd();
         }
         #endregion
+
       }, tokenSource.Token, TaskCreationOptions.HideScheduler, scheduler);
 
       task.ContinueWith(t =>
