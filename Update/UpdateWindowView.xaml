@@ -12,8 +12,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Message}"/>
-        <dxe:ListBoxEdit  Grid.Row="1" ItemsSource="{Binding UpdateCollection}" SelectedItem="{Binding CurrentUpdate, Mode=TwoWay}">
-            <dxe:ListBoxEdit.ItemTemplate>
+        <ListBox  Grid.Row="1" ItemsSource="{Binding UpdateCollection}" SelectedItem="{Binding CurrentUpdate, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Image Source = "{Binding Image}"/>
@@ -21,8 +21,8 @@
                         <Image Source="{Binding UpgradeImage}"/>
                     </StackPanel>
                 </DataTemplate>
-            </dxe:ListBoxEdit.ItemTemplate>
-        </dxe:ListBoxEdit>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <views:EsuStepProgressView Height="18" Margin="5" Grid.Row="2" DataContext="{Binding Progress,Mode=OneWay}"/>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
             <Button Command="{Binding UpdateCommand}" Content="开始升级" Margin="5"/>

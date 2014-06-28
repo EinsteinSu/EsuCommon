@@ -73,18 +73,23 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ControlHelper.cs" />
     <Compile Include="Controls\EsuMemoText.cs" />
     <Compile Include="Controls\ToolbarWithContentHelper.cs" />
     <Compile Include="Controls\ViewModels\CollectionEditViewModel.cs" />
     <Compile Include="Controls\ViewModels\CollectionEditWithWindowViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuProgressViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuStepProgressViewModel.cs" />
+    <Compile Include="Controls\ViewModels\SearchControlWithDataLayoutViewModel.cs" />
     <Compile Include="Controls\ViewModels\ToolbarWithContentViewModelBase.cs" />
     <Compile Include="Controls\Views\CollectionEditGrid.xaml.cs">
       <DependentUpon>CollectionEditGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Views\EsuStepProgressView.xaml.cs">
       <DependentUpon>EsuStepProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Views\SearchControlWithDataLayoutView.xaml.cs">
+      <DependentUpon>SearchControlWithDataLayoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\ViewModels\CollectionEditWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModel.cs" />
@@ -120,6 +125,7 @@
     <Compile Include="Entities\EsuButtonBase.cs" />
     <Compile Include="Entities\EsuToolBarButtonCollection.cs" />
     <Compile Include="Interfaces\IButtonCollection.cs" />
+    <Compile Include="Interfaces\ISearchModel.cs" />
     <Compile Include="Interfaces\IWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -169,6 +175,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Views\EsuStepProgressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\SearchControlWithDataLayoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

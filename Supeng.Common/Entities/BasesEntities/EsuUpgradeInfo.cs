@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using Supeng.Common.Entities.ObserveCollection;
 
@@ -119,8 +121,8 @@ namespace Supeng.Common.Entities.BasesEntities
     public IList<EsuUpgradeInfo> GetDifferentFileList(IList<EsuUpgradeInfo> collection)
     {
       IEnumerable<EsuUpgradeInfo> c = from data in GetFileList()
-        where !collection.Select(s => s.RelativeFileName).Contains(data.RelativeFileName)
-        select data;
+                                      where !collection.Select(s => s.RelativeFileName).Contains(data.RelativeFileName)
+                                      select data;
       List<EsuUpgradeInfo> list = c.ToList();
       foreach (EsuUpgradeInfo esuFileInfo in this)
       {
@@ -136,8 +138,8 @@ namespace Supeng.Common.Entities.BasesEntities
     public IList<EsuUpgradeInfo> GetDifferentDirectoryList(IList<EsuUpgradeInfo> collection)
     {
       IEnumerable<EsuUpgradeInfo> c = from data in GetDirectoryList()
-        where !collection.Select(s => s.RelativeFileName).Contains(data.RelativeFileName)
-        select data;
+                                      where !collection.Select(s => s.RelativeFileName).Contains(data.RelativeFileName)
+                                      select data;
       return c.ToList();
     }
 
@@ -146,6 +148,46 @@ namespace Supeng.Common.Entities.BasesEntities
       List<EsuUpgradeInfo> list = GetDifferentDirectoryList(collection.GetDirectoryList()).ToList();
       list.AddRange(GetDifferentFileList(collection.GetFileList()));
       return list.ToList();
+    }
+  }
+
+  public static class EsuUpgradeInfoHelper
+  {
+    public static EsuUpgradeInfoCollection GetUpgradeCollection(string directory)
+    {
+      var collection = new EsuUpgradeInfoCollection();
+
+      #region get all directory
+      foreach (var dir in Directory.GetDirectories(directory, "*", SearchOption.AllDirectories))
+      {
+        var directoryInfo = new DirectoryInfo(dir);
+        collection.Add(new EsuUpgradeInfo
+        {
+          Type = FileType.Directory,
+          FileName = dir,
+          Name = directoryInfo.Name,
+          RelativeFileName = dir.Replace(directory, "")
+        });
+      }
+      #endregion
+
+      #region get all files
+      foreach (var file in Directory.GetFiles(directory, "*", SearchOption.AllDirectories))
+      {
+        var info = new FileInfo(file);
+        collection.Add(new EsuUpgradeInfo
+        {
+          Type = FileType.File,
+          Name = info.Name,
+          FileName = file,
+          RelativeFileName = file.Replace(directory, ""),
+          LastWriteTime = info.LastWriteTime,
+          Size = Math.Round(info.Length / 1024D, 2).ToString(CultureInfo.InvariantCulture)
+        });
+      }
+      #endregion
+
+      return collection;
     }
   }
 

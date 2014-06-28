@@ -40,7 +40,7 @@ namespace Supeng.Wpf.Common.Tests
   public class TestUpgradeData : IUpgrade
   {
     string filePath = @"C:\Users\Einstein\Desktop\EsuCommon\Update\bin\Debug";
-    public EsuUpgradeInfoCollection GetServiceFileCollection(string directoryName)
+    public EsuUpgradeInfoCollection GetServiceFileCollection()
     {
       var collection = new EsuUpgradeInfoCollection();
       foreach (var file in Directory.GetFiles(filePath))
@@ -58,7 +58,7 @@ namespace Supeng.Wpf.Common.Tests
       return collection;
     }
 
-    public EsuUpgradeInfoCollection GetLocalFileCollection(string path)
+    public EsuUpgradeInfoCollection GetLocalFileCollection()
     {
       return new EsuUpgradeInfoCollection();
     }

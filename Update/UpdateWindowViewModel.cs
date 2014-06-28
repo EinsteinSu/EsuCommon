@@ -129,11 +129,11 @@ namespace Update
       tokenSource = new CancellationTokenSource();
       Task task = Task.Factory.StartNew(() =>
       {
-        EsuUpgradeInfoCollection serviceList = upgrade.GetServiceFileCollection(directoryName);
+        EsuUpgradeInfoCollection serviceList = upgrade.GetServiceFileCollection();
         string tempPath = string.Format("{0}\\UpdateTemp", Environment.CurrentDirectory);
         if (!Directory.Exists(tempPath))
           Directory.CreateDirectory(tempPath);
-        UpdateCollection = new UpdateFileCollection(serviceList.GetDifferent(upgrade.GetLocalFileCollection(tempPath)));
+        UpdateCollection = new UpdateFileCollection(serviceList.GetDifferent(upgrade.GetLocalFileCollection()));
         if (UpdateCollection.Count == 0)
         {
           MessageBox.Show("未发现可更新的组件.");

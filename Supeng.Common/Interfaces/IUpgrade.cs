@@ -4,9 +4,9 @@ namespace Supeng.Common.Interfaces
 {
   public interface IUpgrade
   {
-    EsuUpgradeInfoCollection GetServiceFileCollection(string directoryName);
+    EsuUpgradeInfoCollection GetServiceFileCollection();
 
-    EsuUpgradeInfoCollection GetLocalFileCollection(string path);
+    EsuUpgradeInfoCollection GetLocalFileCollection();
 
     byte[] GetFileBytes(string fileName);
   }
