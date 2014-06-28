@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EsuInfoCollectionTest.xaml.cs">
+      <DependentUpon>EsuInfoCollectionTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchControlTest.xaml.cs">
       <DependentUpon>SearchControlTest.xaml</DependentUpon>
     </Compile>
@@ -71,6 +74,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataCollectionEditWindowTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EsuInfoCollectionTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

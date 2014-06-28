@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Caliburn.Micro;
 using Newtonsoft.Json;
 
 namespace Supeng.Common.Entities.ObserveCollection
@@ -11,10 +12,25 @@ namespace Supeng.Common.Entities.ObserveCollection
   public class EsuInfoCollection<T> : ObservableCollection<T> where T : EsuInfoBase
   {
     private ChangesCollection<T> changedCollection;
+    private T currentItem;
 
     public EsuInfoCollection()
     {
       changedCollection = new ChangesCollection<T>();
+    }
+
+    public Action<T> CurrentItemChanged { get; set; }
+
+    public T CurrentItem
+    {
+      get { return currentItem; }
+      set
+      {
+        currentItem = value;
+        if (CurrentItemChanged != null)
+          CurrentItemChanged(value);
+        OnPropertyChanged(new PropertyChangedEventArgs("CurrentItem"));
+      }
     }
 
     public bool HasChanged
@@ -100,6 +116,7 @@ namespace Supeng.Common.Entities.ObserveCollection
       changedCollection = new ChangesCollection<T>();
     }
 
+    #region serialize
     public override string ToString()
     {
       return JsonConvert.SerializeObject(this);
@@ -118,5 +135,6 @@ namespace Supeng.Common.Entities.ObserveCollection
     {
       File.AppendAllText(fileName, ToString());
     }
+    #endregion
   }
 }
