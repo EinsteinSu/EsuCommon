@@ -155,6 +155,7 @@
     <Compile Include="Controls\Views\ToolbarWithContentView.xaml.cs">
       <DependentUpon>ToolbarWithContentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlUtils\EnumValuesExtension.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

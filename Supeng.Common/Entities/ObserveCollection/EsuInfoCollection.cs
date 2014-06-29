@@ -5,10 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using Supeng.Common.Strings;
 
 namespace Supeng.Common.Entities.ObserveCollection
 {
-  public class EsuInfoCollection<T> : ObservableCollection<T> where T : EsuInfoBase
+  public class EsuInfoCollection<T> : ObservableCollection<T>, ICloneable where T : EsuInfoBase
   {
     private ChangesCollection<T> changedCollection;
     private T currentItem;
@@ -49,7 +50,7 @@ namespace Supeng.Common.Entities.ObserveCollection
       base.InsertItem(index, item);
       if (EsuCollectionChanged != null)
         EsuCollectionChanged(EsuDataState.Added, item);
-      changedCollection.Add(new ChangeData<T> {Data = item, ChangeTime = DateTime.Now, State = EsuDataState.Added});
+      changedCollection.Add(new ChangeData<T> { Data = item, ChangeTime = DateTime.Now, State = EsuDataState.Added });
       var notifyPropertyChanged = item as INotifyPropertyChanged;
       if (notifyPropertyChanged != null)
         notifyPropertyChanged.PropertyChanged += DataChanged;
@@ -57,7 +58,7 @@ namespace Supeng.Common.Entities.ObserveCollection
 
     public virtual void DataChanged(object sender, PropertyChangedEventArgs e)
     {
-      var data = (T) sender;
+      var data = (T)sender;
       if (EsuCollectionChanged != null)
         EsuCollectionChanged(EsuDataState.Modified, data);
       if (changedCollection.Any(w => data.Equals(w.Data)))
@@ -117,6 +118,11 @@ namespace Supeng.Common.Entities.ObserveCollection
     public override string ToString()
     {
       return JsonConvert.SerializeObject(this);
+    }
+
+    public object Clone()
+    {
+      return JsonConvert.DeserializeObject(ToString(), GetType());
     }
 
     public void SerializeToXml(string fileName)

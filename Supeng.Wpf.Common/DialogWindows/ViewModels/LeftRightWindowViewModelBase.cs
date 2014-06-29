@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +27,13 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
       leftAllClickCommand = new DelegateCommand(LeftAllClick, () => true);
       rightClickCommand = new DelegateCommand(RightClick, () => true);
       rightAllClickCommand = new DelegateCommand(RightAllClick, () => true);
+      leftCollection = new EsuInfoCollection<T>();
+      rightCollection = new EsuInfoCollection<T>();
+    }
+
+    protected virtual Action RightCollectionChanged
+    {
+      get { return null; }
     }
 
     #region properties
@@ -134,6 +142,8 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
         RightCollection.Remove(rightCollection.CurrentItem);
         NotifyOfPropertyChange(() => LeftAllButtonEnable);
         NotifyOfPropertyChange(() => RightAllButtonEnable);
+        if (RightCollectionChanged != null)
+          RightCollectionChanged();
       }
     }
 
@@ -152,6 +162,8 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
         else
           break;
       }
+      if (RightCollectionChanged != null)
+        RightCollectionChanged();
     }
 
     protected virtual void RightClick()
@@ -162,6 +174,8 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
         LeftCollection.Remove(leftCollection.CurrentItem);
         NotifyOfPropertyChange(() => LeftAllButtonEnable);
         NotifyOfPropertyChange(() => RightAllButtonEnable);
+        if (RightCollectionChanged != null)
+          RightCollectionChanged();
       }
     }
 
@@ -180,6 +194,8 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
         else
           break;
       }
+      if (RightCollectionChanged != null)
+        RightCollectionChanged();
     }
 
     #endregion
