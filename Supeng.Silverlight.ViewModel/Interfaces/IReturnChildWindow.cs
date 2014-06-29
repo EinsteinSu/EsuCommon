@@ -9,6 +9,5 @@ namespace Supeng.Silverlight.ViewModel.Interfaces
     Action<DataLayoutControlAutoGeneratingItemEventArgs> GeneratItemAction { get; set; }
 
     T CurrentData { get; set; }
-
   }
 }

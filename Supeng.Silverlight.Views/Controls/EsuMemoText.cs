@@ -4,7 +4,7 @@ using DevExpress.Xpf.Editors;
 
 namespace Supeng.Silverlight.Views.Controls
 {
-  public class EsuMemoText:TextEdit
+  public class EsuMemoText : TextEdit
   {
     public EsuMemoText()
     {

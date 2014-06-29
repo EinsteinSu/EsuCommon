@@ -23,7 +23,7 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     {
       get
       {
-        var model = new ReportPreviewModel(ServiceUrl) { ReportName = ReportName, IsParametersPanelVisible = false };
+        var model = new ReportPreviewModel(ServiceUrl) {ReportName = ReportName, IsParametersPanelVisible = false};
         if (Parameters != null && Parameters.Any())
         {
           foreach (var parameter in Parameters)

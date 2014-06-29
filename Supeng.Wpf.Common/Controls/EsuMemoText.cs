@@ -4,7 +4,7 @@ using DevExpress.Xpf.Editors;
 
 namespace Supeng.Wpf.Common.Controls
 {
-  public class EsuMemoText:TextEdit
+  public class EsuMemoText : TextEdit
   {
     public EsuMemoText()
     {

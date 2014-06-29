@@ -61,7 +61,7 @@ namespace Update
   {
     public UpdateFileCollection(IEnumerable<EsuUpgradeInfo> list)
     {
-      foreach (var esuFileInfo in list)
+      foreach (EsuUpgradeInfo esuFileInfo in list)
       {
         Add(new UpdateFile
         {

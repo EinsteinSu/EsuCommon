@@ -8,13 +8,13 @@ namespace Supeng.Sports.Common.Timers
 {
   public abstract class EsuTimerBase : EsuInfoBase
   {
+    private readonly TaskCreationOptions creationOptions;
+    private readonly int interval;
+    private CancellationTokenSource cancellationTokenSource;
+    private string displayFormat;
     private int hour;
     private int minute;
     private int second;
-    private readonly int interval;
-    private readonly TaskCreationOptions creationOptions;
-    private string displayFormat;
-    private CancellationTokenSource cancellationTokenSource;
     private DateTime? time;
 
     protected EsuTimerBase(int hour, int minute, int second, int interval, TaskCreationOptions creationOptions)
@@ -28,6 +28,7 @@ namespace Supeng.Sports.Common.Timers
     }
 
     #region time properties
+
     [Display(AutoGenerateField = false)]
     public int Hour
     {
@@ -62,6 +63,7 @@ namespace Supeng.Sports.Common.Timers
     {
       get { return Time.ToString(DisplayFormat); }
     }
+
     #endregion
 
     [Display(AutoGenerateField = false)]
@@ -76,6 +78,8 @@ namespace Supeng.Sports.Common.Timers
       }
     }
 
+    protected abstract bool BreakeCondition { get; }
+
     public void SetTime(int h, int m, int s)
     {
       time = null;
@@ -86,16 +90,12 @@ namespace Supeng.Sports.Common.Timers
 
     protected abstract DateTime TimeRun(DateTime? time);
 
-    protected abstract bool BreakeCondition { get; }
-
     protected virtual void BeforeStart()
     {
-
     }
 
     protected virtual void TimeRuning(DateTime? dateTime)
     {
-
     }
 
     public void Start()
@@ -123,7 +123,6 @@ namespace Supeng.Sports.Common.Timers
 
     protected virtual void Stoped()
     {
-
     }
 
     public void Stop()
@@ -137,7 +136,6 @@ namespace Supeng.Sports.Common.Timers
 
     protected virtual void Reseted()
     {
-
     }
 
     public void Reset()

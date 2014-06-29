@@ -1,20 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Supeng.Common.DataOperations;
-using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
 using Supeng.Data;
 using Supeng.Wpf.Common.Controls;
@@ -23,7 +9,7 @@ using Supeng.Wpf.Common.Controls.ViewModels;
 namespace Supeng.Wpf.Common.Tests
 {
   /// <summary>
-  /// Interaction logic for DataCollectionEditTest.xaml
+  ///   Interaction logic for DataCollectionEditTest.xaml
   /// </summary>
   public partial class DataCollectionEditTest
   {
@@ -31,7 +17,7 @@ namespace Supeng.Wpf.Common.Tests
     {
       InitializeComponent();
 
-      this.Content = ToolbarWithContentHelper.GetCollectionEditControl(new TestDataEditViewModel());
+      Content = ToolbarWithContentHelper.GetCollectionEditControl(new TestDataEditViewModel());
     }
   }
 
@@ -49,7 +35,6 @@ namespace Supeng.Wpf.Common.Tests
 
     public override void Save()
     {
-
     }
   }
 
@@ -65,7 +50,7 @@ namespace Supeng.Wpf.Common.Tests
       Collection = new EsuInfoCollection<TestData>();
       for (int i = 0; i < 10; i++)
       {
-        Collection.Add(new TestData { ID = i.ToString(CultureInfo.InvariantCulture), Description = "Items:" + i });
+        Collection.Add(new TestData {ID = i.ToString(CultureInfo.InvariantCulture), Description = "Items:" + i});
       }
     }
 
@@ -76,7 +61,6 @@ namespace Supeng.Wpf.Common.Tests
 
     protected override void CurrentItemChanged(TestData current)
     {
-
     }
   }
 }

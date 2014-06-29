@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
-using Test.Common;
 
 namespace Supeng.Common.Tests
 {
@@ -29,11 +28,10 @@ namespace Supeng.Common.Tests
       collection.AcceptChanges();
       Assert.IsFalse(collection.HasChanged);
 
-      var data = collection[0];
+      TestData data = collection[0];
       data.Description = "Test2";
-      
-      Assert.AreEqual(collection.ChangedCollection.Count, 1);
 
+      Assert.AreEqual(collection.ChangedCollection.Count, 1);
     }
   }
 }

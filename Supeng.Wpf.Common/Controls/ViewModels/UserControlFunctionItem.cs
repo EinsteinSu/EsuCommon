@@ -21,7 +21,6 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
 
     public UserControlFunctionItemBase()
     {
-
     }
 
     public ImageSource CloseImage
@@ -63,12 +62,10 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
     public UserControlFunctionItem(string imagePath, Action<T> action)
       : base(imagePath, action)
     {
-
     }
 
     public UserControlFunctionItem()
     {
-
     }
   }
 

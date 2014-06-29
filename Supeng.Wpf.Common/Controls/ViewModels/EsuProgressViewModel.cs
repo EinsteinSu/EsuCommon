@@ -37,15 +37,15 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
       Message = text;
     }
 
-    public void ShowProgress()
-    {
-      ProgressVisibility = Visibility.Visible;
-    }
-
     public void HideProgress()
     {
       ProgressVisibility = Visibility.Collapsed;
       Message = string.Empty;
+    }
+
+    public void ShowProgress()
+    {
+      ProgressVisibility = Visibility.Visible;
     }
   }
 }

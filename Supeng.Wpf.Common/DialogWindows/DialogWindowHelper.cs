@@ -30,7 +30,7 @@ namespace Supeng.Wpf.Common.DialogWindows
 
     public static void ShowReportWindow(ReportWindowBase viewModel)
     {
-      var window = new DocumentViewWindow { Title = viewModel.Title, DataContext = viewModel };
+      var window = new DocumentViewWindow {Title = viewModel.Title, DataContext = viewModel};
       window.ShowWindow(viewModel);
     }
 
@@ -41,7 +41,7 @@ namespace Supeng.Wpf.Common.DialogWindows
       return window;
     }
 
-    public static void ShowWindow(this  Window window, EsuInfoBase viewModel)
+    public static void ShowWindow(this Window window, EsuInfoBase viewModel)
     {
       window.DataContext = viewModel;
       window.Show();

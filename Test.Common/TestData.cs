@@ -4,6 +4,5 @@ namespace Test.Common
 {
   public sealed class TestData : EsuInfoBase
   {
-
   }
 }

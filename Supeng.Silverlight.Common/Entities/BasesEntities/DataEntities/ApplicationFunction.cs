@@ -56,6 +56,4 @@
       get { return string.Format("\\Images\\Function\\{0}.png", name); }
     }
   }
-
- 
 }

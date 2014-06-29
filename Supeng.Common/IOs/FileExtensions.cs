@@ -15,8 +15,8 @@ namespace Supeng.Common.IOs
         return default(T);
       using (var reader = new StreamReader(fileName))
       {
-        var xs = new XmlSerializer(typeof(T));
-        return (T)xs.Deserialize(reader);
+        var xs = new XmlSerializer(typeof (T));
+        return (T) xs.Deserialize(reader);
       }
     }
 

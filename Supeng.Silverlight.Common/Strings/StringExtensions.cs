@@ -19,15 +19,15 @@ namespace Supeng.Silverlight.Common.Strings
       return collection.Aggregate(string.Empty, (current, s) => current + string.Format("{0}{1}", s, c)).TrimEnd(c);
     }
 
-    public static List<string> GetStringCollection(this string str,char c)
+    public static List<string> GetStringCollection(this string str, char c)
     {
       return str.Split(c).ToList();
     }
 
     public static string Package(this IDictionary<string, string> dictionary)
     {
-      var sb = new StringBuilder(dictionary.Count * 2);
-      foreach (KeyValuePair<string, string> valuePair in dictionary)
+      var sb = new StringBuilder(dictionary.Count*2);
+      foreach (var valuePair in dictionary)
       {
         sb.AppendFormat("{0}{1}{2}{1}", valuePair.Key, Split, valuePair.Value);
       }
@@ -40,7 +40,7 @@ namespace Supeng.Silverlight.Common.Strings
       string[] datas = data.Split(Split);
       for (int i = 0; i < datas.Length; i++)
       {
-        if (i % 2 == 0)
+        if (i%2 == 0)
         {
           dictionary.Add(datas[i], "");
         }

@@ -15,9 +15,9 @@ namespace Supeng.Sports.Control.ViewModels
       : base(0, 0, TaskCreationOptions.LongRunning)
     {
       buttonCollection = new EsuToolBarButtonCollection(EsuButtonToolBarType.TextAndImage);
-      startButton = new EsuButtonBase(Start) { Text = "Start", Description = "Start time" };
-      stopButton = new EsuButtonBase(Stop) { Text = "Stop", Description = "Stop time" };
-      resetButton = new EsuButtonBase(Reset) { Text = "Reset", Description = "Reset time" };
+      startButton = new EsuButtonBase(Start) {Text = "Start", Description = "Start time"};
+      stopButton = new EsuButtonBase(Stop) {Text = "Stop", Description = "Stop time"};
+      resetButton = new EsuButtonBase(Reset) {Text = "Reset", Description = "Reset time"};
       buttonCollection.Add(startButton);
       buttonCollection.Add(stopButton);
       buttonCollection.Add(resetButton);
@@ -26,6 +26,7 @@ namespace Supeng.Sports.Control.ViewModels
     }
 
     #region buttons
+
     public EsuToolBarButtonCollection ButtonCollection
     {
       get { return buttonCollection; }
@@ -45,6 +46,7 @@ namespace Supeng.Sports.Control.ViewModels
     {
       get { return resetButton; }
     }
+
     #endregion
 
     protected override void BeforeStart()

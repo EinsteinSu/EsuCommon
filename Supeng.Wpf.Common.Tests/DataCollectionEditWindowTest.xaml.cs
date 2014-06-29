@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using Supeng.Common.Strings;
 using Supeng.Data;
 using Supeng.Wpf.Common.Controls;
@@ -20,7 +8,7 @@ using Supeng.Wpf.Common.DialogWindows.ViewModels;
 namespace Supeng.Wpf.Common.Tests
 {
   /// <summary>
-  /// Interaction logic for DataCollectionEditWindowTest.xaml
+  ///   Interaction logic for DataCollectionEditWindowTest.xaml
   /// </summary>
   public partial class DataCollectionEditWindowTest : Window
   {
@@ -28,7 +16,7 @@ namespace Supeng.Wpf.Common.Tests
     {
       InitializeComponent();
 
-      this.Content = ToolbarWithContentHelper.GetCollectionEditControl(new CollectionEditWithWindow());
+      Content = ToolbarWithContentHelper.GetCollectionEditControl(new CollectionEditWithWindow());
     }
   }
 
@@ -51,7 +39,6 @@ namespace Supeng.Wpf.Common.Tests
 
     public override void Save()
     {
-
     }
 
     protected override void Insert(TestData data)

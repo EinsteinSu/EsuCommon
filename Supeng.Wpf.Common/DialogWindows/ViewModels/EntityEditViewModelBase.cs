@@ -7,16 +7,18 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
   {
     private T data;
 
-    protected override string TemplateName
+    public EntityEditViewModelBase()
     {
-      get { return "EntityEditViewWindow"; }
     }
-
-    public EntityEditViewModelBase() { }
 
     public EntityEditViewModelBase(T data)
     {
       this.data = data;
+    }
+
+    protected override string TemplateName
+    {
+      get { return "EntityEditViewWindow"; }
     }
 
     public T Data

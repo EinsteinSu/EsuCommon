@@ -4,11 +4,11 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <ToolBar ItemsSource="{Binding ButtonCollection.Collection}" ItemTemplate="{Binding ButtonCollection.Template}"/>
-        <TextBlock FontSize ="68"  Grid.Row="1" Text="{Binding DisplayTime}"/>
+        <ToolBar ItemsSource="{Binding ButtonCollection.Collection}" ItemTemplate="{Binding ButtonCollection.Template}" />
+        <TextBlock FontSize="68" Grid.Row="1" Text="{Binding DisplayTime}" />
         <!--<DataGrid Grid.Row="1" ItemsSource="{Binding ButtonCollection.Collection}"/>-->
     </Grid>
 </Window>

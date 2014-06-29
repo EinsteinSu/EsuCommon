@@ -15,10 +15,10 @@ namespace SqlScriptGenerator.Entities
   internal class Column : EsuInfoBase, IDataCreator<Column>
   {
     private bool choice;
+    private bool identity;
     private string name;
     private bool pk;
     private string type;
-    private bool identity;
 
     #region properties
 
@@ -103,9 +103,7 @@ namespace SqlScriptGenerator.Entities
 
     public string Property
     {
-      get
-      {
-        return string.Format(@"public {0} {1}
+      get { return string.Format(@"public {0} {1}
     【
       get 【 return {2}; 】
       set
@@ -114,8 +112,7 @@ namespace SqlScriptGenerator.Entities
         {2} = value;
         NotifyOfPropertyChange(() => {1});
       】
-    】{3}", type.ConvertToSystemType(), name.GetPascalName(), name.ToLower(), Environment.NewLine).ReplaceBracket();
-      }
+    】{3}", type.ConvertToSystemType(), name.GetPascalName(), name.ToLower(), Environment.NewLine).ReplaceBracket(); }
     }
 
     public string ParameterName
@@ -222,14 +219,33 @@ order by object_name(a.id),a.colorder";
         .Aggregate(string.Empty, (current, column) => current + (column.CreatorString + Environment.NewLine));
     }
 
+    public string GetEntities()
+    {
+      var sb = new StringBuilder();
+      var sbPrivate = new StringBuilder();
+      sb.AppendLine("#region properties");
+      foreach (Column column in this.Where(w => w.Choice))
+      {
+        if (column.Name.Equals("id", StringComparison.InvariantCultureIgnoreCase) ||
+            column.Name.Equals("guid", StringComparison.InvariantCultureIgnoreCase) ||
+            column.Name.Equals("description", StringComparison.InvariantCultureIgnoreCase))
+          continue;
+        sbPrivate.AppendLine(column.PrivateProperty);
+        sb.AppendLine(column.Property);
+      }
+      sb.AppendLine("#endregion");
+      sb.Insert(0, sbPrivate + Environment.NewLine);
+      return sb.ToString();
+    }
+
     #region get sql scripts
 
     public string GetMappingParameters()
     {
-      StringBuilder sb = new StringBuilder();
+      var sb = new StringBuilder();
       sb.AppendLine(string.Format("IDataParameter[] parameters = new IDataParameter[{0}];", this.Count(w => w.Choice)));
       int i = 0;
-      foreach (var column in this.Where(w => w.Choice))
+      foreach (Column column in this.Where(w => w.Choice))
       {
         sb.AppendLine(string.Format("parameters[{0}] = new SqlParameter(\"{1}\", {2});", i, column.ParameterName,
           column.DataEntityName));
@@ -280,25 +296,7 @@ order by object_name(a.id),a.colorder";
       }
       return string.Empty;
     }
-    #endregion
 
-    public string GetEntities()
-    {
-      var sb = new StringBuilder();
-      var sbPrivate = new StringBuilder();
-      sb.AppendLine("#region properties");
-      foreach (Column column in this.Where(w => w.Choice))
-      {
-        if (column.Name.Equals("id", StringComparison.InvariantCultureIgnoreCase) ||
-          column.Name.Equals("guid", StringComparison.InvariantCultureIgnoreCase) ||
-          column.Name.Equals("description", StringComparison.InvariantCultureIgnoreCase))
-          continue;
-        sbPrivate.AppendLine(column.PrivateProperty);
-        sb.AppendLine(column.Property);
-      }
-      sb.AppendLine("#endregion");
-      sb.Insert(0, sbPrivate + Environment.NewLine);
-      return sb.ToString();
-    }
+    #endregion
   }
 }

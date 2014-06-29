@@ -14,15 +14,20 @@ using Supeng.Silverlight.ViewModel.Interfaces;
 
 namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
 {
-  public abstract class DataEditWithWindowViewModel<T> : ManagementWithToolbarViewModelBase, IDataLoad where T : EsuInfoBase, new()
+  public abstract class DataEditWithWindowViewModel<T> : ManagementWithToolbarViewModelBase, IDataLoad
+    where T : EsuInfoBase, new()
   {
     private readonly DelegateCommand addCommand;
     private readonly DelegateCommand deleteCommand;
     private readonly DelegateCommand modifyCommand;
     private readonly DelegateCommand refreshCommand;
     private readonly ChildWindow returnWindow;
-    private readonly bool useSaveButton; // is it use the save button if it not use then save data when user do any operation.
+
     private readonly DelegateCommand saveCommand;
+
+    private readonly bool useSaveButton;
+      // is it use the save button if it not use then save data when user do any operation.
+
     private T currentItem;
     private EsuInfoCollection<T> dataCollection;
     private Action<DataLayoutControlAutoGeneratingItemEventArgs> generateItem;
@@ -63,8 +68,6 @@ namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
       get { return 400; }
     }
 
-    protected abstract void GenerateEditor(DataLayoutControlAutoGeneratingItemEventArgs e);
-
     public void Load()
     {
       if (dataCollection != null && dataCollection.HasChanged && useSaveButton)
@@ -85,6 +88,8 @@ namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
           StopShowing();
       });
     }
+
+    protected abstract void GenerateEditor(DataLayoutControlAutoGeneratingItemEventArgs e);
 
     protected override void InitalizeButtons()
     {
@@ -135,11 +140,69 @@ namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
         };
         ButtonCollection.Add(saveButton);
       }
-
     }
 
+    public abstract void LoadData();
+
+    public abstract void Save();
+
+    #region commands
+
+    public DelegateCommand RefreshCommand
+    {
+      get { return refreshCommand; }
+    }
+
+    public DelegateCommand AddCommand
+    {
+      get { return addCommand; }
+    }
+
+    public DelegateCommand ModifyCommand
+    {
+      get { return modifyCommand; }
+    }
+
+    public DelegateCommand DeleteCommand
+    {
+      get { return deleteCommand; }
+    }
+
+    public DelegateCommand SaveCommand
+    {
+      get { return saveCommand; }
+    }
+
+    #endregion
+
+    #region properties
+
+    public EsuInfoCollection<T> DataCollection
+    {
+      get { return dataCollection; }
+      set
+      {
+        if (Equals(value, dataCollection)) return;
+        dataCollection = value;
+        NotifyOfPropertyChange(() => DataCollection);
+      }
+    }
+
+    public T CurrentItem
+    {
+      get { return currentItem; }
+      set
+      {
+        if (Equals(value, currentItem)) return;
+        currentItem = value;
+        NotifyOfPropertyChange(() => CurrentItem);
+      }
+    }
+
+    #endregion
 
     #region data operations
+
     protected virtual IReturnChildWindow<T> ProcessReturnWindow(T data)
     {
       returnWindow.Width = WindowWidth;
@@ -227,64 +290,6 @@ namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
             StopShowing();
         }
       });
-    }
-    #endregion
-
-    public abstract void LoadData();
-
-    public abstract void Save();
-
-    #region commands
-
-    public DelegateCommand RefreshCommand
-    {
-      get { return refreshCommand; }
-    }
-
-    public DelegateCommand AddCommand
-    {
-      get { return addCommand; }
-    }
-
-    public DelegateCommand ModifyCommand
-    {
-      get { return modifyCommand; }
-    }
-
-    public DelegateCommand DeleteCommand
-    {
-      get { return deleteCommand; }
-    }
-
-    public DelegateCommand SaveCommand
-    {
-      get { return saveCommand; }
-    }
-
-    #endregion
-
-    #region properties
-
-    public EsuInfoCollection<T> DataCollection
-    {
-      get { return dataCollection; }
-      set
-      {
-        if (Equals(value, dataCollection)) return;
-        dataCollection = value;
-        NotifyOfPropertyChange(() => DataCollection);
-      }
-    }
-
-    public T CurrentItem
-    {
-      get { return currentItem; }
-      set
-      {
-        if (Equals(value, currentItem)) return;
-        currentItem = value;
-        NotifyOfPropertyChange(() => CurrentItem);
-      }
     }
 
     #endregion

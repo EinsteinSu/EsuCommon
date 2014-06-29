@@ -20,7 +20,6 @@ namespace Supeng.Silverlight.ViewModel.Controls
 
     public UserControlFunctionItemBase()
     {
-
     }
 
     public ImageSource CloseImage
@@ -56,12 +55,10 @@ namespace Supeng.Silverlight.ViewModel.Controls
     public UserControlFunctionItem(string imagePath, Action<T> action)
       : base(imagePath, action)
     {
-
     }
 
     public UserControlFunctionItem()
     {
-
     }
   }
 

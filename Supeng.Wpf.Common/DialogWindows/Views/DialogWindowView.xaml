@@ -6,16 +6,16 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ContentControl Content="{Binding Content}"/>
+            <ContentControl Content="{Binding Content}" />
             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <Button Margin="5" Content="确定" Width="80" Command="{Binding OkCommand}"/>
-                <Button Margin="5" Content="取消" Width="80" Command="{Binding CancelCommand}"/>
+                <Button Margin="5" Content="确定" Width="80" Command="{Binding OkCommand}" />
+                <Button Margin="5" Content="取消" Width="80" Command="{Binding CancelCommand}" />
             </StackPanel>
-            <views:EsuProgressView Grid.Row="1" DataContext="{Binding Progress}"/>
+            <views:EsuProgressView Grid.Row="1" DataContext="{Binding Progress}" />
         </Grid>
     </Grid>
 </Window>

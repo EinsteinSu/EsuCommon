@@ -1,18 +1,18 @@
-﻿<navigation:Page 
-           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-           xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="Supeng.Silverlight.Views.Tests.Page1"
-           mc:Ignorable="d"
-           d:DesignWidth="640" d:DesignHeight="480"
-           Title="Page1 Page">
+﻿<navigation:Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="Supeng.Silverlight.Views.Tests.Page1"
+    mc:Ignorable="d"
+    d:DesignWidth="640" d:DesignHeight="480"
+    Title="Page1 Page">
     <Grid x:Name="LayoutRoot">
 
         <dxg:TreeListControl AutoPopulateColumns="True" HorizontalAlignment="Left" VerticalAlignment="Top">
             <dxg:TreeListControl.View>
-                <dxg:TreeListView ShowTotalSummary="True"/>
+                <dxg:TreeListView ShowTotalSummary="True" />
             </dxg:TreeListControl.View>
         </dxg:TreeListControl>
 

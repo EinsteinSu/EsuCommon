@@ -41,6 +41,7 @@
     <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Docking.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Grid.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v12.1.Core, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="devexpress.xpf.layoutcontrol.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="devexpress.xpf.printing.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Printing.v12.1.Core, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -68,6 +69,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -93,14 +96,22 @@
     </Compile>
     <Compile Include="DialogWindows\ViewModels\CollectionEditWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\LeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\ReportWindowBase.cs" />
     <Compile Include="DialogWindows\ViewModels\TreeCollectionSelectionWindowViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\TreeLeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\Views\DocumentViewWindow.xaml.cs">
       <DependentUpon>DocumentViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\GridSelectionControl.xaml.cs">
       <DependentUpon>GridSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\LeftRightGridControl.xaml.cs">
+      <DependentUpon>LeftRightGridControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\LeftRightTreeControl.xaml.cs">
+      <DependentUpon>LeftRightTreeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\ListEditControl.xaml.cs">
       <DependentUpon>ListEditControl.xaml</DependentUpon>
@@ -199,6 +210,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogWindows\Views\GridSelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\LeftRightGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\LeftRightTreeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

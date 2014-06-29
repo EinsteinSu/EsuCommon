@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.ServiceModel;
+using System.Reflection;
 
 namespace Supeng.Common.Types
 {
@@ -10,14 +10,14 @@ namespace Supeng.Common.Types
     {
       if (string.IsNullOrEmpty(data))
         return defaultValue;
-      var memberInfo = typeof(T).GetMethod("TryParse", new[] { data.GetType(), typeof(T).MakeByRefType() });
+      MethodInfo memberInfo = typeof (T).GetMethod("TryParse", new[] {data.GetType(), typeof (T).MakeByRefType()});
       if (memberInfo != null)
       {
         bool b;
-        object[] parameters = { data, null };
+        object[] parameters = {data, null};
         bool.TryParse(memberInfo.Invoke(null, parameters).ToString(), out b);
         if (b && parameters.Count() > 1)
-          return (T)parameters[1];
+          return (T) parameters[1];
       }
       return defaultValue;
     }

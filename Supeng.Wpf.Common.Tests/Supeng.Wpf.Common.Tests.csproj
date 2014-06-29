@@ -63,6 +63,12 @@
     <Compile Include="EsuInfoCollectionTest.xaml.cs">
       <DependentUpon>EsuInfoCollectionTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LeftRighTreetControlTests.xaml.cs">
+      <DependentUpon>LeftRighTreetControlTests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LeftRightGridControlTests.xaml.cs">
+      <DependentUpon>LeftRightGridControlTests.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchControlTest.xaml.cs">
       <DependentUpon>SearchControlTest.xaml</DependentUpon>
     </Compile>
@@ -82,6 +88,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EsuStepProgressTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LeftRighTreetControlTests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LeftRightGridControlTests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

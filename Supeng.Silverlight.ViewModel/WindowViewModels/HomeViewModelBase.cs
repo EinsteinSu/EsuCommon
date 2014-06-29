@@ -30,7 +30,7 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
       get
       {
         return functionCollection ??
-          (functionCollection = new ObservableCollection<EsuDisplayNavBarGroup<ApplicationFunction>>());
+               (functionCollection = new ObservableCollection<EsuDisplayNavBarGroup<ApplicationFunction>>());
       }
     }
 
@@ -107,6 +107,7 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
         openedUserControlCollection.Remove(first);
       }
     }
+
     #endregion
 
     public abstract string Title { get; }

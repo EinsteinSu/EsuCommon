@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Office.Interop.Word;
 using NUnit.Framework;
 
@@ -14,12 +11,37 @@ namespace Supeng.Office.Tests
   [TestFixture]
   public class TestWordWrite
   {
-    readonly string modleFileName = string.Format("{0}\\TestDocumentModel.docx", Environment.CurrentDirectory);
-    readonly string fileName = string.Format("{0}\\TestDocument.docx", Environment.CurrentDirectory);
+    private readonly string modleFileName = string.Format("{0}\\TestDocumentModel.docx", Environment.CurrentDirectory);
+    private readonly string fileName = string.Format("{0}\\TestDocument.docx", Environment.CurrentDirectory);
 
     private void CreateNewModel()
     {
       File.Copy(modleFileName, fileName, true);
+    }
+
+    [Test]
+    public void TestInserText()
+    {
+      CreateNewModel();
+      using (var word = new WordOperationBase())
+      {
+        word.Open(fileName, true);
+        word.InserText("InsertBookMark", "Insert book mark test text. :)");
+      }
+    }
+
+    [Test]
+    public void TestInsertTable()
+    {
+      CreateNewModel();
+      using (var word = new WordOperationBase())
+      {
+        word.Open(fileName, true);
+        var tableInsert = new TestTableInsert();
+        Table table = word.InsertTable("TableBookMark", tableInsert, -20);
+        table.Cell(tableInsert.RowCount + 1, 1).Merge(table.Cell(tableInsert.RowCount + 1, 5));
+        table.Cell(tableInsert.RowCount + 1, 1).Range.Text = "This is a cell that has been merged.";
+      }
     }
 
     [Test]
@@ -34,31 +56,6 @@ namespace Supeng.Office.Tests
         word.Replace(replace);
       }
     }
-
-    [Test]
-    public void TestInsertTable()
-    {
-      CreateNewModel();
-      using (var word = new WordOperationBase())
-      {
-        word.Open(fileName, true);
-        var tableInsert = new TestTableInsert();
-        var table = word.InsertTable("TableBookMark", tableInsert, -20);
-        table.Cell(tableInsert.RowCount + 1, 1).Merge(table.Cell(tableInsert.RowCount + 1, 5));
-        table.Cell(tableInsert.RowCount + 1, 1).Range.Text = "This is a cell that has been merged.";
-      }
-    }
-
-    [Test]
-    public void TestInserText()
-    {
-      CreateNewModel();
-      using (var word = new WordOperationBase())
-      {
-        word.Open(fileName, true);
-        word.InserText("InsertBookMark", "Insert book mark test text. :)");
-      }
-    }
   }
 
   internal class TestTableInsert : IWordTableOperates
@@ -70,7 +67,7 @@ namespace Supeng.Office.Tests
         var collection = new ObservableCollection<WordTableCellInfo>();
         for (int i = 0; i < 5; i++)
         {
-          collection.Add(new WordTableCellInfo { Widht = 36, Header = "Column:" + i });
+          collection.Add(new WordTableCellInfo {Widht = 36, Header = "Column:" + i});
         }
         return collection;
       }
@@ -84,7 +81,7 @@ namespace Supeng.Office.Tests
     public void FillData(Table table)
     {
       int j = 2;
-      foreach (var data in TestData.GetTestDatas())
+      foreach (TestData data in TestData.GetTestDatas())
       {
         table.Cell(j, 1).Range.Text = data.ID.ToString(CultureInfo.InvariantCulture);
         table.Cell(j, 2).Range.Text = data.Name;
@@ -93,7 +90,6 @@ namespace Supeng.Office.Tests
         table.Cell(j, 5).Range.Text = data.ID.ToString(CultureInfo.InvariantCulture);
         j++;
       }
-
     }
   }
 
@@ -105,6 +101,10 @@ namespace Supeng.Office.Tests
       Name = name;
     }
 
+    public int ID { get; set; }
+
+    public string Name { get; set; }
+
     public static List<TestData> GetTestDatas()
     {
       var list = new List<TestData>();
@@ -114,9 +114,5 @@ namespace Supeng.Office.Tests
       }
       return list;
     }
-
-    public int ID { get; set; }
-
-    public string Name { get; set; }
   }
 }

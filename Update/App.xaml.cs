@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace Update
+﻿namespace Update
 {
   /// <summary>
   ///   Interaction logic for App.xaml

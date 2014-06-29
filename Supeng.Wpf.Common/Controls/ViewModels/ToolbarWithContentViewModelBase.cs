@@ -14,8 +14,6 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
       buttonCollection = new EsuToolBarButtonCollection(ToolBarType);
     }
 
-    protected abstract void InitalizeButton();
-
     public abstract FrameworkElement Content { get; }
 
     public EsuToolBarButtonCollection ButtonCollection
@@ -25,10 +23,9 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
 
     protected virtual EsuButtonToolBarType ToolBarType
     {
-      get
-      {
-        return EsuButtonToolBarType.OnlyImage;
-      }
+      get { return EsuButtonToolBarType.OnlyImage; }
     }
+
+    protected abstract void InitalizeButton();
   }
 }

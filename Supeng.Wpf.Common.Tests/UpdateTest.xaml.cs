@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Supeng.Common.Entities.BasesEntities;
 using Supeng.Common.Interfaces;
 using Supeng.Common.IOs;
@@ -22,7 +11,7 @@ using Update;
 namespace Supeng.Wpf.Common.Tests
 {
   /// <summary>
-  /// Interaction logic for UpdateTest.xaml
+  ///   Interaction logic for UpdateTest.xaml
   /// </summary>
   public partial class UpdateTest : UserControl
   {
@@ -39,11 +28,12 @@ namespace Supeng.Wpf.Common.Tests
 
   public class TestUpgradeData : IUpgrade
   {
-    string filePath = @"C:\Users\Einstein\Desktop\EsuCommon\Update\bin\Debug";
+    private string filePath = @"C:\Users\Einstein\Desktop\EsuCommon\Update\bin\Debug";
+
     public EsuUpgradeInfoCollection GetServiceFileCollection()
     {
       var collection = new EsuUpgradeInfoCollection();
-      foreach (var file in Directory.GetFiles(filePath))
+      foreach (string file in Directory.GetFiles(filePath))
       {
         var info = new FileInfo(file);
         collection.Add(new EsuUpgradeInfo(filePath)
@@ -52,7 +42,7 @@ namespace Supeng.Wpf.Common.Tests
           Name = info.Name,
           FileName = file,
           LastWriteTime = info.LastWriteTime,
-          Size = Math.Round(info.Length / 1024D, 2).ToString(CultureInfo.InvariantCulture)
+          Size = Math.Round(info.Length/1024D, 2).ToString(CultureInfo.InvariantCulture)
         });
       }
       return collection;

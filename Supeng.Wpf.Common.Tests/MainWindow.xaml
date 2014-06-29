@@ -4,10 +4,10 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <ToolBar ItemsSource="{Binding Collection}" ItemTemplate="{Binding Template}" />
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Collection}"/>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Collection}" />
     </Grid>
 </Window>

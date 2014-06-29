@@ -162,8 +162,8 @@ namespace Update
           Thread.Sleep(100);
           Progress.StepAdd();
         }
-        #endregion
 
+        #endregion
       }, tokenSource.Token, TaskCreationOptions.HideScheduler, scheduler);
 
       task.ContinueWith(t =>
@@ -180,10 +180,7 @@ namespace Update
       task.ContinueWith(t => { MessageBox.Show("下载组件发现错误，请联系系统管理员。"); }, CancellationToken.None,
         TaskContinuationOptions.OnlyOnFaulted, scheduler);
 
-      task.ContinueWith(t =>
-      {
-        MessageBox.Show("升级被取消。");
-      }, CancellationToken.None,
+      task.ContinueWith(t => { MessageBox.Show("升级被取消。"); }, CancellationToken.None,
         TaskContinuationOptions.OnlyOnCanceled, scheduler);
     }
 

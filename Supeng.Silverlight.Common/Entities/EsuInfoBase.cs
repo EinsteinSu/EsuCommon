@@ -8,12 +8,11 @@ namespace Supeng.Silverlight.Common.Entities
 {
   public class EsuInfoBase : PropertyChangedBase
   {
-    private string id;
     private string description;
+    private string id;
 
     public EsuInfoBase()
     {
-
     }
 
     public EsuInfoBase(bool initalizeID)
@@ -23,6 +22,7 @@ namespace Supeng.Silverlight.Common.Entities
     }
 
     #region properties
+
     [Display(AutoGenerateField = false)]
     public string ID
     {
@@ -49,11 +49,12 @@ namespace Supeng.Silverlight.Common.Entities
     }
 
     [Display(AutoGenerateField = false)]
-    new public bool IsNotifying
+    public new bool IsNotifying
     {
       get { return base.IsNotifying; }
       set { base.IsNotifying = value; }
     }
+
     #endregion
 
     public override string ToString()
@@ -66,7 +67,14 @@ namespace Supeng.Silverlight.Common.Entities
       return JsonConvert.DeserializeObject(GetSerializeString(), GetType());
     }
 
+    public static T InitailizeDefaultData<T>() where T : EsuInfoBase, new()
+    {
+      var data = new T {ID = Guid.NewGuid().ToString()};
+      return data;
+    }
+
     #region serialize
+
     public string GetSerializeString()
     {
       return JsonConvert.SerializeObject(this);
@@ -76,13 +84,7 @@ namespace Supeng.Silverlight.Common.Entities
     {
       StreamHelper.WriteText(fileName, GetSerializeString());
     }
+
     #endregion
-
-    public static T InitailizeDefaultData<T>() where T : EsuInfoBase, new()
-    {
-      var data = new T { ID = Guid.NewGuid().ToString() };
-      return data;
-    }
   }
-
 }

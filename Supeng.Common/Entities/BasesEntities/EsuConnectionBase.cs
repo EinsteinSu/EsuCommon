@@ -78,6 +78,15 @@ namespace Supeng.Common.Entities.BasesEntities
       get { return string.Format("{0}{1}", SaveDirectory, FileName); }
     }
 
+    public virtual string ConnectionString
+    {
+      get
+      {
+        return string.Format("Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
+          DataSource, InitialCatalog, UserID, Password);
+      }
+    }
+
     public void SaveToXml()
     {
       SerializeToXml(SaveFileName);
@@ -86,15 +95,6 @@ namespace Supeng.Common.Entities.BasesEntities
     public void SaveToText()
     {
       SerializeToText(SaveFileName);
-    }
-
-    public virtual string ConnectionString
-    {
-      get
-      {
-        return string.Format("Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
-          DataSource, InitialCatalog, UserID, Password);
-      }
     }
   }
 

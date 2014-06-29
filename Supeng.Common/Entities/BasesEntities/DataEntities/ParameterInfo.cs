@@ -12,6 +12,7 @@ namespace Supeng.Common.Entities.BasesEntities.DataEntities
     private T value;
 
     #region properties
+
     [Display(Name = @"分组")]
     public string Category
     {
@@ -59,15 +60,15 @@ namespace Supeng.Common.Entities.BasesEntities.DataEntities
         NotifyOfPropertyChange(() => OrderID);
       }
     }
-    #endregion
 
+    #endregion
   }
 
   public sealed class ParameterInfoCreator<T> : IDataCreator<ParameterInfo<T>>
   {
     public ParameterInfo<T> CreateData(IDataReader reader)
     {
-      ParameterInfo<T> data = new ParameterInfo<T>();
+      var data = new ParameterInfo<T>();
       data.ID = reader["ID"].ToString();
       data.Name = reader["Name"].ToString();
       return data;

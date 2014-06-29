@@ -9,7 +9,7 @@ using Supeng.Silverlight.Common.Interfaces.Controls;
 
 namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
 {
-  public abstract class ManagementWithToolbarViewModelBase : EsuInfoBase,IShowProgress
+  public abstract class ManagementWithToolbarViewModelBase : EsuInfoBase, IShowProgress
   {
     private readonly ObservableCollection<EsuToolbarButton> buttonCollection;
 
@@ -33,6 +33,10 @@ namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
       get { return MessageBox.Show("数据已发生更改，是否保存数据？", "刷新数据", MessageBoxButton.OKCancel); }
     }
 
+    public Action<string> StartShowing { get; set; }
+
+    public Action StopShowing { get; set; }
+
     protected virtual ImageSource GetImageSourceByName(string name)
     {
       string fileName = string.Format("/images/Buttons/{0}.png", name);
@@ -51,9 +55,5 @@ namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
     }
 
     protected abstract void InitalizeButtons();
-
-    public Action<string> StartShowing { get; set; }
-
-    public Action StopShowing { get; set; }
   }
 }

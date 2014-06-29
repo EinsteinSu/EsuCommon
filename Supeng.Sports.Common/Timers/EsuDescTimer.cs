@@ -11,16 +11,16 @@ namespace Supeng.Sports.Common.Timers
     {
     }
 
+    protected override bool BreakeCondition
+    {
+      get { return Time.TimeOfDay.TotalSeconds == 0; }
+    }
+
     protected override DateTime TimeRun(DateTime? time)
     {
       if (time != null)
         return time.Value.AddSeconds(-1);
       throw new InvalidDataException("Time is null");
-    }
-
-    protected override bool BreakeCondition
-    {
-      get { return Time.TimeOfDay.TotalSeconds == 0; }
     }
   }
 }

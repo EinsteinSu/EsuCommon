@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Supeng.Data
@@ -46,7 +45,6 @@ namespace Supeng.Data
   public static class SqlScriptHelper
   {
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="list">key is column value is column value</param>
     /// <returns></returns>

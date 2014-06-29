@@ -5,13 +5,13 @@ namespace Supeng.Common.Entities.BasesEntities
 {
   public class UpdateFile : EsuInfoBase, IComparable<UpdateFile>
   {
-
-    private string fileName;
     private string directory;
-    private string size;
+    private string fileName;
     private DateTime lastWriteTime;
+    private string size;
 
     #region properties
+
     public string FileName
     {
       get { return fileName; }
@@ -55,9 +55,11 @@ namespace Supeng.Common.Entities.BasesEntities
         NotifyOfPropertyChange(() => LastWriteTime);
       }
     }
+
     #endregion
-    
+
     #region operators
+
     public static bool operator <(UpdateFile file1, UpdateFile file2)
     {
       if (file1 == null || file2 == null)
@@ -70,16 +72,16 @@ namespace Supeng.Common.Entities.BasesEntities
     {
       return !(file1 < file2);
     }
+
     #endregion
 
     public int CompareTo(UpdateFile other)
     {
-      return (int)LastWriteTime.Subtract(other.LastWriteTime).TotalMinutes;
+      return (int) LastWriteTime.Subtract(other.LastWriteTime).TotalMinutes;
     }
   }
 
   public class UpdateFileCollection : EsuInfoCollection<UpdateFile>
   {
-
   }
 }

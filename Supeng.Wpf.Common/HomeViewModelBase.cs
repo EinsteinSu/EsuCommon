@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using Supeng.Common.Controls;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.BasesEntities.DataEntities;
 using Supeng.Common.Entities.ControlEntities.NavBarGroupItem;
@@ -14,10 +13,10 @@ namespace Supeng.Wpf.Common
 {
   public abstract class HomeViewModelBase : EsuInfoBase
   {
-    private UserControlFunctionItem<ApplicationFunction> currentUserControl;
-    private UserControlFunctionItemCollection<ApplicationFunction> openedUserControlCollection;
     private readonly EsuProgressViewModel progress;
+    private UserControlFunctionItem<ApplicationFunction> currentUserControl;
     private ObservableCollection<EsuDisplayNavBarGroup<ApplicationFunction>> functionCollection;
+    private UserControlFunctionItemCollection<ApplicationFunction> openedUserControlCollection;
 
     protected HomeViewModelBase()
     {

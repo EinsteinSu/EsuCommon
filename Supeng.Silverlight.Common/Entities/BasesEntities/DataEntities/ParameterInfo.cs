@@ -10,6 +10,7 @@ namespace Supeng.Silverlight.Common.Entities.BasesEntities.DataEntities
     private T value;
 
     #region properties
+
     [Display(Name = @"分组")]
     public string Category
     {
@@ -57,7 +58,7 @@ namespace Supeng.Silverlight.Common.Entities.BasesEntities.DataEntities
         NotifyOfPropertyChange(() => OrderID);
       }
     }
-    #endregion
 
+    #endregion
   }
 }

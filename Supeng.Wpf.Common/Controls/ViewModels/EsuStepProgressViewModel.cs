@@ -17,10 +17,7 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
 
     public Visibility Visibility
     {
-      get
-      {
-        return visibility;
-      }
+      get { return visibility; }
     }
 
     public int MaxStep

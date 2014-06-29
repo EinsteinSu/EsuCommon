@@ -9,12 +9,11 @@ namespace Supeng.Common.Entities
 {
   public class EsuInfoBase : PropertyChangedBase, ICloneable
   {
-    private string id;
     private string description;
+    private string id;
 
     public EsuInfoBase()
     {
-
     }
 
     public EsuInfoBase(bool initalizeID)
@@ -24,6 +23,7 @@ namespace Supeng.Common.Entities
     }
 
     #region properties
+
     [Display(AutoGenerateField = false)]
     public string ID
     {
@@ -49,17 +49,13 @@ namespace Supeng.Common.Entities
     }
 
     [Display(AutoGenerateField = false)]
-    new public bool IsNotifying
+    public new bool IsNotifying
     {
       get { return base.IsNotifying; }
       set { base.IsNotifying = value; }
     }
-    #endregion
 
-    public override string ToString()
-    {
-      return GetSerializeString();
-    }
+    #endregion
 
     public object Clone()
     {
@@ -67,6 +63,7 @@ namespace Supeng.Common.Entities
     }
 
     #region serialize
+
     public string GetSerializeString()
     {
       return JsonConvert.SerializeObject(this);
@@ -85,14 +82,18 @@ namespace Supeng.Common.Entities
     {
       File.WriteAllText(fileName, ToString());
     }
+
     #endregion
 
+    public override string ToString()
+    {
+      return GetSerializeString();
+    }
 
     public static T InitailizeDefaultData<T>() where T : EsuInfoBase, new()
     {
-      var data = new T { ID = Guid.NewGuid().ToString() };
+      var data = new T {ID = Guid.NewGuid().ToString()};
       return data;
     }
   }
-
 }

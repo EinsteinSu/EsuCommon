@@ -1,57 +1,61 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:views="clr-namespace:Supeng.Wpf.Common.Controls.Views;assembly=Supeng.Wpf.Common"
     x:Class="SqlScriptGenerator.MainWindow"
-        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
+    Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Read" Command="{Binding ReadCommand}" Width="60" Margin="5"/>
-            <Button Content="Script" Command="{Binding GenerateScript}" Width="60" Margin="5"/>
-            <Button Content="Creator" Command="{Binding GenerateCreator}" Width="60" Margin="5"/>
-            <Button Content="Entities" Command="{Binding EntitiesCreator}" Width="60" Margin="5"/>
+            <Button Content="Read" Command="{Binding ReadCommand}" Width="60" Margin="5" />
+            <Button Content="Script" Command="{Binding GenerateScript}" Width="60" Margin="5" />
+            <Button Content="Creator" Command="{Binding GenerateCreator}" Width="60" Margin="5" />
+            <Button Content="Entities" Command="{Binding EntitiesCreator}" Width="60" Margin="5" />
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="200" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <dxg:GridControl AutoPopulateColumns="True" ItemsSource="{Binding TableCollection}">
                     <!--<dxg:GridControl.Columns>
                         <dxg:GridColumn FieldName="Name" AllowEditing="False"/>
                     </dxg:GridControl.Columns>-->
                     <dxg:GridControl.View>
-                        <dxg:TableView ShowSearchPanelMode="Always" AllowEditing="False" AutoWidth="True" FocusedRow="{Binding CurrentTable,Mode=TwoWay}" ShowGroupPanel="False"/>
+                        <dxg:TableView ShowSearchPanelMode="Always" AllowEditing="False" AutoWidth="True"
+                                       FocusedRow="{Binding CurrentTable,Mode=TwoWay}" ShowGroupPanel="False" />
                     </dxg:GridControl.View>
                 </dxg:GridControl>
                 <dxg:GridControl Grid.Row="1" ItemsSource="{Binding ColumnCollection}">
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn FieldName="Choice"/>
-                        <dxg:GridColumn FieldName="Name" AllowEditing="False"/>
-                        <dxg:GridColumn FieldName="Type" AllowEditing="False"/>
-                        <dxg:GridColumn FieldName="Pk" AllowEditing="False"/>
-                        <dxg:GridColumn FieldName="Description" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="Choice" />
+                        <dxg:GridColumn FieldName="Name" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="Type" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="Pk" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="Description" AllowEditing="False" />
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
-                        <dxg:TableView ShowGroupPanel="False"/>
+                        <dxg:TableView ShowGroupPanel="False" />
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </Grid>
             <Grid Grid.Column="1">
-                <dxe:TextEdit Text="{Binding Result}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
+                <dxe:TextEdit Text="{Binding Result}" VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"
+                              HorizontalContentAlignment="Left" VerticalContentAlignment="Top" />
             </Grid>
         </Grid>
-        <views:EsuProgressView Grid.Row="2" DataContext="{Binding Progress}"/>
+        <views:EsuProgressView Grid.Row="2" DataContext="{Binding Progress}" />
     </Grid>
 </Window>

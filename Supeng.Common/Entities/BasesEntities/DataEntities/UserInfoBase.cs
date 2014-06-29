@@ -3,10 +3,11 @@
   public class UserInfoBase : EsuInfoBase
   {
     private string code;
-    private string name;
     private ContactInfo contact;
+    private string name;
 
     #region properties
+
     public string Code
     {
       get { return code; }
@@ -39,6 +40,7 @@
         NotifyOfPropertyChange(() => Contact);
       }
     }
+
     #endregion
 
     public virtual string DisplayName

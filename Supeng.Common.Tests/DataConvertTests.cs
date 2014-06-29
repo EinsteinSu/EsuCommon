@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Supeng.Common.Types;
 
 namespace Supeng.Common.Tests
@@ -16,10 +10,10 @@ namespace Supeng.Common.Tests
     public void TestDataConvert()
     {
       string data = "1";
-      int i = data.ConvertData<int>();
+      var i = data.ConvertData<int>();
       Assert.AreEqual(1, i);
 
-      decimal d = data.ConvertData<decimal>();
+      var d = data.ConvertData<decimal>();
       Assert.AreEqual(1, d);
 
       //DateTime time = DateTime.Now;

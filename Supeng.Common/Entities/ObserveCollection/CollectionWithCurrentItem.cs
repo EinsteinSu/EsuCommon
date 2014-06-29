@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Caliburn.Micro;
 
 namespace Supeng.Common.Entities.ObserveCollection
 {
@@ -9,6 +8,12 @@ namespace Supeng.Common.Entities.ObserveCollection
     private ObservableCollection<T> collection;
     private T currentItem;
     private Action<T> currentItemChangedAction;
+
+    public CollectionWithCurrentItem(Action<T> action = null)
+    {
+      currentItemChangedAction = action;
+      collection = new ObservableCollection<T>();
+    }
 
     public Action<T> CurrentItemChangedAction
     {
@@ -19,12 +24,6 @@ namespace Supeng.Common.Entities.ObserveCollection
         currentItemChangedAction = value;
         NotifyOfPropertyChange(() => CurrentItemChangedAction);
       }
-    }
-
-    public CollectionWithCurrentItem(Action<T> action = null)
-    {
-      currentItemChangedAction = action;
-      collection = new ObservableCollection<T>();
     }
 
     public ObservableCollection<T> Collection

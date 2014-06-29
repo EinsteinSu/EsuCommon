@@ -174,7 +174,7 @@ namespace Supeng.Common.Strings
       }
       if (i >= 26)
         return ch;
-      return (char)(65 + i);
+      return (char) (65 + i);
     }
 
     /// <summary>
@@ -207,7 +207,7 @@ namespace Supeng.Common.Strings
       }
       int hightByte = bytes[0];
       int lowByte = bytes[1];
-      int ascii = (256 * hightByte + lowByte) - 256 * 256;
+      int ascii = (256*hightByte + lowByte) - 256*256;
       return ascii;
     }
 
@@ -216,7 +216,7 @@ namespace Supeng.Common.Strings
       if (ascii > 0 && ascii < 160)
       {
         // 单字符
-        return new string((char)ascii, 1);
+        return new string((char) ascii, 1);
       }
       if (ascii < -20319 || ascii > -10247)
       {
@@ -291,7 +291,7 @@ namespace Supeng.Common.Strings
 
     public static bool IsSpliter(char c)
     {
-      char[] spliter = { ',', '，', ';', '；' };
+      char[] spliter = {',', '，', ';', '；'};
       return spliter.Any(cc => c == cc);
     }
 
@@ -333,7 +333,7 @@ namespace Supeng.Common.Strings
         var ret = new string[al.Count];
         for (i = 0; i < al.Count; i++)
         {
-          ret[i] = (string)al[i];
+          ret[i] = (string) al[i];
         }
         return ret;
       }

@@ -5,12 +5,13 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
 {
   public class ChangeData<T> : EsuInfoBase where T : EsuInfoBase
   {
-    private EsuDataState state;
-    private T data;
     private DateTime changeTime;
+    private T data;
     private Dictionary<string, object> extensions = new Dictionary<string, object>();
+    private EsuDataState state;
 
     #region properties
+
     public EsuDataState State
     {
       get { return state; }

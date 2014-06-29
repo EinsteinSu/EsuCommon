@@ -16,6 +16,11 @@ namespace Supeng.Office
       wordApp = new ApplicationClass();
     }
 
+    public void Dispose()
+    {
+      Quit();
+    }
+
     public bool Open(string wordName, bool showApp)
     {
       bool result = false;
@@ -45,17 +50,21 @@ namespace Supeng.Office
     {
       Object nothing = Missing.Value;
       Range rang = Document.Bookmarks.get_Item(bookMark).Range;
-      Table newTable = Document.Tables.Add(rang, table.RowCount + 1, table.CellCollection.Count, ref nothing, ref nothing);
+      Table newTable = Document.Tables.Add(rang, table.RowCount + 1, table.CellCollection.Count, ref nothing,
+        ref nothing);
       newTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
       newTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
+
       #region set column width and header
+
       int i = 1;
-      foreach (var cell in table.CellCollection)
+      foreach (WordTableCellInfo cell in table.CellCollection)
       {
         newTable.Columns[i].Width = cell.Widht;
         newTable.Cell(1, i).Range.Text = cell.Header;
         i++;
       }
+
       #endregion
 
       SetDefaultTableHeader(newTable, table.CellCollection.Count, headerStart);
@@ -110,11 +119,6 @@ namespace Supeng.Office
         wordApp.Quit(ref nothing, ref nothing, ref nothing);
       GC.Collect();
     }
-
-    public void Dispose()
-    {
-      Quit();
-    }
   }
 
   public interface IWordTableOperates
@@ -124,7 +128,6 @@ namespace Supeng.Office
     int RowCount { get; }
 
     void FillData(Table table);
-
   }
 
   public class WordTableCellInfo

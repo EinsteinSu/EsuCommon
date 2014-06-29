@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using DevExpress.Xpf.Grid;
 using Supeng.Common.Entities;
 using Supeng.Wpf.Common.DialogWindows.Views;
 

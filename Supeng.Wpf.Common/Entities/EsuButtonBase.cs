@@ -11,16 +11,15 @@ namespace Supeng.Wpf.Common.Entities
 {
   public class EsuButtonBase : EsuInfoBase
   {
-    private string text;
-    private bool enable;
-    private Thickness thickness = new Thickness(0);
-    private string imageUrl;
     private readonly DelegateCommand command;
+    private bool enable;
+    private string imageUrl;
     private string name;
+    private string text;
+    private Thickness thickness = new Thickness(0);
 
     public EsuButtonBase()
     {
-
     }
 
     public EsuButtonBase(Action action)
@@ -34,10 +33,11 @@ namespace Supeng.Wpf.Common.Entities
     {
       this.text = text;
       thickness = new Thickness(left, 0, 0, 0);
-      NotifyOfPropertyChange(()=>Thickness);
+      NotifyOfPropertyChange(() => Thickness);
     }
 
     #region properties
+
     public string Text
     {
       get { return text; }
@@ -84,10 +84,7 @@ namespace Supeng.Wpf.Common.Entities
 
     public Thickness ContextMenuThickness
     {
-      get
-      {
-        return new Thickness(0, thickness.Left, 0, 0);
-      }
+      get { return new Thickness(0, thickness.Left, 0, 0); }
     }
 
     public string ImageUrl
@@ -120,6 +117,7 @@ namespace Supeng.Wpf.Common.Entities
     {
       get { return command; }
     }
+
     #endregion
   }
 }

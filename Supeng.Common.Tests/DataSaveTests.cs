@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Caliburn.Micro;
 using NUnit.Framework;
 using Supeng.Common.DataOperations;
 using Supeng.Common.Entities;
@@ -23,20 +22,20 @@ namespace Supeng.Common.Tests
       var collection = new EsuInfoCollection<TestData>();
       for (int i = 0; i < 10; i++)
       {
-        collection.Add(new TestData { ID = Guid.NewGuid().ToString(), Name = "User" + i, Age = 10 + i });
+        collection.Add(new TestData {ID = Guid.NewGuid().ToString(), Name = "User" + i, Age = 10 + i});
       }
       collection.Save(new TestDataStorage(Connection), new SaveTest());
-      var databaseCollection = new TestDataStorage(Connection).GetDataCollection();
+      EsuInfoCollection<TestData> databaseCollection = new TestDataStorage(Connection).GetDataCollection();
       Assert.AreEqual(10, databaseCollection.Count);
 
-      foreach (var testData in collection)
+      foreach (TestData testData in collection)
       {
         testData.Name = "test";
       }
       collection.Save(new TestDataStorage(Connection), new SaveTest());
       databaseCollection = new TestDataStorage(Connection).GetDataCollection();
 
-      foreach (var testData in databaseCollection)
+      foreach (TestData testData in databaseCollection)
       {
         Assert.AreEqual(testData.Name, "test");
       }
@@ -51,9 +50,9 @@ namespace Supeng.Common.Tests
     public void TestSaveSingleRecord()
     {
       string guid = Guid.NewGuid().ToString();
-      var test = new TestData { ID = guid, Name = "Test", Age = 19 };
+      var test = new TestData {ID = guid, Name = "Test", Age = 19};
       test.Insert(new TestDataStorage(Connection), new SaveTest());
-      var collection = new TestDataStorage(Connection).GetDataCollection();
+      EsuInfoCollection<TestData> collection = new TestDataStorage(Connection).GetDataCollection();
       Assert.IsTrue(collection.Any());
 
       test.Name = "test1";
@@ -74,12 +73,6 @@ namespace Supeng.Common.Tests
     {
     }
 
-    public EsuInfoCollection<TestData> GetDataCollection()
-    {
-      var creator = new SqlScriptCreator("SaveTable");
-      return ReadToCollection(creator.GetSqlScript(), new TestDataStorage(""), null, null);
-    }
-
     public TestData CreateData(IDataReader reader)
     {
       return new TestData
@@ -89,12 +82,18 @@ namespace Supeng.Common.Tests
         Age = reader["Age"].ToString().ConvertData(0)
       };
     }
+
+    public EsuInfoCollection<TestData> GetDataCollection()
+    {
+      var creator = new SqlScriptCreator("SaveTable");
+      return ReadToCollection(creator.GetSqlScript(), new TestDataStorage(""), null, null);
+    }
   }
 
   public class TestData : EsuInfoBase
   {
-    private string name;
     private int age;
+    private string name;
 
     public string Name
     {
@@ -121,24 +120,9 @@ namespace Supeng.Common.Tests
 
   public class SaveTest : IDataSave<TestData>
   {
-    public string InsertSqlScript(TestData data)
-    {
-      return string.Format("Insert into SaveTable(ID,Name,Age) values('{0}','{1}',{2})", data.ID, data.Name, data.Age);
-    }
-
-    public string UpdateSqlScript(TestData data)
-    {
-      return string.Format("Update SaveTable Set Name = '{0}',Age = {1} Where ID = '{2}'", data.Name, data.Age, data.ID);
-    }
-
-    public string DeleteSqlScript(TestData data)
-    {
-      return string.Format("Delete from SaveTable Where ID = '{0}'", data.ID);
-    }
-
     public IDataParameter[] MappingParameters(TestData data)
     {
-      IDataParameter[] parameters = new IDataParameter[3];
+      var parameters = new IDataParameter[3];
       parameters[0] = new SqlParameter("@id", data.ID);
       parameters[1] = new SqlParameter("@name", data.Name);
       parameters[2] = new SqlParameter("@age", data.Age);
@@ -158,6 +142,21 @@ namespace Supeng.Common.Tests
     public string DeleteSqlScript()
     {
       return "Delete from SaveTable Where ID = @id";
+    }
+
+    public string InsertSqlScript(TestData data)
+    {
+      return string.Format("Insert into SaveTable(ID,Name,Age) values('{0}','{1}',{2})", data.ID, data.Name, data.Age);
+    }
+
+    public string UpdateSqlScript(TestData data)
+    {
+      return string.Format("Update SaveTable Set Name = '{0}',Age = {1} Where ID = '{2}'", data.Name, data.Age, data.ID);
+    }
+
+    public string DeleteSqlScript(TestData data)
+    {
+      return string.Format("Delete from SaveTable Where ID = '{0}'", data.ID);
     }
   }
 }

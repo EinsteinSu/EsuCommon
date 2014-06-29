@@ -1,4 +1,5 @@
-﻿using Supeng.Common;
+﻿using System.Windows;
+using Supeng.Common;
 using Supeng.Common.Entities;
 using Supeng.Common.Strings;
 using Supeng.Wpf.Common.DialogWindows;
@@ -18,18 +19,23 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
       this.dialogWindowBase = dialogWindowBase;
     }
 
+    public override bool EnableEdit
+    {
+      get { return false; }
+    }
+
     protected override void InitalizeButton()
     {
-      ButtonCollection.Add(new EsuButtonBase("刷新", 0, Load) { Name = "Refresh", Description = "刷新数据" });
-      ButtonCollection.Add(new EsuButtonBase("增加", 0, Add) { Name = "Add", Description = "新增数据" });
-      ButtonCollection.Add(new EsuButtonBase("修改", 0, Modify) { Name = "Modify", Description = "修改数据" });
-      ButtonCollection.Add(new EsuButtonBase("删除", 0, Remove) { Name = "Delete", Description = "删除数据" });
+      ButtonCollection.Add(new EsuButtonBase("刷新", 0, Load) {Name = "Refresh", Description = "刷新数据"});
+      ButtonCollection.Add(new EsuButtonBase("增加", 0, Add) {Name = "Add", Description = "新增数据"});
+      ButtonCollection.Add(new EsuButtonBase("修改", 0, Modify) {Name = "Modify", Description = "修改数据"});
+      ButtonCollection.Add(new EsuButtonBase("删除", 0, Remove) {Name = "Delete", Description = "删除数据"});
     }
 
     protected override void Add()
     {
       dialogWindowBase.Data = GetAddItem();
-      var window = DialogWindowHelper.ShowDialogWindow(dialogWindowBase);
+      Window window = DialogWindowHelper.ShowDialogWindow(dialogWindowBase);
       if (window.DialogResult != null && window.DialogResult.Value)
       {
         Insert(dialogWindowBase.Data);
@@ -43,7 +49,7 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
       if (Data.CurrentItem != null)
       {
         dialogWindowBase.Data = GetModifyItem();
-        var window = DialogWindowHelper.ShowDialogWindow(dialogWindowBase);
+        Window window = DialogWindowHelper.ShowDialogWindow(dialogWindowBase);
         if (window.DialogResult != null && window.DialogResult.Value)
         {
           Update(dialogWindowBase.Data);
@@ -71,11 +77,6 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
     protected virtual TW GetModifyItem()
     {
       return Data.CurrentItem.ToString().Load<TW>();
-    }
-
-    public override bool EnableEdit
-    {
-      get { return false; }
     }
 
     protected abstract void Insert(TW data);

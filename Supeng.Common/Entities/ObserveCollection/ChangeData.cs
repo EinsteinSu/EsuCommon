@@ -1,17 +1,17 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Supeng.Common.Entities.ObserveCollection
 {
   public class ChangeData<T> : EsuInfoBase where T : EsuInfoBase
   {
-    private EsuDataState state;
-    private T data;
     private DateTime changeTime;
+    private T data;
     private IDictionary<string, string> extensions = new Dictionary<string, string>();
+    private EsuDataState state;
 
     #region properties
+
     public EsuDataState State
     {
       get { return state; }

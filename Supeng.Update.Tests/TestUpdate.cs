@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
 using Supeng.Common.Entities.BasesEntities;
 using Supeng.Common.Interfaces;
 using Supeng.Common.IOs;
@@ -30,11 +25,12 @@ namespace Supeng.Update.Tests
 
   public class TestUpgradeData : IUpgrade
   {
-    string filePath = @"C:\Users\Einstein\Desktop\EsuCommon\Update\bin\Debug";
+    private string filePath = @"C:\Users\Einstein\Desktop\EsuCommon\Update\bin\Debug";
+
     public EsuUpgradeInfoCollection GetServiceFileCollection()
     {
       var collection = new EsuUpgradeInfoCollection();
-      foreach (var file in Directory.GetFiles(filePath))
+      foreach (string file in Directory.GetFiles(filePath))
       {
         var info = new FileInfo(file);
         collection.Add(new EsuUpgradeInfo(filePath)
@@ -43,7 +39,7 @@ namespace Supeng.Update.Tests
           Name = info.Name,
           FileName = file,
           LastWriteTime = info.LastWriteTime,
-          Size = Math.Round(info.Length / 1024D, 2).ToString(CultureInfo.InvariantCulture)
+          Size = Math.Round(info.Length/1024D, 2).ToString(CultureInfo.InvariantCulture)
         });
       }
       return collection;

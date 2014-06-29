@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Supeng.Common.Entities;
-using Supeng.Common.Entities.BasesEntities.DataEntities;
 using Supeng.Common.Entities.ObserveCollection;
 using Supeng.Common.Exceptions;
 using Supeng.Common.Threads;
@@ -13,14 +12,16 @@ namespace TestInWindows
 {
   public partial class Form1 : Form
   {
+    private readonly CancellationTokenSource cancellationTokenSource;
     private readonly SqlDataStorage storage;
+
     public Form1()
     {
       InitializeComponent();
       TaskScheduler scheduler = TaskScheduler.FromCurrentSynchronizationContext();
       storage =
-       new SqlDataStorage(
-         "Data Source=116.54.125.122;Initial Catalog=DataTests;Persist Security Info=True;User ID=sa;Password=hrmaster");
+        new SqlDataStorage(
+          "Data Source=116.54.125.122;Initial Catalog=DataTests;Persist Security Info=True;User ID=sa;Password=hrmaster");
       cancellationTokenSource = storage.Cancellation;
     }
 
@@ -33,7 +34,6 @@ namespace TestInWindows
       storage.ExecuteInBackground(sql, new TestInWindowsBackgroudData(1, "Delete Thread", richTextBox1));
     }
 
-    private CancellationTokenSource cancellationTokenSource;
     private void button2_Click(object sender, EventArgs e)
     {
       string guid = Guid.NewGuid().ToString();
@@ -67,7 +67,6 @@ namespace TestInWindows
     public void BeginExecute()
     {
       AppendText(@"Begin execute");
-
     }
 
     public void EndExecute(int result)
@@ -103,7 +102,8 @@ namespace TestInWindows
   }
 
 
-  public class TestBackgroudCollection<T> : IBackgroundData<EsuInfoCollection<T>>, IExceptionHandle where T : EsuInfoBase, new()
+  public class TestBackgroudCollection<T> : IBackgroundData<EsuInfoCollection<T>>, IExceptionHandle
+    where T : EsuInfoBase, new()
   {
     private readonly int assertResult;
     private readonly string head;
@@ -119,7 +119,6 @@ namespace TestInWindows
     public void BeginExecute()
     {
       AppendText(@"Begin execute");
-
     }
 
     public void EndExecute(EsuInfoCollection<T> result)

@@ -28,9 +28,11 @@ namespace Supeng.Common.DataOperations
       get { return cancellation; }
     }
 
-    public abstract int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null, CommandType type = CommandType.Text);
+    public abstract int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null,
+      CommandType type = CommandType.Text);
 
-    public void ExecuteInBackground(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null, CommandType type = CommandType.Text)
+    public void ExecuteInBackground(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null,
+      CommandType type = CommandType.Text)
     {
       backgroundData.BeginExecute();
       var task = new Task<int>(() => Execute(sql, parameters, null, type), cancellation.Token);
@@ -39,12 +41,13 @@ namespace Supeng.Common.DataOperations
     }
 
     /// <summary>
-    /// execute sql script with APM
+    ///   execute sql script with APM
     /// </summary>
     /// <param name="sql">sql script</param>
     /// <param name="backgroundData">How to handle the exceptions with APM</param>
     /// <param name="type"></param>
-    public virtual void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null, CommandType type = CommandType.Text)
+    public virtual void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData,
+      IDataParameter[] parameters = null, CommandType type = CommandType.Text)
     {
       Func<string, int> func = s => Execute(s, parameters, null, type);
       backgroundData.BeginExecute();
@@ -52,7 +55,7 @@ namespace Supeng.Common.DataOperations
       {
         try
         {
-          var f = (Func<string, int>)ar.AsyncState;
+          var f = (Func<string, int>) ar.AsyncState;
           int result = f.EndInvoke(ar);
           backgroundData.EndExecute(result);
         }
@@ -75,7 +78,7 @@ namespace Supeng.Common.DataOperations
     public T ReadSingleRecord<T>(string sql, IDataCreator<T> dataCreator,
       IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null) where T : EsuInfoBase, new()
     {
-      var collection = ReadToCollection(sql, dataCreator, parameters, exceptionHandle);
+      EsuInfoCollection<T> collection = ReadToCollection(sql, dataCreator, parameters, exceptionHandle);
       if (collection.Any())
         return collection[0];
       return new T();
@@ -100,8 +103,8 @@ namespace Supeng.Common.DataOperations
       {
         try
         {
-          var f = (Func<string, IDataCreator<T>, IDataParameter[], T>)ar.AsyncState;
-          var result = f.EndInvoke(ar);
+          var f = (Func<string, IDataCreator<T>, IDataParameter[], T>) ar.AsyncState;
+          T result = f.EndInvoke(ar);
           backgroundData.EndExecute(result);
         }
         catch (Exception exception)
@@ -136,8 +139,8 @@ namespace Supeng.Common.DataOperations
       {
         try
         {
-          var f = (Func<string, IDataCreator<T>, IDataParameter[], EsuInfoCollection<T>>)ar.AsyncState;
-          var collection = f.EndInvoke(ar);
+          var f = (Func<string, IDataCreator<T>, IDataParameter[], EsuInfoCollection<T>>) ar.AsyncState;
+          EsuInfoCollection<T> collection = f.EndInvoke(ar);
           collection.AcceptChanges();
           backgroundData.EndExecute(collection);
         }
@@ -157,6 +160,8 @@ namespace Supeng.Common.DataOperations
 
   public enum ExecuteType
   {
-    Normal, Background, WithAPM
+    Normal,
+    Background,
+    WithAPM
   }
 }

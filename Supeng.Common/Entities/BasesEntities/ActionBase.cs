@@ -10,6 +10,7 @@ namespace Supeng.Common.Entities.BasesEntities
     private string type;
 
     #region properties
+
     public string Name
     {
       get { return name; }
@@ -56,12 +57,9 @@ namespace Supeng.Common.Entities.BasesEntities
 
     public string ImageUrl
     {
-      get
-      {
-        return string.Format("{0}\\Images\\Function\\{1}.png", Environment.CurrentDirectory, name);
-      }
+      get { return string.Format("{0}\\Images\\Function\\{1}.png", Environment.CurrentDirectory, name); }
     }
-    #endregion
 
+    #endregion
   }
 }
