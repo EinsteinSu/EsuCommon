@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,19 @@ namespace Supeng.Data.Sql
       this.connectionString = connectionString;
     }
 
+    protected virtual void ProcessCommandParameter(SqlCommand command, IDataParameter[] parameters)
+    {
+      if (parameters != null && parameters.Any())
+      {
+        foreach (IDataParameter parameter in parameters)
+        {
+          if (parameter.Value == null)
+            parameter.Value = DBNull.Value;
+          command.Parameters.Add(parameter);
+        }
+      }
+    }
+
     public override int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null,
       CommandType type = CommandType.Text)
     {
@@ -27,16 +41,8 @@ namespace Supeng.Data.Sql
       conn.Open();
       try
       {
-        var command = new SqlCommand(sql, conn) {CommandType = type};
-        if (parameters != null && parameters.Any())
-        {
-          foreach (IDataParameter parameter in parameters)
-          {
-            if (parameter.Value == null)
-              parameter.Value = DBNull.Value;
-            command.Parameters.Add(parameter);
-          }
-        }
+        var command = new SqlCommand(sql, conn) { CommandType = type };
+        ProcessCommandParameter(command, parameters);
         return command.ExecuteNonQuery();
       }
       catch (SqlException exception)
@@ -62,7 +68,7 @@ namespace Supeng.Data.Sql
       backgroundData.BeginExecute();
       var conn = new SqlConnection(connectionString);
       conn.Open();
-      var command = new SqlCommand(sql, conn) {CommandType = type};
+      var command = new SqlCommand(sql, conn) { CommandType = type };
       if (parameters != null && parameters.Any())
       {
         foreach (IDataParameter parameter in parameters)
@@ -108,7 +114,7 @@ namespace Supeng.Data.Sql
         CommandType type = parameters == null
           ? CommandType.Text
           : CommandType.StoredProcedure;
-        var command = new SqlCommand(sql, conn) {CommandType = type};
+        var command = new SqlCommand(sql, conn) { CommandType = type };
         if (parameters != null)
         {
           foreach (IDataParameter parameter in parameters)
@@ -153,7 +159,7 @@ namespace Supeng.Data.Sql
       CommandType type = parameters == null
         ? CommandType.Text
         : CommandType.StoredProcedure;
-      var command = new SqlCommand(sql, conn) {CommandType = type};
+      var command = new SqlCommand(sql, conn) { CommandType = type };
       if (parameters != null)
       {
         foreach (IDataParameter parameter in parameters)
