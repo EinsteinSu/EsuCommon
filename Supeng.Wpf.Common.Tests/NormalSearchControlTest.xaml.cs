@@ -39,6 +39,11 @@ namespace Supeng.Wpf.Common.Tests
       data = new TestSearchControlModel();
     }
 
+    protected override string TemplateName
+    {
+      get { return "test"; }
+    }
+
     public override FrameworkElement Content
     {
       get
