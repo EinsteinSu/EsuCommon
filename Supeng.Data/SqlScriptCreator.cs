@@ -58,5 +58,16 @@ namespace Supeng.Data
       }
       return filter;
     }
+
+    public static IList<string> GetFilterArray(this IDictionary<string, string> list)
+    {
+      var conditions = new List<string>();
+      foreach (var column in list)
+      {
+        if (!string.IsNullOrEmpty(column.Value))
+          conditions.Add(string.Format("{0} Like '%{1}%'", column.Key, column.Value));
+      }
+      return conditions;
+    }
   }
 }

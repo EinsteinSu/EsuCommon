@@ -83,6 +83,7 @@
     <Compile Include="Controls\ViewModels\CollectionEditWithWindowViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuProgressViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuStepProgressViewModel.cs" />
+    <Compile Include="Controls\ViewModels\SearchControlViewModel.cs" />
     <Compile Include="Controls\ViewModels\SearchControlWithDataLayoutViewModel.cs" />
     <Compile Include="Controls\ViewModels\ToolbarWithContentViewModelBase.cs" />
     <Compile Include="Controls\Views\CollectionEditGrid.xaml.cs">
@@ -90,6 +91,9 @@
     </Compile>
     <Compile Include="Controls\Views\EsuStepProgressView.xaml.cs">
       <DependentUpon>EsuStepProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Views\SearchControlView.xaml.cs">
+      <DependentUpon>SearchControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Views\SearchControlWithDataLayoutView.xaml.cs">
       <DependentUpon>SearchControlWithDataLayoutView.xaml</DependentUpon>
@@ -187,6 +191,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Views\EsuStepProgressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\SearchControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Supeng.Data.DataFilter;
 
 namespace Supeng.Data.Tests
 {
@@ -30,6 +31,13 @@ namespace Supeng.Data.Tests
       string text = list.GetFilter();
       Console.WriteLine(text);
       Assert.AreEqual(result, text);
+    }
+
+    [Test]
+    public void TestFilterData()
+    {
+      var model = new FilterModel("Test","Column1","Column1Data");
+      Console.WriteLine(model.Filter);
     }
   }
 }
