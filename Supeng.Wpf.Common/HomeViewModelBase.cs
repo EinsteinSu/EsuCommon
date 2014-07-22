@@ -11,7 +11,7 @@ using Supeng.Wpf.Common.Controls.ViewModels;
 
 namespace Supeng.Wpf.Common
 {
-  public abstract class HomeViewModelBase : EsuInfoBase
+  public abstract class HomeViewModelBase : EsuInfoBase, IDisposable
   {
     private readonly EsuProgressViewModel progress;
     private UserControlFunctionItem<ApplicationFunction> currentUserControl;
@@ -114,5 +114,18 @@ namespace Supeng.Wpf.Common
     public abstract ImageSource Image { get; }
 
     public abstract FrameworkElement GetContentFromFunction(ApplicationFunction function, EsuProgressViewModel progress);
+
+    public void Dispose()
+    {
+      if (openedUserControlCollection != null)
+      {
+        foreach (var functionItem in openedUserControlCollection)
+        {
+          var dispose = functionItem.Content as IDisposable;
+          if (dispose != null)
+            dispose.Dispose();
+        }
+      }
+    }
   }
 }
