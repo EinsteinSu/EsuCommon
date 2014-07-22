@@ -9,6 +9,7 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
   public class EsuInfoCollection<T> : ObservableCollection<T> where T : EsuInfoBase, new()
   {
     private ChangesCollection<T> changedCollection;
+    private T currentItem;
 
     public EsuInfoCollection()
     {
@@ -23,6 +24,20 @@ namespace Supeng.Silverlight.Common.Entities.ObserveCollection
     public ChangesCollection<T> ChangedCollection
     {
       get { return changedCollection; }
+    }
+
+    public Action<T> CurrentItemChanged { get; set; }
+
+    public T CurrentItem
+    {
+      get { return currentItem; }
+      set
+      {
+        currentItem = value;
+        if (CurrentItemChanged != null)
+          CurrentItemChanged(value);
+        OnPropertyChanged(new PropertyChangedEventArgs("CurrentItem"));
+      }
     }
 
     public Action<EsuDataState, T> EsuCollectionChanged { get; set; }
