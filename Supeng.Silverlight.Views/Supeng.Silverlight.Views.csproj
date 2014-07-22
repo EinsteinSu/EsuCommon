@@ -110,10 +110,6 @@
       <Project>{f41a52f6-0d9a-48d7-adaa-7060283ca39a}</Project>
       <Name>Supeng.Silverlight.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Supeng.Silverlight.ViewModel\Supeng.Silverlight.ViewModel.csproj">
-      <Project>{ec903e3a-7bc4-40d2-8c0f-5031b63bd2ef}</Project>
-      <Name>Supeng.Silverlight.ViewModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

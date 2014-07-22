@@ -9,7 +9,7 @@ using Supeng.Silverlight.Common.Interfaces.Controls;
 
 namespace Supeng.Silverlight.ViewModel.Controls.ManagementControls
 {
-  public abstract class ManagementWithToolbarViewModelBase : EsuInfoBase, IShowProgress
+  public abstract class ManagementWithToolbarViewModelBase : EsuInfoBase, IProgress
   {
     private readonly ObservableCollection<EsuToolbarButton> buttonCollection;
 

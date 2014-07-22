@@ -113,8 +113,6 @@ namespace Supeng.Wpf.Common
 
     public abstract ImageSource Image { get; }
 
-    public abstract FrameworkElement GetContentFromFunction(ApplicationFunction function, EsuProgressViewModel progress);
-
     public void Dispose()
     {
       if (openedUserControlCollection != null)
@@ -127,5 +125,7 @@ namespace Supeng.Wpf.Common
         }
       }
     }
+
+    public abstract FrameworkElement GetContentFromFunction(ApplicationFunction function, EsuProgressViewModel progress);
   }
 }

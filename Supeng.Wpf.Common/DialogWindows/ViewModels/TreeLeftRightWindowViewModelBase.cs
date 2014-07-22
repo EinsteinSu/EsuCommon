@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using Supeng.Common.Entities.BasesEntities;
 using Supeng.Common.Entities.ObserveCollection;
 using Supeng.Wpf.Common.DialogWindows.Views;

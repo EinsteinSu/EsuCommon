@@ -28,6 +28,21 @@ namespace Supeng.Wpf.Common.DialogWindows
       window.ShowDialog();
     }
 
+    public static bool ShowDialogWindowWithReturn(this Window window, EsuInfoBase viewModel)
+    {
+      var windowViewModel = viewModel as IWindowViewModel;
+      if (windowViewModel != null)
+        windowViewModel.Window = window;
+      window.DataContext = viewModel;
+      var dataLoad = viewModel as IDataLoad;
+      if (dataLoad != null)
+        dataLoad.Load();
+      window.ShowDialog();
+      if (window.DialogResult != null)
+        return window.DialogResult.Value;
+      return false;
+    }
+
     public static void ShowReportWindow(ReportWindowBase viewModel)
     {
       var window = new DocumentViewWindow {Title = viewModel.Title, DataContext = viewModel};

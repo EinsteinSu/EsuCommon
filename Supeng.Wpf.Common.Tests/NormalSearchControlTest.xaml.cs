@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Supeng.Wpf.Common.Controls.ViewModels;
 using Supeng.Wpf.Common.Interfaces;
 
 namespace Supeng.Wpf.Common.Tests
 {
   /// <summary>
-  /// Interaction logic for NormalSearchControlTest.xaml
+  ///   Interaction logic for NormalSearchControlTest.xaml
   /// </summary>
   public partial class NormalSearchControlTest : UserControl
   {
@@ -46,10 +34,7 @@ namespace Supeng.Wpf.Common.Tests
 
     public override FrameworkElement Content
     {
-      get
-      {
-        return new TextBox();
-      }
+      get { return new TextBox(); }
     }
 
     public override ISearchModel Data

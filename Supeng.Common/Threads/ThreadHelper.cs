@@ -11,11 +11,11 @@ namespace Supeng.Common.Threads
       SynchronizationContext context = SynchronizationContext.Current;
       if (context == null)
         return callback;
-      return asyncResult => context.Post(result => callback((IAsyncResult)result), asyncResult);
+      return asyncResult => context.Post(result => callback((IAsyncResult) result), asyncResult);
     }
 
     public static void DoTask<T>(Func<T> taskStart, Action<T> taskDone, Action<AggregateException> handleException,
-     TaskScheduler scheduler)
+      TaskScheduler scheduler)
     {
       Task<T> task = Task<T>.Factory.StartNew(taskStart);
       task.ContinueWith(t => taskDone(t.Result), CancellationToken.None,

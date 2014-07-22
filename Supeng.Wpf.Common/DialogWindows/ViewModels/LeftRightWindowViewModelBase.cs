@@ -36,6 +36,11 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
       get { return null; }
     }
 
+    public override FrameworkElement Content
+    {
+      get { return new LeftRightGridControl(); }
+    }
+
     #region properties
 
     public EsuInfoCollection<T> LeftCollection
@@ -69,11 +74,6 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     }
 
     #endregion
-
-    public override FrameworkElement Content
-    {
-      get { return new LeftRightGridControl(); }
-    }
 
     protected abstract EsuInfoCollection<T> InitalizeLeftCollection();
 

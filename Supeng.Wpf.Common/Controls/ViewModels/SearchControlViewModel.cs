@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
 using DevExpress.Xpf.Bars;
 using Supeng.Common.Entities;
@@ -17,6 +16,22 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
     {
       searchCommand = new DelegateCommand(Search, () => true);
       clearCommand = new DelegateCommand(Clear, () => true);
+    }
+
+    protected abstract string TemplateName { get; }
+
+    public abstract FrameworkElement Content { get; }
+
+    public abstract ISearchModel Data { get; set; }
+
+    public DelegateCommand SearchCommand
+    {
+      get { return searchCommand; }
+    }
+
+    public DelegateCommand ClearCommand
+    {
+      get { return clearCommand; }
     }
 
     protected T LoadSearchModel<T>()
@@ -45,22 +60,6 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
         if (info != null)
           info.SerializeToText(templateFileName);
       }
-    }
-
-    protected abstract string TemplateName { get; }
-
-    public abstract FrameworkElement Content { get; }
-
-    public abstract ISearchModel Data { get; set; }
-
-    public DelegateCommand SearchCommand
-    {
-      get { return searchCommand; }
-    }
-
-    public DelegateCommand ClearCommand
-    {
-      get { return clearCommand; }
     }
 
     protected abstract void Search();

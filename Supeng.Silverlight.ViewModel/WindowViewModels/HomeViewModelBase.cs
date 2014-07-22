@@ -50,7 +50,7 @@ namespace Supeng.Silverlight.ViewModel.WindowViewModels
         Content = GetContentFromFunction(function),
       };
 
-      var showProgress = control.Content.DataContext as IShowProgress;
+      var showProgress = control.Content.DataContext as IProgress;
       if (showProgress != null)
       {
         showProgress.StartShowing = s => control.Progress.ShowProgress(string.Format("Loading {0}", function.Name));

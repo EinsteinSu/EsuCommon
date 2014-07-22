@@ -87,7 +87,7 @@
     <Compile Include="Entities\ObserveCollection\EsuDataState.cs" />
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
-    <Compile Include="Interfaces\Controls\IShowProgress.cs" />
+    <Compile Include="Interfaces\Controls\IProgress.cs" />
     <Compile Include="Interfaces\IDataLoad.cs" />
     <Compile Include="Interfaces\IPropertiesRefresh.cs" />
     <Compile Include="IOs\StreamHelper.cs" />

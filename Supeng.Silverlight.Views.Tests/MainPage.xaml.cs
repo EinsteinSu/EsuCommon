@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Supeng.Silverlight.Common.Entities.BasesEntities;
 using Supeng.Silverlight.Common.Entities.ObserveCollection;
-using Supeng.Silverlight.ViewModel.WindowViewModels;
 
 namespace Supeng.Silverlight.Views.Tests
 {
@@ -24,7 +23,7 @@ namespace Supeng.Silverlight.Views.Tests
 
   public sealed class JzflSelectionViewModel : TreeSelectionViewModel<Jzfl>
   {
-    public new Jzfl CurrentItem
+    public Jzfl CurrentItem
     {
       get { return base.CurrentItem; }
       set { base.CurrentItem = value; }

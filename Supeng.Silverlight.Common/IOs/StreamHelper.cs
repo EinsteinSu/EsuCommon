@@ -23,12 +23,19 @@ namespace Supeng.Silverlight.Common.IOs
       try
       {
         IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
-        Stream stream = new IsolatedStorageFileStream(fileName, FileMode.Open, FileAccess.Read, isf);
-        TextReader reader = new StreamReader(stream);
-        string sLine = reader.ReadLine();
-        text = sLine;
-        reader.Close();
-        stream.Close();
+        if (isf.FileExists(fileName))
+        {
+          Stream stream = new IsolatedStorageFileStream(fileName, FileMode.Open, FileAccess.Read, isf);
+          TextReader reader = new StreamReader(stream);
+          string sLine = reader.ReadLine();
+          text = sLine;
+          reader.Close();
+          stream.Close();
+        }
+        else
+        {
+          return string.Empty;
+        }
       }
       catch (Exception ex)
       {

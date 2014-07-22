@@ -75,6 +75,5 @@ namespace Supeng.Wpf.Common.Tests
         NotifyOfPropertyChange(() => Name);
       }
     }
-
   }
 }

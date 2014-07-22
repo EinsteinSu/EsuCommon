@@ -4,8 +4,8 @@ namespace Supeng.Data.DataFilter
 {
   public class FilterModel : EsuInfoBase
   {
-    private string name;
     private string filter;
+    private string name;
 
     public FilterModel(string name, string columnName, string data, FilterType type = FilterType.String)
     {
@@ -41,7 +41,8 @@ namespace Supeng.Data.DataFilter
 
   public enum FilterType
   {
-    String, Numeric
+    String,
+    Numeric
   }
 
   public static class FilterModelExtensions

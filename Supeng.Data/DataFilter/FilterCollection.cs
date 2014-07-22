@@ -6,7 +6,7 @@ namespace Supeng.Data.DataFilter
   {
     public virtual string GetSql(string tableName, string columns = "*", string order = "")
     {
-      var creator = new SqlScriptCreator(tableName, new[] { CurrentItem.Filter }, columns);
+      var creator = new SqlScriptCreator(tableName, new[] {CurrentItem.Filter}, columns);
       return creator.GetSqlScript(order);
     }
   }
