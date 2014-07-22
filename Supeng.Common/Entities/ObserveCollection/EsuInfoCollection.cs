@@ -136,7 +136,7 @@ namespace Supeng.Common.Entities.ObserveCollection
 
     public void SerializeToText(string fileName)
     {
-      File.AppendAllText(fileName, ToString());
+      File.WriteAllText(fileName, ToString());
     }
 
     #endregion
