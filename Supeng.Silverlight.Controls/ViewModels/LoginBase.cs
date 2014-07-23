@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using DevExpress.Xpf.Bars;
 using Supeng.Silverlight.Common.Entities;
+using Supeng.Silverlight.Common.IOs;
 
 namespace Supeng.Silverlight.Controls.ViewModels
 {
@@ -17,6 +18,25 @@ namespace Supeng.Silverlight.Controls.ViewModels
     protected LoginBase()
     {
       loginCommand = new DelegateCommand(Login, () => true);
+    }
+
+    protected virtual void LoadLogin<T>() where T : LoginBase
+    {
+      var data = "Login.txt".ReadFromText<T>();
+      if (data != null)
+      {
+        rememberUserName = data.RememberUserName;
+        if (RememberUserName)
+          userName = data.UserName;
+        rememberPassword = data.RememberPassword;
+        if (RememberPassword)
+          password = data.Password;
+      }
+    }
+
+    protected virtual void SaveLogin()
+    {
+      SerializeToText("Login.txt");
     }
 
     #region properties

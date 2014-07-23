@@ -75,8 +75,8 @@ namespace Supeng.Silverlight.Common.IOs
       {
         using (var reader = new StreamReader(info.Stream))
         {
-          var xs = new XmlSerializer(typeof (T));
-          return (T) xs.Deserialize(reader);
+          var xs = new XmlSerializer(typeof(T));
+          return (T)xs.Deserialize(reader);
         }
       }
       return default(T);
