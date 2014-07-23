@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.IO.IsolatedStorage;
+using System.Windows;
+using System.Windows.Resources;
+using System.Xml.Serialization;
 using Newtonsoft.Json;
 
 namespace Supeng.Silverlight.Common.IOs
@@ -49,6 +52,34 @@ namespace Supeng.Silverlight.Common.IOs
       string data = ReadText(fileName);
       var result = JsonConvert.DeserializeObject<T>(data);
       return result;
+    }
+
+    public static T ReadJosonFromLocalSource<T>(this Uri sourceUri)
+    {
+      StreamResourceInfo info = Application.GetResourceStream(sourceUri);
+      if (info != null)
+      {
+        using (var reader = new StreamReader(info.Stream))
+        {
+          string data = reader.ReadToEnd();
+          return JsonConvert.DeserializeObject<T>(data);
+        }
+      }
+      return default(T);
+    }
+
+    public static T ReadXmlFromLocalSource<T>(this Uri sourceUri)
+    {
+      StreamResourceInfo info = Application.GetResourceStream(sourceUri);
+      if (info != null)
+      {
+        using (var reader = new StreamReader(info.Stream))
+        {
+          var xs = new XmlSerializer(typeof (T));
+          return (T) xs.Deserialize(reader);
+        }
+      }
+      return default(T);
     }
   }
 }
