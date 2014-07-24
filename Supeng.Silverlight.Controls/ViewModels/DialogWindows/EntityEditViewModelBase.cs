@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Supeng.Silverlight.Controls.Views;
+﻿using Supeng.Silverlight.Controls.Views;
 
 namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
 {
@@ -8,10 +7,12 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
     private T data;
 
     public EntityEditViewModelBase()
+      : base(new EntityEditControl())
     {
     }
 
     public EntityEditViewModelBase(T data)
+      : this()
     {
       this.data = data;
     }
@@ -30,11 +31,6 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
         data = value;
         NotifyOfPropertyChange(() => Data);
       }
-    }
-
-    public override FrameworkElement Content
-    {
-      get { return new EntityEditControl(); }
     }
 
     protected override string DataCheck()

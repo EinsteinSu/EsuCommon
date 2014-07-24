@@ -35,8 +35,7 @@ namespace Supeng.Silverlight.Common.Entities
       }
     }
 
-    [DataType(DataType.MultilineText)]
-    [Display(Name = "备注", Order = 999)]
+    [Display(AutoGenerateField = false)]
     public string Description
     {
       get { return description; }
@@ -69,7 +68,7 @@ namespace Supeng.Silverlight.Common.Entities
 
     public static T InitailizeDefaultData<T>() where T : EsuInfoBase, new()
     {
-      var data = new T {ID = Guid.NewGuid().ToString()};
+      var data = new T { ID = Guid.NewGuid().ToString() };
       return data;
     }
 

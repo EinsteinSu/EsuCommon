@@ -15,6 +15,7 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
 {
   public abstract class DialogWindowBase : EsuInfoBase, IWindowViewModel, IDataLoad
   {
+    private readonly FrameworkElement content;
     private readonly DelegateCommand cancelCommand;
     private readonly DelegateCommand okCommand;
     private EsuProgressViewModel progress;
@@ -22,8 +23,9 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
     private ChildWindow window;
 
 
-    protected DialogWindowBase()
+    protected DialogWindowBase(FrameworkElement content)
     {
+      this.content = content;
       okCommand = new DelegateCommand(OkClick, () => true);
       cancelCommand = new DelegateCommand(CancelClick, () => true);
       progress = new EsuProgressViewModel();
@@ -35,7 +37,10 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
     }
 
     [JsonIgnore]
-    public abstract FrameworkElement Content { get; }
+    public FrameworkElement Content
+    {
+      get { return content; }
+    }
 
     #region IWindowViewModel implement
 
