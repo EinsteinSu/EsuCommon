@@ -74,12 +74,16 @@
     <Compile Include="Extensions\DialogWindowHelper.cs" />
     <Compile Include="Interfaces\IWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AboutViewModelBase.cs" />
     <Compile Include="ViewModels\CrudCommandBase.cs" />
     <Compile Include="ViewModels\DialogWindows\DialogWindowBase.cs" />
     <Compile Include="ViewModels\DialogWindows\EntityEditViewModelBase.cs" />
     <Compile Include="ViewModels\EsuProgressViewModel.cs" />
     <Compile Include="ViewModels\LoginBase.cs" />
     <Compile Include="ViewModels\PasswordChangeBase.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogWindowView.xaml.cs">
       <DependentUpon>DialogWindowView.xaml</DependentUpon>
     </Compile>
@@ -98,6 +102,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DialogWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
