@@ -7,35 +7,35 @@
     d:DesignHeight="300" d:DesignWidth="400">
 
     <StackPanel DataContext="{Binding}">
-        <StackPanel>
+        <StackPanel Margin="0,10,10,10">
             <Image Source="{Binding ImageUrl}"/>
             <TextBlock Text="{Binding ProductName}" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="产品名称" Width="80" HorizontalAlignment="Right"/>
             <TextBlock Text="{Binding ProductName}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="授权于" Width="80" HorizontalAlignment="Right"/>
             <TextBlock Text="{Binding CustomerCompany}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="版本号" Width="80" HorizontalAlignment="Right"/>
             <TextBlock Text="{Binding Version}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="公司名称" Width="80" HorizontalAlignment="Right"/>
             <TextBlock Text="{Binding Company}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="联系电话" Width="80" HorizontalAlignment="Right"/>
             <TextBlock Text="{Binding Tel}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="QQ" Width="80" HorizontalAlignment="Right"/>
             <TextBlock Text="{Binding QQ}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10">
             <TextBlock Text="Email" Width="80" HorizontalAlignment="Right"/>
             <TextBlock Text="{Binding Email}"/>
         </StackPanel>
