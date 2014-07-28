@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\DialogWindowHelper.cs" />
+    <Compile Include="Extensions\EsuMemoText.cs" />
     <Compile Include="Interfaces\IWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AboutViewModelBase.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="ViewModels\DialogWindows\TreeSelectionWindowViewModel.cs" />
     <Compile Include="ViewModels\EsuProgressViewModel.cs" />
     <Compile Include="ViewModels\LoginBase.cs" />
+    <Compile Include="ViewModels\MemoTextWindowViewModel.cs" />
     <Compile Include="ViewModels\PasswordChangeBase.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -98,6 +100,12 @@
     </Compile>
     <Compile Include="Views\EsuProgressView.xaml.cs">
       <DependentUpon>EsuProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MemoTextControl.xaml.cs">
+      <DependentUpon>MemoTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreviewTextControl.xaml.cs">
+      <DependentUpon>PreviewTextControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TreeSelectionControl.xaml.cs">
       <DependentUpon>TreeSelectionControl.xaml</DependentUpon>
@@ -128,6 +136,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EsuProgressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MemoTextControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreviewTextControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Supeng.Silverlight.Controls.Views.PreviewTextControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    mc:Ignorable="d"
+    d:DesignHeight="35" d:DesignWidth="400">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <dxe:TextEdit x:Name="edit" Margin="5"/>
+        <Button Margin="5" Grid.Column="1" Content="View" Click="PreviewClick"/>
+    </Grid>
+</UserControl>
