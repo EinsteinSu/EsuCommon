@@ -9,13 +9,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using DevExpress.Xpf.Core;
 
 namespace Supeng.Silverlight.Controls.Views
 {
-  public partial class DialogWindowView
+  public partial class TreeSelectionControl : UserControl
   {
-    public DialogWindowView()
+    public TreeSelectionControl()
     {
       InitializeComponent();
     }

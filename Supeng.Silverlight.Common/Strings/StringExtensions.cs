@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using Supeng.Silverlight.Common.Entities;
+using Supeng.Silverlight.Common.Entities.ObserveCollection;
+using Supeng.Silverlight.Common.Types;
 
 namespace Supeng.Silverlight.Common.Strings
 {
@@ -26,7 +29,7 @@ namespace Supeng.Silverlight.Common.Strings
 
     public static string Package(this IDictionary<string, string> dictionary)
     {
-      var sb = new StringBuilder(dictionary.Count*2);
+      var sb = new StringBuilder(dictionary.Count * 2);
       foreach (var valuePair in dictionary)
       {
         sb.AppendFormat("{0}{1}{2}{1}", valuePair.Key, Split, valuePair.Value);
@@ -40,7 +43,7 @@ namespace Supeng.Silverlight.Common.Strings
       string[] datas = data.Split(Split);
       for (int i = 0; i < datas.Length; i++)
       {
-        if (i%2 == 0)
+        if (i % 2 == 0)
         {
           dictionary.Add(datas[i], "");
         }
@@ -50,6 +53,22 @@ namespace Supeng.Silverlight.Common.Strings
         }
       }
       return dictionary;
+    }
+
+    public static string PackageChangedData<T>(this EsuInfoCollection<T> collection) where T : EsuInfoBase, new()
+    {
+      var data = new Dictionary<string, string>();
+      foreach (ChangeData<T> change in collection.ChangedCollection)
+      {
+        data.Add(change.State.ToString(), change.Data.ToString());
+      }
+      return data.Package();
+    }
+
+    public static Dictionary<EsuDataState, T> UnPackedChangedData<T>(this string data)
+    {
+      var dictionary = UnPackedToDictionary(data);
+      return dictionary.ToDictionary(change => change.Key.EnumConvert<EsuDataState>(), change => change.Value.Load<T>());
     }
   }
 }

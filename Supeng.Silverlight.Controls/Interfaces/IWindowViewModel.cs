@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+﻿using DevExpress.Xpf.Core;
 
 namespace Supeng.Silverlight.Controls.Interfaces
 {
@@ -10,6 +10,6 @@ namespace Supeng.Silverlight.Controls.Interfaces
 
     int Width { get; }
 
-    ChildWindow Window { get; set; }
+    DXWindow Window { get; set; }
   }
 }

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using Supeng.Common.Entities;
+using Supeng.Common.Entities.ObserveCollection;
+using Supeng.Common.Types;
 
 namespace Supeng.Common.Strings
 {
@@ -101,6 +104,22 @@ namespace Supeng.Common.Strings
         }
       }
       return dictionary;
+    }
+
+    public static string PackageChangedData<T>(this EsuInfoCollection<T> collection) where T : EsuInfoBase, new()
+    {
+      var data = new Dictionary<string, string>();
+      foreach (ChangeData<T> change in collection.ChangedCollection)
+      {
+        data.Add(change.State.ToString(), change.Data.ToString());
+      }
+      return data.Package();
+    }
+
+    public static Dictionary<EsuDataState, T> UnPackedChangedData<T>(this string data)
+    {
+      var dictionary = UnPackedToDictionary(data);
+      return dictionary.ToDictionary(change => change.Key.EnumConvert<EsuDataState>(), change => change.Value.Load<T>());
     }
   }
 }

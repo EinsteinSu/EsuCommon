@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Windows.Controls;
-using Supeng.Silverlight.Common.Entities;
+using DevExpress.Xpf.Core;
 using Supeng.Silverlight.Common.Interfaces;
 using Supeng.Silverlight.Controls.Interfaces;
+using Supeng.Silverlight.Controls.ViewModels.DialogWindows;
+using Supeng.Silverlight.Controls.Views;
 
 namespace Supeng.Silverlight.Controls.Extensions
 {
   public static class DialogWindowHelper
   {
-    public static void ShowDialogWindow(this ChildWindow window, EsuInfoBase viewModel, Action<bool> showDone)
+    public static void ShowDialogWindow(this DXWindow window, DialogWindowBase viewModel, Action<bool> showDone)
     {
       var windowViewModel = viewModel as IWindowViewModel;
       if (windowViewModel != null)
@@ -17,14 +18,17 @@ namespace Supeng.Silverlight.Controls.Extensions
       var dataLoad = viewModel as IDataLoad;
       if (dataLoad != null)
         dataLoad.Load();
-      window.Show();
+      window.ShowDialog();
       window.Closed += (sender, args) =>
       {
-        if (window.DialogResult != null && showDone != null)
-        {
-          showDone(window.DialogResult.Value);
-        }
+        if (showDone != null)
+          showDone(viewModel.Result);
       };
+    }
+
+    public static void ShowDialogWindow(DialogWindowBase viewModel, Action<bool> showDone)
+    {
+      new DialogWindowView().ShowDialogWindow(viewModel, showDone);
     }
   }
 }

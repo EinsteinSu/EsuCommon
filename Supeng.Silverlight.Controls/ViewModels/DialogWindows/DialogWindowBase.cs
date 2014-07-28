@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using DevExpress.Xpf.Bars;
+using DevExpress.Xpf.Core;
 using Newtonsoft.Json;
 using Supeng.Silverlight.Common.Entities;
 using Supeng.Silverlight.Common.Interfaces;
@@ -20,7 +21,7 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
     private readonly DelegateCommand okCommand;
     private EsuProgressViewModel progress;
     private bool result;
-    private ChildWindow window;
+    private DXWindow window;
 
 
     protected DialogWindowBase(FrameworkElement content)
@@ -102,7 +103,7 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
     }
 
     [JsonIgnore]
-    public ChildWindow Window
+    public DXWindow Window
     {
       get { return window; }
       set
@@ -125,8 +126,8 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
           }
           else
           {
-            window.Height = Height;
-            window.Width = Width;
+            window.Height = 400;
+            window.Width = 400;
           }
         }
       }
@@ -150,13 +151,13 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
         return;
       }
       result = true;
-      window.DialogResult = true;
+      window.Close();
     }
 
     public virtual void CancelClick()
     {
       result = false;
-      window.DialogResult = false;
+      window.Close();
     }
   }
 }
