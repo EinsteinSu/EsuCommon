@@ -2,24 +2,19 @@
 
 namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
 {
-  public class EntityEditViewModelBase<T> : DialogWindowBase
+  public abstract class EntityEditViewModelBase<T> : DialogWindowBase
   {
     private T data;
 
-    public EntityEditViewModelBase()
-      : base(new EntityEditControl())
+    protected EntityEditViewModelBase(int minWidth = 300)
+      : base(new EntityEditControl { MinWidth = minWidth })
     {
     }
 
-    public EntityEditViewModelBase(T data)
+    protected EntityEditViewModelBase(T data)
       : this()
     {
       this.data = data;
-    }
-
-    protected override string TemplateName
-    {
-      get { return "EntityEditViewWindow"; }
     }
 
     public T Data
@@ -33,9 +28,5 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
       }
     }
 
-    protected override string DataCheck()
-    {
-      return string.Empty;
-    }
   }
 }

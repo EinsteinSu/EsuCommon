@@ -42,7 +42,7 @@ namespace Supeng.Common.IOs
     {
       get
       {
-        string dataDirectory = string.Format("{0}\\Temp\\", Environment.CurrentDirectory);
+        string dataDirectory = string.Format("{0}\\Temps\\", Environment.CurrentDirectory);
         if (!Directory.Exists(dataDirectory))
           Directory.CreateDirectory(dataDirectory);
         return dataDirectory;

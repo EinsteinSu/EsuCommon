@@ -60,15 +60,15 @@ namespace Supeng.Silverlight.Common.Strings
       var data = new Dictionary<string, string>();
       foreach (ChangeData<T> change in collection.ChangedCollection)
       {
-        data.Add(change.State.ToString(), change.Data.ToString());
+        data.Add(change.State + change.Data.ID, change.Data.ToString());
       }
       return data.Package();
     }
 
-    public static Dictionary<EsuDataState, T> UnPackedChangedData<T>(this string data)
+    public static Dictionary<string, T> UnPackedChangedData<T>(this string data)
     {
       var dictionary = UnPackedToDictionary(data);
-      return dictionary.ToDictionary(change => change.Key.EnumConvert<EsuDataState>(), change => change.Value.Load<T>());
+      return dictionary.ToDictionary(change => change.Key, change => change.Value.Load<T>());
     }
   }
 }

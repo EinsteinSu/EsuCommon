@@ -80,6 +80,7 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
     public bool Result
     {
       get { return result; }
+      protected set { result = value; }
     }
 
     [JsonIgnore]

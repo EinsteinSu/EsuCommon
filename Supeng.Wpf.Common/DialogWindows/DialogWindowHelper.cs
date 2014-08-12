@@ -9,11 +9,16 @@ namespace Supeng.Wpf.Common.DialogWindows
 {
   public static class DialogWindowHelper
   {
-    public static Window ShowDialogWindow(EsuInfoBase viewModel)
+    public static Window ShowDialogWindow(this EsuInfoBase viewModel)
     {
       var window = new DialogWindowView();
       ShowDialogWindow(window, viewModel);
       return window;
+    }
+
+    public static bool ShowDialogWindowWithReturn(this DialogWindowBase viewModel)
+    {
+      return new DialogWindowView().ShowDialogWindowWithReturn(viewModel);
     }
 
     public static void ShowDialogWindow(this Window window, EsuInfoBase viewModel)
@@ -45,7 +50,7 @@ namespace Supeng.Wpf.Common.DialogWindows
 
     public static void ShowReportWindow(ReportWindowBase viewModel)
     {
-      var window = new DocumentViewWindow {Title = viewModel.Title, DataContext = viewModel};
+      var window = new DocumentViewWindow { Title = viewModel.Title, DataContext = viewModel };
       window.ShowWindow(viewModel);
     }
 

@@ -7,11 +7,11 @@ namespace Supeng.Data.DataFilter
     private string filter;
     private string name;
 
-    public FilterModel(string name, string columnName, string data, FilterType type = FilterType.String)
+    public FilterModel(string name, string columnName, string data, FilterType type = FilterType.String, bool stringEquals = false)
     {
       this.name = name;
       if (type == FilterType.String)
-        this.SetStringFilter(columnName, data);
+        this.SetStringFilter(columnName, data, stringEquals);
       else
         this.SetNumberFilter(columnName, data);
     }
@@ -47,9 +47,9 @@ namespace Supeng.Data.DataFilter
 
   public static class FilterModelExtensions
   {
-    public static void SetStringFilter(this FilterModel model, string columnName, string data)
+    public static void SetStringFilter(this FilterModel model, string columnName, string data, bool equals = false)
     {
-      model.Filter = string.Format("{0} like '%{1}%'", columnName, data);
+      model.Filter = string.Format(@equals ? "{0} = '{1}'" : "{0} like '%{1}%'", columnName, data);
     }
 
     public static void SetNumberFilter(this FilterModel model, string columnName, string data)

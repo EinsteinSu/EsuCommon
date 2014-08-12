@@ -40,7 +40,7 @@ namespace Supeng.Data.Sql
       conn.Open();
       try
       {
-        var command = new SqlCommand(sql, conn) {CommandType = type};
+        var command = new SqlCommand(sql, conn) { CommandType = type };
         ProcessCommandParameter(command, parameters);
         return command.ExecuteNonQuery();
       }
@@ -67,7 +67,7 @@ namespace Supeng.Data.Sql
       backgroundData.BeginExecute();
       var conn = new SqlConnection(connectionString);
       conn.Open();
-      var command = new SqlCommand(sql, conn) {CommandType = type};
+      var command = new SqlCommand(sql, conn) { CommandType = type };
       if (parameters != null && parameters.Any())
       {
         foreach (IDataParameter parameter in parameters)
@@ -102,6 +102,15 @@ namespace Supeng.Data.Sql
       }), command);
     }
 
+    protected virtual CommandType GetCommandType(string sql, IDataParameter[] parameters)
+    {
+      if (sql.StartsWith("select", StringComparison.InvariantCultureIgnoreCase))
+        return CommandType.Text;
+      return parameters == null
+          ? CommandType.Text
+          : CommandType.StoredProcedure;
+    }
+
     public override EsuInfoCollection<T> ReadToCollection<T>(string sql, IDataCreator<T> dataCreator,
       IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null)
     {
@@ -110,10 +119,8 @@ namespace Supeng.Data.Sql
       var collection = new EsuInfoCollection<T>();
       try
       {
-        CommandType type = parameters == null
-          ? CommandType.Text
-          : CommandType.StoredProcedure;
-        var command = new SqlCommand(sql, conn) {CommandType = type};
+        CommandType type = GetCommandType(sql, parameters);
+        var command = new SqlCommand(sql, conn) { CommandType = type };
         if (parameters != null)
         {
           foreach (IDataParameter parameter in parameters)
@@ -155,10 +162,8 @@ namespace Supeng.Data.Sql
       backgroundData.BeginExecute();
       var conn = new SqlConnection(connectionString);
       conn.Open();
-      CommandType type = parameters == null
-        ? CommandType.Text
-        : CommandType.StoredProcedure;
-      var command = new SqlCommand(sql, conn) {CommandType = type};
+      CommandType type = GetCommandType(sql, parameters);
+      var command = new SqlCommand(sql, conn) { CommandType = type };
       if (parameters != null)
       {
         foreach (IDataParameter parameter in parameters)
