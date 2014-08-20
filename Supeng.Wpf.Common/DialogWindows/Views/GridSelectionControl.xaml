@@ -18,6 +18,5 @@
                                FocusedRow="{Binding CurrentItem,Mode=TwoWay}" />
             </dxg:GridControl.View>
         </dxg:GridControl>
-        <views:EsuProgressView Grid.Row="1" DataContext="{Binding Progress}" />
     </Grid>
 </UserControl>

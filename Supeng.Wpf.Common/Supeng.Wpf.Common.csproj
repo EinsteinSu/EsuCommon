@@ -100,6 +100,8 @@
     </Compile>
     <Compile Include="DialogWindows\ViewModels\CollectionEditWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModelBase.cs" />
+    <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowWithListViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\LeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\ReportWindowBase.cs" />
@@ -119,6 +121,9 @@
     </Compile>
     <Compile Include="DialogWindows\Views\ListEditControl.xaml.cs">
       <DependentUpon>ListEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\ListSelectionControl.xaml.cs">
+      <DependentUpon>ListSelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\TreeSelectionControl.xaml.cs">
       <DependentUpon>TreeSelectionControl.xaml</DependentUpon>
@@ -231,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogWindows\Views\ListEditControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\ListSelectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

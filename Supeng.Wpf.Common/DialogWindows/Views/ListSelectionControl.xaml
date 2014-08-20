@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Supeng.Wpf.Common.DialogWindows.Views.ListSelectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <dxe:ListBoxEdit DisplayMember="{Binding DisplayMember}" ItemsSource="{Binding Collection}" SelectedItem="{Binding CurrentItem,Mode=TwoWay}">
+        <dxe:ListBoxEdit.StyleSettings>
+            <dxe:RadioListBoxEditStyleSettings HighlightedTextBackground="Yellow" HighlightedFontFamily="{x:Null}" HighlightedFontStyle="{x:Null}" HighlightedFontSize="{x:Null}" HighlightedTextForeground="Black" HighlightedFontWeight="{x:Null}"/>
+        </dxe:ListBoxEdit.StyleSettings>
+    </dxe:ListBoxEdit>
+</UserControl>
