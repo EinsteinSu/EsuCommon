@@ -58,6 +58,11 @@ namespace Supeng.Wpf.Common.Tests
   {
     private string name;
 
+    public TestTreeData()
+    {
+      
+    }
+
     public TestTreeData(string id, string pid, string name)
     {
       ID = id;
