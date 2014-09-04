@@ -82,6 +82,9 @@
     <Compile Include="LeftRightGridControlTests.xaml.cs">
       <DependentUpon>LeftRightGridControlTests.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MemoTextEditWindowTest.xaml.cs">
+      <DependentUpon>MemoTextEditWindowTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NormalSearchControlTest.xaml.cs">
       <DependentUpon>NormalSearchControlTest.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MemoTextEditWindowTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NormalSearchControlTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

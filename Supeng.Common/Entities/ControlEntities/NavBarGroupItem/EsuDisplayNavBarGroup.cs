@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DevExpress.Xpf.Bars;
@@ -58,7 +59,12 @@ namespace Supeng.Common.Entities.ControlEntities.NavBarGroupItem
 
     public ImageSource Image
     {
-      get { return !string.IsNullOrEmpty(imagePath) ? new BitmapImage(new Uri(imagePath, UriKind.Relative)) : null; }
+      get
+      {
+        if (File.Exists(imagePath))
+          return new BitmapImage(new Uri(imagePath, UriKind.Absolute));
+        return null;
+      }
     }
 
     public T Data { get; set; }

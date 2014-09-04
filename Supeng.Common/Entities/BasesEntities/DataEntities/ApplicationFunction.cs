@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Data;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Supeng.Common.DataOperations;
 
 namespace Supeng.Common.Entities.BasesEntities.DataEntities

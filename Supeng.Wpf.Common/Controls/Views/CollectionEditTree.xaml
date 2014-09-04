@@ -8,9 +8,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
 
-        <dxg:TreeListControl ItemsSource="{Binding Data,Mode=TwoWay}">
+        <dxg:TreeListControl AutoPopulateColumns="True" ItemsSource="{Binding Data,Mode=TwoWay}">
             <dxg:TreeListControl.View>
-                <dxg:TreeListView FocusedRow="{Binding Data.CurrentItem,Mode=TwoWay}" KeyFieldName="{Binding KeyID}" ParentFieldName="{Binding ParentID}"/>
+                <dxg:TreeListView AutoExpandAllNodes="True" FocusedRow="{Binding Data.CurrentItem,Mode=TwoWay}" KeyFieldName="{Binding KeyID}" ParentFieldName="{Binding ParentID}"/>
             </dxg:TreeListControl.View>
         </dxg:TreeListControl>
 

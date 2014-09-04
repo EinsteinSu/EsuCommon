@@ -50,7 +50,7 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
     {
       ButtonCollection.Add(new EsuButtonBase("刷新", 0, Load) { Name = "Refresh", Description = "刷新" });
       ButtonCollection.Add(new EsuButtonBase("增加", 0, Add) { Name = "Add", Description = "新增" });
-      ButtonCollection.Add(new EsuButtonBase("增加子项", 0, AddChild) { Name = "Add", Description = "增加当前节点的子节点" });
+      ButtonCollection.Add(new EsuButtonBase("增加子项", 0, AddChild) { Name = "AddChild", Description = "增加当前节点的子节点" });
       ButtonCollection.Add(new EsuButtonBase("删除", 0, Remove) { Name = "Delete", Description = "删除" });
       ButtonCollection.Add(new EsuButtonBase("保存", 0, Save) { Name = "Save", Description = "保存数据" });
     }

@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using DevExpress.Xpf.Bars;
 using Newtonsoft.Json;
 using Supeng.Common.Entities;
@@ -33,6 +36,17 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
       okCommand = new DelegateCommand(OkClick, () => true);
       cancelCommand = new DelegateCommand(CancelClick, () => true);
       progress = new EsuProgressViewModel();
+    }
+
+    public virtual ImageSource Logo
+    {
+      get
+      {
+        string fileName = Path.Combine(DirectoryHelper.ImageDirectory, "Logo.png");
+        if (File.Exists(fileName))
+          return new BitmapImage(new Uri(fileName, UriKind.Absolute));
+        return null;
+      }
     }
 
     protected virtual string TemplateName

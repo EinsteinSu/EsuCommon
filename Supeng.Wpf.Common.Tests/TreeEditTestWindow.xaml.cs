@@ -26,7 +26,20 @@ namespace Supeng.Wpf.Common.Tests
     {
       InitializeComponent();
 
-      Content = ToolbarWithContentHelper.GetToolbarWithContentControl(new TreeEditTestWindowViewModel());
+      Loaded += TreeEditTestWindow_Loaded;
+     
+    }
+
+    void TreeEditTestWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+      var viewModel = new TreeEditTestWindowViewModel();
+      Content = ToolbarWithContentHelper.GetToolbarWithContentControl(viewModel);
+      viewModel.Load();
+      viewModel.Data.CurrentItemChanged = data =>
+      {
+        MessageBox.Show(data.Name);
+      };
+      
     }
   }
 

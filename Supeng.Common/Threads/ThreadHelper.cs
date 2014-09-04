@@ -11,37 +11,41 @@ namespace Supeng.Common.Threads
       SynchronizationContext context = SynchronizationContext.Current;
       if (context == null)
         return callback;
-      return asyncResult => context.Post(result => callback((IAsyncResult) result), asyncResult);
+      return asyncResult => context.Post(result => callback((IAsyncResult)result), asyncResult);
     }
 
     public static void DoTask<T>(Func<T> taskStart, Action<T> taskDone, Action<AggregateException> handleException,
-      TaskScheduler scheduler)
+      TaskScheduler scheduler = null)
     {
-      Task<T> task = Task<T>.Factory.StartNew(taskStart);
+      if (scheduler == null)
+        scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+      Task<T> task = Task<T>.Factory.StartNew(taskStart, CancellationToken.None, TaskCreationOptions.None, scheduler);
       task.ContinueWith(t => taskDone(t.Result), CancellationToken.None,
         TaskContinuationOptions.OnlyOnRanToCompletion,
-        scheduler);
+        TaskScheduler.Current);
       task.ContinueWith(t =>
       {
         if (handleException != null)
           handleException(t.Exception);
       }, CancellationToken.None,
-        TaskContinuationOptions.OnlyOnFaulted, scheduler);
+        TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.Current);
     }
 
     public static void DoTaskWithoutResult(Action taskStart, Action taskDone, Action<AggregateException> handleException,
-      TaskScheduler scheduler)
+      TaskScheduler scheduler = null)
     {
-      Task task = Task.Factory.StartNew(taskStart);
+      if (scheduler == null)
+        scheduler = TaskScheduler.FromCurrentSynchronizationContext();
+      Task task = Task.Factory.StartNew(taskStart, CancellationToken.None, TaskCreationOptions.None, scheduler);
       task.ContinueWith(t => taskDone(), CancellationToken.None,
         TaskContinuationOptions.OnlyOnRanToCompletion,
-        scheduler);
+        TaskScheduler.Current);
       task.ContinueWith(t =>
       {
         if (handleException != null)
           handleException(t.Exception);
       }, CancellationToken.None,
-        TaskContinuationOptions.OnlyOnFaulted, scheduler);
+        TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.Current);
     }
   }
 }
