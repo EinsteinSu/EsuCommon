@@ -76,6 +76,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MutiplySelectionCommand.cs" />
     <Compile Include="Controls\ControlHelper.cs" />
     <Compile Include="Controls\EsuMemoText.cs" />
     <Compile Include="Controls\ToolbarWithContentHelper.cs" />
@@ -96,6 +97,9 @@
     <Compile Include="Controls\Views\EsuStepProgressView.xaml.cs">
       <DependentUpon>EsuStepProgressView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Views\MutiplySelectionButtonsControl.xaml.cs">
+      <DependentUpon>MutiplySelectionButtonsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Views\SearchControlView.xaml.cs">
       <DependentUpon>SearchControlView.xaml</DependentUpon>
     </Compile>
@@ -110,6 +114,7 @@
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\MemoEditWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\ReportWindowBase.cs" />
+    <Compile Include="DialogWindows\ViewModels\MutipleSelectionWindowBaseViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\TreeCollectionSelectionWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\TreeLeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\Views\DocumentViewWindow.xaml.cs">
@@ -132,6 +137,9 @@
     </Compile>
     <Compile Include="DialogWindows\Views\MemoTextControl.xaml.cs">
       <DependentUpon>MemoTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\MutipleSelectionControl.xaml.cs">
+      <DependentUpon>MutipleSelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\TreeSelectionControl.xaml.cs">
       <DependentUpon>TreeSelectionControl.xaml</DependentUpon>
@@ -211,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Views\MutiplySelectionButtonsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Views\SearchControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -259,11 +271,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DialogWindows\Views\MutipleSelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DialogWindows\Views\TreeSelectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -49,7 +51,7 @@ namespace Supeng.Common.Entities.ObserveCollection
       base.InsertItem(index, item);
       if (EsuCollectionChanged != null)
         EsuCollectionChanged(EsuDataState.Added, item);
-      changedCollection.Add(new ChangeData<T> {Data = item, ChangeTime = DateTime.Now, State = EsuDataState.Added});
+      changedCollection.Add(new ChangeData<T> { Data = item, ChangeTime = DateTime.Now, State = EsuDataState.Added });
       var notifyPropertyChanged = item as INotifyPropertyChanged;
       if (notifyPropertyChanged != null)
         notifyPropertyChanged.PropertyChanged += DataChanged;
@@ -57,7 +59,7 @@ namespace Supeng.Common.Entities.ObserveCollection
 
     public virtual void DataChanged(object sender, PropertyChangedEventArgs e)
     {
-      var data = (T) sender;
+      var data = (T)sender;
       if (EsuCollectionChanged != null)
         EsuCollectionChanged(EsuDataState.Modified, data);
       if (changedCollection.Any(w => data.Equals(w.Data)))
@@ -139,5 +141,19 @@ namespace Supeng.Common.Entities.ObserveCollection
     }
 
     #endregion
+  }
+
+  public static class EsuInfoCollectionExtensions
+  {
+    public static EsuInfoCollection<T> ConvertToCollection<T>(this IList<T> source) where T : EsuInfoBase
+    {
+      var collection = new EsuInfoCollection<T>();
+      foreach (var data in source)
+      {
+        collection.Add(data);
+      }
+      //collection.AcceptChanges();
+      return collection;
+    }
   }
 }

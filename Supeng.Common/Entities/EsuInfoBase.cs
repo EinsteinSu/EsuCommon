@@ -4,10 +4,11 @@ using System.IO;
 using System.Xml.Serialization;
 using Caliburn.Micro;
 using Newtonsoft.Json;
+using Supeng.Common.Interfaces;
 
 namespace Supeng.Common.Entities
 {
-  public class EsuInfoBase : PropertyChangedBase, ICloneable
+  public class EsuInfoBase : PropertyChangedBase, ICloneable, IDataDisplay
   {
     private string description;
     private string id;
@@ -92,8 +93,15 @@ namespace Supeng.Common.Entities
 
     public static T InitailizeDefaultData<T>() where T : EsuInfoBase, new()
     {
-      var data = new T {ID = Guid.NewGuid().ToString()};
+      var data = new T { ID = Guid.NewGuid().ToString() };
       return data;
+    }
+
+    [JsonIgnore]
+    [Display(AutoGenerateField = false)]
+    public virtual string DisplayName
+    {
+      get { return ToString(); }
     }
   }
 }
