@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\IProgress.cs" />
+    <Compile Include="DataOperations\CrudCommands.cs" />
     <Compile Include="DataOperations\DataSaveExtensions.cs" />
     <Compile Include="DataOperations\IDataSave.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ApplicationFunction.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Exceptions\ExceptionExtensions.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
+    <Compile Include="Interfaces\ICrud.cs" />
     <Compile Include="Interfaces\ICrudStorage.cs" />
     <Compile Include="Interfaces\IDataDisplay.cs" />
     <Compile Include="Interfaces\IDataLoad.cs" />

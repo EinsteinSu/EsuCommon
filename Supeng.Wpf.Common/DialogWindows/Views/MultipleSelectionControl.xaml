@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  x:Class="Supeng.Wpf.Common.DialogWindows.Views.MutipleSelectionControl"
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  x:Class="Supeng.Wpf.Common.DialogWindows.Views.MultipleSelectionControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,6 +21,6 @@
                 </DataTemplate>
             </dxe:ListBoxEdit.ItemTemplate>
         </dxe:ListBoxEdit>
-        <views:MutiplySelectionButtonsControl Grid.Row="1" DataContext="{Binding SelectionCommands}"/>
+        <views:MultiplySelectionButtonsControl Grid.Row="1" DataContext="{Binding SelectionCommands}"/>
     </Grid>
 </UserControl>

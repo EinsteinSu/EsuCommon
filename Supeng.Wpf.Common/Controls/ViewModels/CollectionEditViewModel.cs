@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
+using DevExpress.Xpf.Grid;
+using Microsoft.Win32;
 using Supeng.Common;
 using Supeng.Common.Entities;
 using Supeng.Common.Interfaces;
@@ -12,15 +15,18 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
     where T : EsuInfoBase, new()
   {
     private EsuDataEditCollection<T> data;
-
+    private readonly CollectionEditGrid control;
+    protected TableView TableView;
     protected CollectionEditViewModel()
     {
       InitalizeButton();
+      control = new CollectionEditGrid();
+      TableView = control.view;
     }
 
     public override FrameworkElement Content
     {
-      get { return new CollectionEditGrid(); }
+      get { return control; }
     }
 
     public EsuDataEditCollection<T> Data
@@ -53,10 +59,11 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
 
     protected override void InitalizeButton()
     {
-      ButtonCollection.Add(new EsuButtonBase("刷新", 0, Load) {Name = "Refresh", Description = "刷新数据"});
-      ButtonCollection.Add(new EsuButtonBase("增加", 0, Add) {Name = "Add", Description = "新增数据"});
-      ButtonCollection.Add(new EsuButtonBase("删除", 0, Remove) {Name = "Delete", Description = "删除数据"});
-      ButtonCollection.Add(new EsuButtonBase("保存", 0, Save) {Name = "Save", Description = "保存数据"});
+      ButtonCollection.Add(new EsuButtonBase("刷新", 0, Load) { Name = "Refresh", Description = "刷新数据" });
+      ButtonCollection.Add(new EsuButtonBase("增加", 0, Add) { Name = "Add", Description = "新增数据" });
+      ButtonCollection.Add(new EsuButtonBase("删除", 0, Remove) { Name = "Delete", Description = "删除数据" });
+      ButtonCollection.Add(new EsuButtonBase("保存", 0, Save) { Name = "Save", Description = "保存数据" });
+      ButtonCollection.Add(new EsuButtonBase("导出", 0, Export) { Name = "Export", Description = "导出至Excel" });
     }
 
     protected virtual void Add()
@@ -75,6 +82,17 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
     protected virtual T InitailizeData()
     {
       return InitailizeDefaultData<T>();
+    }
+
+    protected virtual void Export()
+    {
+      var sf = new SaveFileDialog {Filter = "Excel文件(*.xls)|*.xls"};
+      var showDialog = sf.ShowDialog();
+      if (showDialog != null && showDialog.Value)
+      {
+        TableView.ExportToXls(sf.FileName);
+        Process.Start("Explorer", "/select," + sf.FileName);
+      }
     }
 
     public abstract void Save();

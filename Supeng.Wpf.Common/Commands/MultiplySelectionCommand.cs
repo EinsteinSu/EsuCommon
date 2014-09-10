@@ -4,14 +4,14 @@ using Supeng.Common.Entities.BasesEntities;
 
 namespace Supeng.Wpf.Common.Commands
 {
-  public class MutiplySelectionCommand<T>
+  public class MultiplySelectionCommand<T>
   {
     private readonly IList<MutiplySelectionEntityBase<T>> data;
     private readonly DelegateCommand revertCommand;
     private readonly DelegateCommand selectAllCommand;
     private readonly DelegateCommand unSelectCommand;
 
-    public MutiplySelectionCommand(IList<MutiplySelectionEntityBase<T>> data)
+    public MultiplySelectionCommand(IList<MutiplySelectionEntityBase<T>> data)
     {
       this.data = data;
       selectAllCommand = new DelegateCommand(SelectAll, () => true);

@@ -37,7 +37,7 @@ namespace Supeng.Wpf.Common.Tests
     }
   }
 
-  public class TestMutipleSelectionViewModel : MutipleSelectionWindowBaseViewModel<string>
+  public class TestMutipleSelectionViewModel : MultipleSelectionWindowBaseViewModel<string>
   {
     protected override IList<string> GetData()
     {

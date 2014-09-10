@@ -8,24 +8,24 @@ using Supeng.Wpf.Common.DialogWindows.Views;
 
 namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 {
-  public abstract class MutipleSelectionWindowBaseViewModel<T> : DialogWindowBase
+  public abstract class MultipleSelectionWindowBaseViewModel<T> : DialogWindowBase
   {
     private readonly IList<T> existData;
     private List<MutiplySelectionEntityBase<T>> data;
     private readonly List<T> dataResult;
-    private readonly MutiplySelectionCommand<T> selectionCommands;
+    private readonly MultiplySelectionCommand<T> selectionCommands;
 
-    protected MutipleSelectionWindowBaseViewModel(IList<T> existData = null)
+    protected MultipleSelectionWindowBaseViewModel(IList<T> existData = null)
     {
       this.existData = existData;
       data = new List<MutiplySelectionEntityBase<T>>();
       dataResult = new List<T>();
-      selectionCommands = new MutiplySelectionCommand<T>(data);
+      selectionCommands = new MultiplySelectionCommand<T>(data);
     }
 
     protected abstract IList<T> GetData();
 
-    public virtual MutiplySelectionCommand<T> SelectionCommands
+    public virtual MultiplySelectionCommand<T> SelectionCommands
     {
       get { return selectionCommands; }
     }
@@ -75,7 +75,7 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 
     public override FrameworkElement Content
     {
-      get { return new MutipleSelectionControl(); }
+      get { return new MultipleSelectionControl(); }
     }
 
     protected override string DataCheck()

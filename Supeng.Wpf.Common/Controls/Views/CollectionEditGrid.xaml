@@ -9,7 +9,7 @@
     <Grid>
         <dxg:GridControl AutoPopulateColumns="True" ItemsSource="{Binding Data.Collection,Mode=TwoWay}">
             <dxg:GridControl.View>
-                <dxg:TableView AutoWidth="True" AllowEditing="{Binding EnableEdit}" ShowTotalSummary="False"
+                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="{Binding EnableEdit}" ShowTotalSummary="False"
                                ShowGroupPanel="False" FocusedRow="{Binding Data.CurrentItem,Mode=TwoWay}" />
             </dxg:GridControl.View>
         </dxg:GridControl>

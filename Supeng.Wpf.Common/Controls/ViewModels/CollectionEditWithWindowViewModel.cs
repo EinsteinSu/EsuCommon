@@ -30,12 +30,13 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
       ButtonCollection.Add(new EsuButtonBase("增加", 0, Add) {Name = "Add", Description = "新增数据"});
       ButtonCollection.Add(new EsuButtonBase("修改", 0, Modify) {Name = "Modify", Description = "修改数据"});
       ButtonCollection.Add(new EsuButtonBase("删除", 0, Remove) {Name = "Delete", Description = "删除数据"});
+      ButtonCollection.Add(new EsuButtonBase("导出", 0, Export) { Name = "Export", Description = "导出至Excel" });
     }
 
     protected override void Add()
     {
       dialogWindowBase.Data = GetAddItem();
-      Window window = DialogWindowHelper.ShowDialogWindow(dialogWindowBase);
+      Window window = dialogWindowBase.ShowDialogWindow();
       if (window.DialogResult != null && window.DialogResult.Value)
       {
         Insert(dialogWindowBase.Data);
@@ -49,7 +50,7 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
       if (Data.CurrentItem != null)
       {
         dialogWindowBase.Data = GetModifyItem();
-        Window window = DialogWindowHelper.ShowDialogWindow(dialogWindowBase);
+        Window window = dialogWindowBase.ShowDialogWindow();
         if (window.DialogResult != null && window.DialogResult.Value)
         {
           Update(dialogWindowBase.Data);
