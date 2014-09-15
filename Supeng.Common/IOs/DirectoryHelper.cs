@@ -49,6 +49,16 @@ namespace Supeng.Common.IOs
       }
     }
 
+    /// <summary>
+    /// get a temp files with guid name
+    /// </summary>
+    /// <param name="extendName">extend name(.doc)</param>
+    /// <returns></returns>
+    public static string GetTempFile(string extendName)
+    {
+      return string.Format("{0}{1}{2}", TempDirectory, Guid.NewGuid(), extendName);
+    }
+
     public static string LogDirectory
     {
       get

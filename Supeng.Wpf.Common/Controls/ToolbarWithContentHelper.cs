@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Supeng.Common.Controls;
 using Supeng.Common.Entities;
 using Supeng.Common.Interfaces;
 using Supeng.Wpf.Common.Controls.ViewModels;
@@ -10,7 +11,7 @@ namespace Supeng.Wpf.Common.Controls
   {
     public static FrameworkElement GetToolbarWithContentControl(ToolbarWithContentViewModelBase viewModel)
     {
-      var view = new ToolbarWithContentView {DataContext = viewModel};
+      var view = new ToolbarWithContentView { DataContext = viewModel };
       var dataLoad = viewModel as IDataLoad;
       if (dataLoad != null)
         dataLoad.Load();

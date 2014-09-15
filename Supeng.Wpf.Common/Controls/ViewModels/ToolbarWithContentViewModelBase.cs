@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Supeng.Common.Controls;
 using Supeng.Common.Entities;
 using Supeng.Wpf.Common.Entities;
 

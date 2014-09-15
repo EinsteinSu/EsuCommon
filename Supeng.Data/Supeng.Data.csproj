@@ -52,6 +52,7 @@
     <Compile Include="DataFilter\FilterCollection.cs" />
     <Compile Include="SqlScriptCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlScriptHelper.cs" />
     <Compile Include="SqlTypeConvertHelper.cs" />
   </ItemGroup>
   <ItemGroup>

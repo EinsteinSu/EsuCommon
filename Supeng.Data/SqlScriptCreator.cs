@@ -40,34 +40,4 @@ namespace Supeng.Data
       return string.Format("{0} {1}", GetSqlScript(), order);
     }
   }
-
-
-  public static class SqlScriptHelper
-  {
-    /// <summary>
-    /// </summary>
-    /// <param name="list">key is column value is column value</param>
-    /// <returns></returns>
-    public static string GetFilter(this IDictionary<string, string> list)
-    {
-      string filter = "0=0";
-      foreach (var column in list)
-      {
-        if (!string.IsNullOrEmpty(column.Value))
-          filter += string.Format(" And {0} Like '%{1}%'", column.Key, column.Value);
-      }
-      return filter;
-    }
-
-    public static IList<string> GetFilterArray(this IDictionary<string, string> list)
-    {
-      var conditions = new List<string>();
-      foreach (var column in list)
-      {
-        if (!string.IsNullOrEmpty(column.Value))
-          conditions.Add(string.Format("{0} Like '%{1}%'", column.Key, column.Value));
-      }
-      return conditions;
-    }
-  }
 }

@@ -82,6 +82,7 @@
     <Compile Include="Controls\ToolbarWithContentHelper.cs" />
     <Compile Include="Controls\ViewModels\CollectionEditViewModel.cs" />
     <Compile Include="Controls\ViewModels\CollectionEditWithWindowViewModel.cs" />
+    <Compile Include="Controls\ViewModels\CollectionQueryControlViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuProgressViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuStepProgressViewModel.cs" />
     <Compile Include="Controls\ViewModels\SearchControlViewModel.cs" />
@@ -93,6 +94,9 @@
     </Compile>
     <Compile Include="Controls\Views\CollectionEditTree.xaml.cs">
       <DependentUpon>CollectionEditTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Views\CollectionQueryView.xaml.cs">
+      <DependentUpon>CollectionQueryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Views\EsuStepProgressView.xaml.cs">
       <DependentUpon>EsuStepProgressView.xaml</DependentUpon>
@@ -208,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Views\CollectionEditTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\CollectionQueryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
