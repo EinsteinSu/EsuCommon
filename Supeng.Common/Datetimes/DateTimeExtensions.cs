@@ -11,28 +11,28 @@ namespace Supeng.Common.Datetimes
       switch (interval)
       {
         case DateInterval.Second:
-          lngDateDiffValue = (long) timeSpan.TotalSeconds;
+          lngDateDiffValue = (long)timeSpan.TotalSeconds;
           break;
         case DateInterval.Minute:
-          lngDateDiffValue = (long) timeSpan.TotalMinutes;
+          lngDateDiffValue = (long)timeSpan.TotalMinutes;
           break;
         case DateInterval.Hour:
-          lngDateDiffValue = (long) timeSpan.TotalHours;
+          lngDateDiffValue = (long)timeSpan.TotalHours;
           break;
         case DateInterval.Day:
           lngDateDiffValue = timeSpan.Days;
           break;
         case DateInterval.Week:
-          lngDateDiffValue = timeSpan.Days/7;
+          lngDateDiffValue = timeSpan.Days / 7;
           break;
         case DateInterval.Month:
-          lngDateDiffValue = timeSpan.Days/30;
+          lngDateDiffValue = timeSpan.Days / 30;
           break;
         case DateInterval.Quarter:
-          lngDateDiffValue = (timeSpan.Days/30)/3;
+          lngDateDiffValue = (timeSpan.Days / 30) / 3;
           break;
         case DateInterval.Year:
-          lngDateDiffValue = timeSpan.Days/365;
+          lngDateDiffValue = timeSpan.Days / 365;
           break;
       }
       return (lngDateDiffValue);
@@ -65,6 +65,16 @@ namespace Supeng.Common.Datetimes
     public static DateTime GetTimeValue(this DateTime? time)
     {
       return time.HasValue ? time.Value : DateTime.Parse("1900");
+    }
+
+    public static string ToStartTime(this DateTime time)
+    {
+      return string.Format("{0} 00:00:00", time.ToString("yyyy-MM-dd"));
+    }
+
+    public static string ToEndTime(this DateTime time)
+    {
+      return string.Format("{0} 23:59:59", time.ToString("yyyy-MM-dd"));
     }
   }
 
