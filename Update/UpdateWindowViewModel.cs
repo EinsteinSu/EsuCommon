@@ -147,7 +147,7 @@ namespace Update
         {
           Message = string.Format("正在创建文件夹{0} ...", updateFile.FileInfo.Name);
           CurrentUpdate = updateFile;
-          Directory.CreateDirectory(string.Format("{0}\\{1}", tempPath, updateFile.FileInfo.Name));
+          Directory.CreateDirectory(string.Format("{0}\\{1}", tempPath, updateFile.FileInfo.RelativeFileName));
           updateFile.Upgradable = true;
           Progress.StepAdd();
         }

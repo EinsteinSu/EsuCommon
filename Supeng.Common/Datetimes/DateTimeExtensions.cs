@@ -62,6 +62,12 @@ namespace Supeng.Common.Datetimes
       return time.ToString(format);
     }
 
+    public static string GetBetweenSqlScript(this DateTime start, DateTime end, string column)
+    {
+      return string.Format(" AND {0} BETWEEN '{1} 00:00:00' AND '{2} 23:59:59'", column,
+        start.ToString("yyyy-MM-dd"), end.ToString("yyyy-MM-dd"));
+    }
+
     public static DateTime GetTimeValue(this DateTime? time)
     {
       return time.HasValue ? time.Value : DateTime.Parse("1900");

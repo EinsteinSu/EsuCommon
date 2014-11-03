@@ -79,6 +79,7 @@
     <Compile Include="Commands\MultiplySelectionCommand.cs" />
     <Compile Include="Controls\ControlHelper.cs" />
     <Compile Include="Controls\EsuMemoText.cs" />
+    <Compile Include="Controls\Models\DateTimeSearchModel.cs" />
     <Compile Include="Controls\ToolbarWithContentHelper.cs" />
     <Compile Include="Controls\ViewModels\CollectionEditViewModel.cs" />
     <Compile Include="Controls\ViewModels\CollectionEditWithWindowViewModel.cs" />
@@ -97,6 +98,9 @@
     </Compile>
     <Compile Include="Controls\Views\CollectionQueryView.xaml.cs">
       <DependentUpon>CollectionQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Views\DateTimeSearchControl.xaml.cs">
+      <DependentUpon>DateTimeSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Views\EsuStepProgressView.xaml.cs">
       <DependentUpon>EsuStepProgressView.xaml</DependentUpon>
@@ -216,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Views\CollectionQueryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\DateTimeSearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
