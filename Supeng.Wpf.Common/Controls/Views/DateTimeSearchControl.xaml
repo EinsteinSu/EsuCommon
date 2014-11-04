@@ -7,9 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <TextBlock Text="{Binding DateTitle}" Margin="5" />
-        <dxe:DateEdit EditValue="{Binding StartDate,Mode=TwoWay}"/>
+        <TextBlock Text="{Binding Data.DateTitle}" Margin="5" />
+        <dxe:DateEdit EditValue="{Binding Data.StartDate,Mode=TwoWay}"/>
         <TextBlock Text="至" Margin="5"/>
-        <dxe:DateEdit EditValue="{Binding EndDate,Mode=TwoWay}"/>
+        <dxe:DateEdit EditValue="{Binding Data.EndDate,Mode=TwoWay}"/>
     </StackPanel>
 </UserControl>

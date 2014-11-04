@@ -15,7 +15,7 @@ namespace Supeng.Wpf.Common.Controls.Models
     private readonly string columnName;
     private DateTime startDate;
     private DateTime endDate;
-    private DateTime originalDate;
+    private readonly DateTime originalDate;
 
     public DateTimeSearchModel() { }
 
