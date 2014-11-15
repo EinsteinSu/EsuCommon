@@ -112,6 +112,14 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
         Content.DataContext = this;
     }
 
+    public virtual Visibility BottomVisibility
+    {
+      get
+      {
+        return Visibility.Visible;
+      }
+    }
+
     [JsonIgnore]
     public Window Window
     {

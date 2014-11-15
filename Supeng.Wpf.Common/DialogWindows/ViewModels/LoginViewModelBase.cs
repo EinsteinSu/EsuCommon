@@ -5,12 +5,12 @@ using System.IO;
 using System.Windows;
 using DevExpress.Xpf.Bars;
 using Newtonsoft.Json;
-using Supeng.Common.Entities;
-using Supeng.Wpf.Common.Interfaces;
+using Supeng.Common.IOs;
+using Supeng.Common.Strings;
 
 namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 {
-  public abstract class LoginViewModelBase : EsuInfoBase, IWindowViewModel
+  public abstract class LoginViewModelBase : DialogWindowBase
   {
     private readonly DelegateCommand cancelCommand;
     private readonly DelegateCommand loginCommand;
@@ -19,48 +19,15 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     private bool rememberPassword;
     private bool rememberUserName;
     private string userName;
-    private Window window;
+
+    protected string TemplateFileName = DirectoryHelper.DataDirectory + "Login.txt";
+    private bool result;
 
     protected LoginViewModelBase()
     {
       loginCommand = new DelegateCommand(LoginClick, () => true);
       cancelCommand = new DelegateCommand(CancelClick, () => true);
       updateCommand = new DelegateCommand(UpdateClick, () => true);
-    }
-
-    #region IWindowViewModel implement
-
-    public virtual string Title
-    {
-      get { return string.Empty; }
-    }
-
-    public int Height
-    {
-      get { return 300; }
-    }
-
-    public int Width
-    {
-      get { return 400; }
-    }
-
-    #endregion
-
-    [JsonIgnore]
-    [Display(AutoGenerateField = false)]
-    public Window Window
-    {
-      get { return window; }
-      set
-      {
-        window = value;
-        if (window != null)
-        {
-          window.Height = Height;
-          window.Width = Width;
-        }
-      }
     }
 
     #region properties
@@ -116,6 +83,18 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
       }
     }
 
+    [Display(AutoGenerateField = false)]
+    new public bool Result
+    {
+      get { return result; }
+      set
+      {
+        if (value.Equals(result)) return;
+        result = value;
+        NotifyOfPropertyChange(() => Result);
+      }
+    }
+
     #endregion
 
     #region commands
@@ -127,7 +106,7 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     }
 
     [Display(AutoGenerateField = false)]
-    public DelegateCommand CancelCommand
+    new public DelegateCommand CancelCommand
     {
       get { return cancelCommand; }
     }
@@ -141,6 +120,10 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     #endregion
 
     #region methods
+
+    [JsonIgnore]
+    [Display(AutoGenerateField = false)]
+    public Action LoginDone { get; set; }
 
     protected virtual string CheckLoginError()
     {
@@ -161,10 +144,16 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
         return;
       }
       if (Login())
-        window.DialogResult = true;
+      {
+        Result = true;
+        if (Window != null)
+          Window.Close();
+        if (LoginDone != null)
+          LoginDone();
+      }
     }
 
-    protected virtual void CancelClick()
+    new protected virtual void CancelClick()
     {
       Environment.Exit(0);
     }
@@ -184,6 +173,12 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     }
 
     #endregion
+
+    public virtual void SaveDataToTextFiles()
+    {
+      Password = Password.Encrypt();
+      SerializeToText(TemplateFileName);
+    }
 
     protected abstract bool Login();
   }

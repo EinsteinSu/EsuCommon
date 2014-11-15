@@ -89,4 +89,17 @@ namespace Supeng.Common.Strings
       }
     }
   }
+
+  public static class StringSecurityExtensions
+  {
+    public static string Encrypt(this string text)
+    {
+      return new StringSecurity().EncryptString(text);
+    }
+
+    public static string Decrypt(this string text)
+    {
+      return new StringSecurity().DecryptString(text);
+    }
+  }
 }

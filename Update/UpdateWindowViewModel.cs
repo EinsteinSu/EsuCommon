@@ -23,6 +23,9 @@ namespace Update
     private readonly TaskScheduler scheduler;
     private readonly DelegateCommand updateCommand;
     private readonly IUpgrade upgrade;
+    private readonly Action success;
+    private readonly Action failed;
+    private readonly Action cancel;
     private bool canUpdate = true;
     private UpdateFile currentUpdate;
     private string message;
@@ -30,10 +33,14 @@ namespace Update
     private CancellationTokenSource tokenSource;
     private UpdateFileCollection updateCollection;
 
-    public UpdateWindowViewModel(string directoryName, IUpgrade upgrade)
+    public UpdateWindowViewModel(string directoryName, IUpgrade upgrade, Action success = null, Action failed = null, Action cancel = null
+      )
     {
       this.directoryName = directoryName;
       this.upgrade = upgrade;
+      this.success = success;
+      this.failed = failed;
+      this.cancel = cancel;
       UpdateCollection = new UpdateFileCollection(new List<EsuUpgradeInfo>());
       updateCommand = new DelegateCommand(Update, () => true);
       closeCommand = new DelegateCommand(Close, () => true);
@@ -169,6 +176,8 @@ namespace Update
       task.ContinueWith(t =>
       {
         Message = "组件下载完成，正在启动更新组件 ...";
+        if (success != null)
+          success();
         string copyApplicationFileName = string.Format("{0}\\UpgradeToolKit.exe", Environment.CurrentDirectory);
         if (File.Exists(copyApplicationFileName))
           Process.Start(copyApplicationFileName);
@@ -177,10 +186,20 @@ namespace Update
         Environment.Exit(-1);
       }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
 
-      task.ContinueWith(t => { MessageBox.Show("下载组件发现错误，请联系系统管理员。"); }, CancellationToken.None,
+      task.ContinueWith(t =>
+      {
+        MessageBox.Show("下载组件发现错误，请联系系统管理员。");
+        if (failed != null)
+          failed();
+      }, CancellationToken.None,
         TaskContinuationOptions.OnlyOnFaulted, scheduler);
 
-      task.ContinueWith(t => { MessageBox.Show("升级被取消。"); }, CancellationToken.None,
+      task.ContinueWith(t =>
+      {
+        MessageBox.Show("升级被取消。");
+        if (cancel != null)
+          cancel();
+      }, CancellationToken.None,
         TaskContinuationOptions.OnlyOnCanceled, scheduler);
     }
 

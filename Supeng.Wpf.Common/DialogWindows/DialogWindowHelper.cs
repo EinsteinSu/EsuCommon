@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Caliburn.Micro;
 using Supeng.Common.Entities;
 using Supeng.Common.Interfaces;
 using Supeng.Wpf.Common.DialogWindows.ViewModels;
@@ -54,15 +55,30 @@ namespace Supeng.Wpf.Common.DialogWindows
       window.ShowWindow(viewModel);
     }
 
-    public static Window ShowWindow(EsuInfoBase viewModel)
+    public static Window ShowWindow(this EsuInfoBase viewModel, System.Action closeWindow = null)
     {
       var window = new DialogWindowView();
-      ShowWindow(window, viewModel);
+      var windowViewModel = viewModel as IWindowViewModel;
+      if (windowViewModel != null)
+        windowViewModel.Window = window;
+      window.DataContext = viewModel;
+      window.Show();
+      window.ContentRendered += (sender, args) =>
+      {
+        var load = viewModel as IDataLoad;
+        if (load != null)
+          load.Load();
+      };
+      if (closeWindow != null)
+        window.Closed += (sender, args) => closeWindow();
       return window;
     }
 
     public static void ShowWindow(this Window window, EsuInfoBase viewModel)
     {
+      var windowViewModel = viewModel as IWindowViewModel;
+      if (windowViewModel != null)
+        windowViewModel.Window = window;
       window.DataContext = viewModel;
       window.Show();
       window.ContentRendered += (sender, args) =>

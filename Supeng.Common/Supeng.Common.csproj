@@ -82,6 +82,7 @@
     <Compile Include="Entities\ObserveCollection\EsuDataState.cs" />
     <Compile Include="Entities\ObserveCollection\EsuEditCollection.cs" />
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
+    <Compile Include="Entities\EsuVersion.cs" />
     <Compile Include="Exceptions\ExceptionExtensions.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
     <Compile Include="Interfaces\ICrud.cs" />
