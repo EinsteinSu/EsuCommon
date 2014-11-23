@@ -17,28 +17,28 @@ namespace Supeng.Silverlight.Views.Tests
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-      ChildWindow window = ViewsHelper.ShowTreeSelectionWindow(new JzflSelectionViewModel());
+      //ChildWindow window = ViewsHelper.ShowTreeSelectionWindow(new JzflSelectionViewModel());
     }
   }
 
-  public sealed class JzflSelectionViewModel : TreeSelectionViewModel<Jzfl>
-  {
-    public Jzfl CurrentItem
-    {
-      get { return base.CurrentItem; }
-      set { base.CurrentItem = value; }
-    }
+  //public sealed class JzflSelectionViewModel : TreeSelectionViewModel<Jzfl>
+  //{
+  //  public Jzfl CurrentItem
+  //  {
+  //    get { return base.CurrentItem; }
+  //    set { base.CurrentItem = value; }
+  //  }
 
-    public override string Title
-    {
-      get { return "选择建筑分类"; }
-    }
+  //  public override string Title
+  //  {
+  //    get { return "选择建筑分类"; }
+  //  }
 
-    public override EsuInfoCollection<Jzfl> GetCollection()
-    {
-      return new JzflCollection();
-    }
-  }
+  //  public override EsuInfoCollection<Jzfl> GetCollection()
+  //  {
+  //    return new JzflCollection();
+  //  }
+  //}
 
   public class Jzfl : TreeEntityBase
   {

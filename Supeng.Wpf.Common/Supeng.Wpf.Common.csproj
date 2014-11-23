@@ -118,6 +118,7 @@
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowWithListViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\EsuExceptionWindowBase.cs" />
     <Compile Include="DialogWindows\ViewModels\LeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\MemoEditWindowViewModel.cs" />
@@ -127,6 +128,9 @@
     <Compile Include="DialogWindows\ViewModels\TreeLeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\Views\DocumentViewWindow.xaml.cs">
       <DependentUpon>DocumentViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\ExceptionControl.xaml.cs">
+      <DependentUpon>ExceptionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\GridSelectionControl.xaml.cs">
       <DependentUpon>GridSelectionControl.xaml</DependentUpon>
@@ -260,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Views\ToolbarWithContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\ExceptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

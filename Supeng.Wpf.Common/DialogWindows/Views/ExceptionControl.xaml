@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Supeng.Wpf.Common.DialogWindows.Views.ExceptionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Image Margin="5" Source="{Binding Image}"/>
+            <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="18" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Border Margin="5" Grid.Row="1" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="3">
+            <TextBlock  Text="{Binding Message}" FontWeight="Black" TextWrapping="Wrap"/>
+        </Border>
+        <Border Margin="5" Grid.Row="2" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="3">
+            <TextBlock Text="{Binding StackTrace}" TextWrapping="Wrap"/>
+        </Border>
+        <StackPanel Grid.Row="3">
+            <Button Margin="5" Width="120" Content="发送错误报告" Command="{Binding SendCommand}"/>
+            <Button Margin="5" Width="80" Content="发送邮件" Command="{Binding EmailCommand}"/>
+            <Button Margin="5" Width="80" Content="关闭" Command="{Binding CloseCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

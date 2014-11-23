@@ -14,11 +14,11 @@ namespace Update
     /// <param name="success"></param>
     /// <param name="failed"></param>
     /// <param name="cancel"></param>
-    public static void ShowUpdate(string directoryName, IUpgrade upgrade, Action success = null, Action failed = null, Action cancel = null)
+    public static void ShowUpdate(string directoryName, IUpgrade upgrade, string startApp = null, Action success = null, Action failed = null, Action cancel = null)
     {
       var view = new UpdateWindowView
       {
-        DataContext = new UpdateWindowViewModel(directoryName, upgrade, success, failed, cancel)
+        DataContext = new UpdateWindowViewModel(directoryName, upgrade, startApp, success, failed, cancel)
       };
       view.Show();
     }

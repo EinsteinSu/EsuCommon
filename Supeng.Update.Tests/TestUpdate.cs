@@ -12,13 +12,14 @@ namespace Supeng.Update.Tests
   {
     public static void Main(string[] args)
     {
-      UpdateHelper.ShowUpdate("test", new TestUpgradeData());
+      //UpdateHelper.ShowUpdate("test", new TestUpgradeData());
+      Upgrade();
       Console.Read();
     }
 
     public static void Upgrade()
     {
-      var viewModel = new UpdateWindowViewModel("", new TestUpgradeData());
+      var viewModel = new UpdateWindowViewModel("", new TestUpgradeData(),"update.exe");
       viewModel.Update();
     }
   }

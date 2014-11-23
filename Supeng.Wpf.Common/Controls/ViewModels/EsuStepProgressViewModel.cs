@@ -30,7 +30,7 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
       get { return step; }
     }
 
-    public void StepAdd(int s = 1)
+    public void StepAdd(int s = 10)
     {
       if (Step < MaxStep - 1)
       {
