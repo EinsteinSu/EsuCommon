@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Supeng.Common.Datetimes;
 using Supeng.Common.Entities;
 using Supeng.Wpf.Common.Interfaces;
@@ -11,18 +7,20 @@ namespace Supeng.Wpf.Common.Controls.Models
 {
   public class DateTimeSearchModel : EsuInfoBase, ISearchModel
   {
-    private readonly string title;
-    private readonly string columnName;
-    private DateTime startDate;
-    private DateTime endDate;
     private readonly DateTime originalDate;
+    private readonly string title;
+    protected string ColumnName;
+    private DateTime endDate;
+    private DateTime startDate;
 
-    public DateTimeSearchModel() { }
+    public DateTimeSearchModel()
+    {
+    }
 
     public DateTimeSearchModel(string title, string columnName, DateTime startDate, DateTime endDate)
     {
       this.title = title;
-      this.columnName = columnName;
+      ColumnName = columnName;
       this.startDate = startDate;
       this.endDate = endDate;
       originalDate = startDate;
@@ -31,7 +29,7 @@ namespace Supeng.Wpf.Common.Controls.Models
     public DateTimeSearchModel(string title, string columnName, DateInterval interval = DateInterval.Month)
     {
       this.title = title;
-      this.columnName = columnName;
+      ColumnName = columnName;
       endDate = DateTime.Now;
       switch (interval)
       {
@@ -54,7 +52,7 @@ namespace Supeng.Wpf.Common.Controls.Models
       originalDate = startDate;
     }
 
-    public string DateTitle
+    public virtual string DateTitle
     {
       get { return title; }
     }
@@ -81,12 +79,12 @@ namespace Supeng.Wpf.Common.Controls.Models
       }
     }
 
-    public string Search()
+    public virtual string Search()
     {
-      return startDate.GetBetweenSqlScript(endDate, columnName);
+      return startDate.GetBetweenSqlScript(endDate, ColumnName);
     }
 
-    public void Clear()
+    public virtual void Clear()
     {
       StartDate = originalDate;
       EndDate = DateTime.Now;

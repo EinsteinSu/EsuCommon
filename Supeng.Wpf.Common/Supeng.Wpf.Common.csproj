@@ -84,6 +84,7 @@
     <Compile Include="Controls\ViewModels\CollectionEditViewModel.cs" />
     <Compile Include="Controls\ViewModels\CollectionEditWithWindowViewModel.cs" />
     <Compile Include="Controls\ViewModels\CollectionQueryControlViewModel.cs" />
+    <Compile Include="Controls\ViewModels\CollectionQueryWithSearchControlViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuProgressViewModel.cs" />
     <Compile Include="Controls\ViewModels\EsuStepProgressViewModel.cs" />
     <Compile Include="Controls\ViewModels\SearchControlViewModel.cs" />
@@ -98,6 +99,9 @@
     </Compile>
     <Compile Include="Controls\Views\CollectionQueryView.xaml.cs">
       <DependentUpon>CollectionQueryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Views\CollectionQueryWithSearchView.xaml.cs">
+      <DependentUpon>CollectionQueryWithSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Views\DateTimeSearchControl.xaml.cs">
       <DependentUpon>DateTimeSearchControl.xaml</DependentUpon>
@@ -173,6 +177,7 @@
     <Compile Include="Entities\EsuButtonBase.cs" />
     <Compile Include="Entities\EsuToolBarButtonCollection.cs" />
     <Compile Include="Interfaces\IButtonCollection.cs" />
+    <Compile Include="Interfaces\IGridExport.cs" />
     <Compile Include="Interfaces\ISearchModel.cs" />
     <Compile Include="Interfaces\IWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -224,6 +229,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Views\CollectionQueryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Views\CollectionQueryWithSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

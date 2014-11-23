@@ -4,11 +4,11 @@ using Supeng.Wpf.Common.Interfaces;
 namespace Supeng.Wpf.Common.Controls.Views
 {
   /// <summary>
-  /// Interaction logic for CollectionQueryView.xaml
+  /// Interaction logic for CollectionQueryWithSearchView.xaml
   /// </summary>
-  public partial class CollectionQueryView : IGridExport
+  public partial class CollectionQueryWithSearchView : IGridExport
   {
-    public CollectionQueryView()
+    public CollectionQueryWithSearchView()
     {
       InitializeComponent();
     }

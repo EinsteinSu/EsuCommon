@@ -10,6 +10,7 @@ using Supeng.Common.Interfaces;
 using Supeng.Common.Threads;
 using Supeng.Wpf.Common.Controls.Views;
 using Supeng.Wpf.Common.Entities;
+using Supeng.Wpf.Common.Interfaces;
 
 namespace Supeng.Wpf.Common.Controls.ViewModels
 {
@@ -17,11 +18,10 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
   {
     private readonly IProgress progress;
     private EsuInfoCollection<T> collection;
-    private readonly CollectionQueryView view;
+    private CollectionQueryView view;
     protected CollectionQueryControlViewModel(IProgress progress)
     {
       this.progress = progress;
-      view = new CollectionQueryView();
       InitalizeButton();
     }
 
@@ -32,12 +32,12 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
 
     public override FrameworkElement Content
     {
-      get { return view; }
+      get { return view ?? (view = new CollectionQueryView()); }
     }
 
-    protected virtual TableView TableView
+    protected virtual IGridExport GridExport
     {
-      get { return view.view; }
+      get { return Content as IGridExport; }
     }
 
     protected override void InitalizeButton()
@@ -48,15 +48,8 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
 
     protected virtual void Export()
     {
-      if (TableView == null)
-        return;
-      var sf = new SaveFileDialog { Filter = "Excel文件(*.xls)|*.xls" };
-      var showDialog = sf.ShowDialog();
-      if (showDialog != null && showDialog.Value)
-      {
-        TableView.ExportToXls(sf.FileName);
-        Process.Start("Explorer", "/select," + sf.FileName);
-      }
+      if (GridExport != null)
+        GridExport.Export();
     }
 
     public EsuInfoCollection<T> Collection
