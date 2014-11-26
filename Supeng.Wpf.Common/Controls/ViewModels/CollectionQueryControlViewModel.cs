@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
-using DevExpress.Xpf.Grid;
-using Microsoft.Win32;
+﻿using System.Windows;
 using Supeng.Common.Controls;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;

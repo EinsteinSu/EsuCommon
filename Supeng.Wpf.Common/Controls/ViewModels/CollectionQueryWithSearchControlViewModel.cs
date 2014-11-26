@@ -12,9 +12,10 @@ namespace Supeng.Wpf.Common.Controls.ViewModels
     {
     }
 
+    private CollectionQueryWithSearchView view;
     public override FrameworkElement Content
     {
-      get { return new CollectionQueryWithSearchView(); }
+      get { return view ?? (view = new CollectionQueryWithSearchView()); }
     }
 
     public abstract SearchControlViewModel Search { get; }
