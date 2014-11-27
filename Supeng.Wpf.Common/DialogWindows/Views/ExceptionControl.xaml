@@ -22,7 +22,7 @@
         <Border Margin="5" Grid.Row="2" BorderThickness="1" BorderBrush="SteelBlue" CornerRadius="3">
             <TextBlock Text="{Binding StackTrace}" TextWrapping="Wrap"/>
         </Border>
-        <StackPanel Grid.Row="3">
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
             <Button Margin="5" Width="120" Content="发送错误报告" Command="{Binding SendCommand}"/>
             <Button Margin="5" Width="80" Content="发送邮件" Command="{Binding EmailCommand}"/>
             <Button Margin="5" Width="80" Content="关闭" Command="{Binding CloseCommand}"/>

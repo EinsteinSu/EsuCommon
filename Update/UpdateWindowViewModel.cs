@@ -172,8 +172,8 @@ namespace Update
           string target = string.Format("{0}\\{1}", Environment.CurrentDirectory, updateFile.FileInfo.RelativeFileName);
           upgrade.GetFileBytes(updateFile.FileInfo.RelativeFileName)
             .ByteToFile(source);
-          bat.AppendLine(string.Format("echo 正在复制{0}...", updateFile.FileInfo.Name));
-          bat.AppendLine(string.Format("copy {0} {1}", source, target));
+          //bat.AppendLine(string.Format("echo 正在复制{0}...", updateFile.FileInfo.Name));
+          bat.AppendLine(string.Format("copy \"{0}\" \"{1}\"", source, target));
           updateFile.Upgradable = true;
           Thread.Sleep(100);
           Progress.StepAdd();
@@ -181,9 +181,9 @@ namespace Update
 
         if (!string.IsNullOrEmpty(startApp))
         {
-          bat.AppendLine("echo 升级完成，请按任意键打开应用程序。");
+          //bat.AppendLine("echo 升级完成，请按任意键打开应用程序。");
           bat.AppendLine("pause");
-          bat.AppendLine(string.Format("start {0}\\{1}", Environment.CurrentDirectory, startApp));
+          bat.AppendLine(string.Format("start \"{0}\\{1}\"", Environment.CurrentDirectory, startApp));
         }
         #endregion
       }, tokenSource.Token, TaskCreationOptions.HideScheduler, scheduler);

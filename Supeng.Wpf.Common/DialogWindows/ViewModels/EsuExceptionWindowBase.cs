@@ -70,6 +70,11 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 
     #endregion
 
+    public override Visibility BottomVisibility
+    {
+      get { return Visibility.Collapsed; }
+    }
+
     protected override string DataCheck()
     {
       return string.Empty;
