@@ -27,7 +27,7 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
     private readonly DelegateCommand cancelCommand;
     private readonly DelegateCommand okCommand;
     private EsuProgressViewModel progress;
-    private bool result;
+    protected bool result;
     private Window window;
 
 

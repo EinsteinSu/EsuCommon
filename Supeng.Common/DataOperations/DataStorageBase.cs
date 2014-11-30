@@ -31,6 +31,8 @@ namespace Supeng.Common.DataOperations
     public abstract int Execute(string sql, IDataParameter[] parameters = null, IExceptionHandle exceptionHandle = null,
       CommandType type = CommandType.Text);
 
+    public abstract IDbCommand GetCommand(string sql, IDataParameter[] parameters = null, CommandType cmdType = CommandType.Text);
+
     public void ExecuteInBackground(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null,
       CommandType type = CommandType.Text)
     {
@@ -55,7 +57,7 @@ namespace Supeng.Common.DataOperations
       {
         try
         {
-          var f = (Func<string, int>) ar.AsyncState;
+          var f = (Func<string, int>)ar.AsyncState;
           int result = f.EndInvoke(ar);
           backgroundData.EndExecute(result);
         }
@@ -103,7 +105,7 @@ namespace Supeng.Common.DataOperations
       {
         try
         {
-          var f = (Func<string, IDataCreator<T>, IDataParameter[], T>) ar.AsyncState;
+          var f = (Func<string, IDataCreator<T>, IDataParameter[], T>)ar.AsyncState;
           T result = f.EndInvoke(ar);
           backgroundData.EndExecute(result);
         }
@@ -139,7 +141,7 @@ namespace Supeng.Common.DataOperations
       {
         try
         {
-          var f = (Func<string, IDataCreator<T>, IDataParameter[], EsuInfoCollection<T>>) ar.AsyncState;
+          var f = (Func<string, IDataCreator<T>, IDataParameter[], EsuInfoCollection<T>>)ar.AsyncState;
           EsuInfoCollection<T> collection = f.EndInvoke(ar);
           collection.AcceptChanges();
           backgroundData.EndExecute(collection);

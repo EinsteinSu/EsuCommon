@@ -61,6 +61,21 @@ namespace Supeng.Data.Sql
       }
     }
 
+    public override IDbCommand GetCommand(string sql, IDataParameter[] parameters = null, CommandType cmdType = CommandType.Text)
+    {
+      var command = new SqlCommand(sql) { CommandType = cmdType };
+      if (parameters != null && parameters.Any())
+      {
+        foreach (IDataParameter parameter in parameters)
+        {
+          if (parameter.Value == null)
+            parameter.Value = DBNull.Value;
+          command.Parameters.Add(parameter);
+        }
+      }
+      return command;
+    }
+
     public override void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData,
       IDataParameter[] parameters = null, CommandType type = CommandType.Text)
     {

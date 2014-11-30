@@ -220,7 +220,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Update\Update.csproj">
       <Project>{9c8a44d8-9563-4f84-b5e2-be353ab46070}</Project>
-      <Name>Update %28Update\Update%29</Name>
+      <Name>Update</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

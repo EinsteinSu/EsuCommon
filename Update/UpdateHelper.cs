@@ -16,10 +16,9 @@ namespace Update
     /// <param name="cancel"></param>
     public static void ShowUpdate(string directoryName, IUpgrade upgrade, string startApp = null, Action success = null, Action failed = null, Action cancel = null)
     {
-      var view = new UpdateWindowView
-      {
-        DataContext = new UpdateWindowViewModel(directoryName, upgrade, startApp, success, failed, cancel)
-      };
+      var view = new UpdateWindowView();
+      var viewModel = new UpdateWindowViewModel(directoryName, upgrade, startApp, success, failed, cancel);
+      view.DataContext = viewModel;
       view.Show();
     }
   }

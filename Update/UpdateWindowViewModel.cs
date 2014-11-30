@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,22 +11,23 @@ using Supeng.Common.Entities;
 using Supeng.Common.Entities.BasesEntities;
 using Supeng.Common.Interfaces;
 using Supeng.Common.IOs;
+using Supeng.Common.Threads;
 using Supeng.Wpf.Common.Controls.ViewModels;
 
 namespace Update
 {
   public class UpdateWindowViewModel : EsuInfoBase
   {
+    private readonly Action cancel;
     private readonly DelegateCommand cancelCommand;
     private readonly DelegateCommand closeCommand;
     private readonly string directoryName;
+    private readonly Action failed;
     private readonly TaskScheduler scheduler;
-    private readonly DelegateCommand updateCommand;
-    private readonly IUpgrade upgrade;
     private readonly string startApp;
     private readonly Action success;
-    private readonly Action failed;
-    private readonly Action cancel;
+    private readonly DelegateCommand updateCommand;
+    private readonly IUpgrade upgrade;
     private bool canUpdate = true;
     private UpdateFile currentUpdate;
     private string message;
@@ -35,7 +35,8 @@ namespace Update
     private CancellationTokenSource tokenSource;
     private UpdateFileCollection updateCollection;
 
-    public UpdateWindowViewModel(string directoryName, IUpgrade upgrade, string startApp = "", Action success = null, Action failed = null, Action cancel = null
+    public UpdateWindowViewModel(string directoryName, IUpgrade upgrade, string startApp = "", Action success = null,
+      Action failed = null, Action cancel = null
       )
     {
       this.directoryName = directoryName;
@@ -130,15 +131,15 @@ namespace Update
 
     #endregion
 
-    private StringBuilder bat;
-    public void Update()
+
+    public async void Update()
     {
       if (upgrade == null)
         return;
       Message = "正在获取升级数据 ...";
       CanUpdate = false;
       tokenSource = new CancellationTokenSource();
-      Task task = Task.Factory.StartNew(() =>
+      await ThreadHelper.StartTask(() =>
       {
         EsuUpgradeInfoCollection serviceList = upgrade.GetServiceFileCollection();
         string tempPath = string.Format("{0}\\UpdateTemp", Environment.CurrentDirectory);
@@ -151,15 +152,14 @@ namespace Update
           return;
         }
         Message = "获取数据完成，正在准备升级 ...";
-        bat = new StringBuilder();
-        bat.AppendLine("echo 正在复制文件...");
+
         #region download files to local path
 
         foreach (UpdateFile updateFile in UpdateCollection.Where(w => w.FileInfo.Type == FileType.Directory))
         {
           Message = string.Format("正在创建文件夹{0} ...", updateFile.FileInfo.Name);
           CurrentUpdate = updateFile;
-          Directory.CreateDirectory(string.Format("{0}\\{1}", tempPath, updateFile.FileInfo.RelativeFileName));
+          Directory.CreateDirectory(string.Format(@"{0}\{1}", tempPath, updateFile.FileInfo.RelativeFileName));
           updateFile.Upgradable = true;
           Progress.StepAdd();
         }
@@ -168,64 +168,39 @@ namespace Update
         {
           Message = string.Format("正在下载文件{0} ...", updateFile.FileInfo.Name);
           CurrentUpdate = updateFile;
-          string source = string.Format("{0}\\{1}", tempPath, updateFile.FileInfo.RelativeFileName);
-          string target = string.Format("{0}\\{1}", Environment.CurrentDirectory, updateFile.FileInfo.RelativeFileName);
+          string source = string.Format(@"{0}\{1}", tempPath, updateFile.FileInfo.RelativeFileName);
+          //string target = string.Format(@"{0}\{1}", Environment.CurrentDirectory, updateFile.FileInfo.RelativeFileName);
           upgrade.GetFileBytes(updateFile.FileInfo.RelativeFileName)
             .ByteToFile(source);
-          //bat.AppendLine(string.Format("echo 正在复制{0}...", updateFile.FileInfo.Name));
-          bat.AppendLine(string.Format("copy \"{0}\" \"{1}\"", source, target));
           updateFile.Upgradable = true;
           Thread.Sleep(100);
-          Progress.StepAdd();
+          Progress.StepAdd(10);
         }
+      });
 
-        if (!string.IsNullOrEmpty(startApp))
-        {
-          //bat.AppendLine("echo 升级完成，请按任意键打开应用程序。");
-          bat.AppendLine("pause");
-          bat.AppendLine(string.Format("start \"{0}\\{1}\"", Environment.CurrentDirectory, startApp));
-        }
         #endregion
-      }, tokenSource.Token, TaskCreationOptions.HideScheduler, scheduler);
 
-      task.ContinueWith(t =>
+      Message = "组件下载完成，正在启动更新组件 ...";
+      if (success != null)
+        success();
+      try
       {
-        Message = "组件下载完成，正在启动更新组件 ...";
-        if (success != null)
-          success();
-        string batFile = string.Format("{0}\\copy.bat", Environment.CurrentDirectory);
-        File.WriteAllText(batFile, bat.ToString());
-        try
-        {
-          Process.Start(batFile);
-        }
-        catch
-        {
-          MessageBox.Show("复制组件发生错误，请联系系统管理员。");
-        }
-        Environment.Exit(-1);
-      }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
-
-      task.ContinueWith(t =>
+        string copyApplicationFileName = string.Format("{0}\\UpdateToolkit.exe", Environment.CurrentDirectory);
+        if (File.Exists(copyApplicationFileName))
+          Process.Start(copyApplicationFileName, startApp);
+        else
+          MessageBox.Show("未发现更新组件，请联系系统管理员。");
+        Environment.Exit(0);
+      }
+      catch
       {
-        MessageBox.Show("下载组件发现错误，请联系系统管理员。");
-        if (failed != null)
-          failed();
-      }, CancellationToken.None,
-        TaskContinuationOptions.OnlyOnFaulted, scheduler);
-
-      task.ContinueWith(t =>
-      {
-        MessageBox.Show("升级被取消。");
-        if (cancel != null)
-          cancel();
-      }, CancellationToken.None,
-        TaskContinuationOptions.OnlyOnCanceled, scheduler);
+        MessageBox.Show("复制组件发生错误，请联系系统管理员。");
+      }
     }
 
     private void Cancel()
     {
-      tokenSource.Cancel();
+      //tokenSource.Cancel();
     }
 
     private void Close()

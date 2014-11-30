@@ -33,9 +33,15 @@
 	
 	
 	
+	
+	
+	
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=9FD13E319295409694652121608A00AA/Name/@EntryValue">TestDataChange</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=9FD13E319295409694652121608A00AA/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements /&gt;&lt;/Session&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=D3A9F5821ABA44E0937D0C2AE1720BFE/@KeyIndexDefined">True</s:Boolean>
+	
+	
+	
 	
 	
 	
@@ -76,6 +82,12 @@
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=D3A9F5821ABA44E0937D0C2AE1720BFE/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements /&gt;&lt;/Session&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=F74FF2E107B941779D2D4467632549F1/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=F74FF2E107B941779D2D4467632549F1/BuildPolicy/@EntryValue">Always</s:String>
+	
+	
+	
+	
+	
+	
 	
 	
 	

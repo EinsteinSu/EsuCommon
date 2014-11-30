@@ -30,20 +30,7 @@ namespace Supeng.Update.Tests
 
     public EsuUpgradeInfoCollection GetServiceFileCollection()
     {
-      var collection = new EsuUpgradeInfoCollection();
-      foreach (string file in Directory.GetFiles(filePath))
-      {
-        var info = new FileInfo(file);
-        collection.Add(new EsuUpgradeInfo(filePath)
-        {
-          Type = FileType.File,
-          Name = info.Name,
-          FileName = file,
-          LastWriteTime = info.LastWriteTime,
-          Size = Math.Round(info.Length/1024D, 2).ToString(CultureInfo.InvariantCulture)
-        });
-      }
-      return collection;
+      return EsuUpgradeInfoHelper.GetUpgradeCollection(filePath);
     }
 
     public EsuUpgradeInfoCollection GetLocalFileCollection()

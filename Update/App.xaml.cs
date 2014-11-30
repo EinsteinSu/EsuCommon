@@ -1,4 +1,8 @@
-﻿namespace Update
+﻿using System;
+using System.Windows;
+using Supeng.Common.Interfaces;
+
+namespace Update
 {
   /// <summary>
   ///   Interaction logic for App.xaml

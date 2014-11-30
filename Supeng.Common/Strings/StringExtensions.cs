@@ -80,7 +80,7 @@ namespace Supeng.Common.Strings
 
     public static string Package(this IDictionary<string, string> dictionary)
     {
-      var sb = new StringBuilder(dictionary.Count*2);
+      var sb = new StringBuilder(dictionary.Count * 2);
       foreach (var valuePair in dictionary)
       {
         sb.AppendFormat("{0}{1}{2}{1}", valuePair.Key, Split, valuePair.Value);
@@ -94,7 +94,7 @@ namespace Supeng.Common.Strings
       string[] datas = data.Split(Split);
       for (int i = 0; i < datas.Length; i++)
       {
-        if (i%2 == 0)
+        if (i % 2 == 0)
         {
           dictionary.Add(datas[i], "");
         }
@@ -120,6 +120,14 @@ namespace Supeng.Common.Strings
     {
       var dictionary = UnPackedToDictionary(data);
       return dictionary.ToDictionary(change => change.Key, change => change.Value.Load<T>());
+    }
+
+    public static T LoadData<T>(this IDictionary<string, string> dictionary, string key)
+      where T : new()
+    {
+      if (dictionary.ContainsKey(key))
+        return dictionary[key].Load<T>();
+      return default(T);
     }
   }
 }

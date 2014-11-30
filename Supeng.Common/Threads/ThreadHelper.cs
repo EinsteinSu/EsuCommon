@@ -14,6 +14,16 @@ namespace Supeng.Common.Threads
       return asyncResult => context.Post(result => callback((IAsyncResult)result), asyncResult);
     }
 
+    public static Task<T> StartTask<T>(Func<T> task)
+    {
+      return Task<T>.Factory.StartNew(task);
+    }
+
+    public static Task StartTask(Action task)
+    {
+      return Task.Factory.StartNew(task);
+    }
+
     public static void DoTask<T>(Func<T> taskStart, Action<T> taskDone, Action<AggregateException> handleException,
       TaskScheduler scheduler = null)
     {
