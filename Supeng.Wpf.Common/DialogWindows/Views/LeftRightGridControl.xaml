@@ -15,7 +15,7 @@
         <dxg:GridControl Grid.Column="0" AutoPopulateColumns="True" ItemsSource="{Binding LeftCollection}">
             <dxg:GridControl.View>
                 <dxg:TableView AutoWidth="True" FocusedRow="{Binding LeftCollection.CurrentItem,Mode=TwoWay}"
-                               AllowEditing="False" ShowGroupPanel="False" />
+                            ShowSearchPanelMode="{Binding FindMode}"   AllowEditing="False" ShowGroupPanel="False" />
             </dxg:GridControl.View>
         </dxg:GridControl>
         <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">

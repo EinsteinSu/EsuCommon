@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using DevExpress.Xpf.Bars;
+using DevExpress.Xpf.Grid;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
+using Supeng.Common.Threads;
 using Supeng.Wpf.Common.DialogWindows.Views;
 
 namespace Supeng.Wpf.Common.DialogWindows.ViewModels
@@ -38,7 +39,18 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 
     public override FrameworkElement Content
     {
-      get { return new LeftRightGridControl(); }
+      get
+      {
+        return new LeftRightGridControl();
+      }
+    }
+
+    public virtual ShowSearchPanelMode FindMode
+    {
+      get
+      {
+        return ShowSearchPanelMode.Always;
+      }
     }
 
     #region properties
@@ -79,28 +91,20 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 
     protected abstract EsuInfoCollection<T> InitalizeRightCollection();
 
-    public override void Load()
+    public override async void Load()
     {
       base.Load();
       Progress.ShowProgress("正在加载数据 ...");
-      Task task = Task.Factory.StartNew(() =>
+      await ThreadHelper.StartTask(() =>
       {
         leftCollection = InitalizeLeftCollection();
         rightCollection = InitalizeRightCollection();
       });
-      task.ContinueWith(t =>
-      {
-        NotifyOfPropertyChange(() => LeftCollection);
-        NotifyOfPropertyChange(() => RightCollection);
-        leftCollection.CurrentItemChanged = obj => NotifyOfPropertyChange(() => LeftButtonEnable);
-        rightCollection.CurrentItemChanged = obj => NotifyOfPropertyChange(() => RightButtonEnable);
-        Progress.HideProgress();
-      }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, scheduler);
-      task.ContinueWith(t =>
-      {
-        Progress.HideProgress();
-        MessageBox.Show("加载数据错误！");
-      }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, scheduler);
+      NotifyOfPropertyChange(() => LeftCollection);
+      NotifyOfPropertyChange(() => RightCollection);
+      leftCollection.CurrentItemChanged = obj => NotifyOfPropertyChange(() => LeftButtonEnable);
+      rightCollection.CurrentItemChanged = obj => NotifyOfPropertyChange(() => RightButtonEnable);
+      Progress.HideProgress();
     }
 
     protected override string DataCheck()
