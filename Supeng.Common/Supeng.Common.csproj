@@ -34,7 +34,6 @@
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v12.1, Version=12.1.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -57,14 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\IProgress.cs" />
-    <Compile Include="DataOperations\CrudCommands.cs" />
     <Compile Include="DataOperations\DataSaveExtensions.cs" />
     <Compile Include="DataOperations\IDataSave.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ApplicationFunction.cs" />
     <Compile Include="Entities\BasesEntities\EsuUpgradeInfo.cs" />
     <Compile Include="Entities\BasesEntities\MutiplySelectionEntityBase.cs" />
     <Compile Include="Entities\BasesEntities\UpdateFile.cs" />
-    <Compile Include="Entities\ControlEntities\NavBarGroupItem\EsuDisplayNavBarGroup.cs" />
     <Compile Include="DataOperations\DataStorageBase.cs" />
     <Compile Include="DataOperations\IDataCreator.cs" />
     <Compile Include="Datetimes\DateTimeExtensions.cs" />
@@ -92,6 +89,7 @@
     <Compile Include="Interfaces\IUpgrade.cs" />
     <Compile Include="IOs\BinaryHelper.cs" />
     <Compile Include="IOs\DirectoryHelper.cs" />
+    <Compile Include="IOs\EsuLogs.cs" />
     <Compile Include="IOs\FileExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings\PinYingHelper.cs" />

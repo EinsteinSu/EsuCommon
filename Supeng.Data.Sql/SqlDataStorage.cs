@@ -57,7 +57,6 @@ namespace Supeng.Data.Sql
       finally
       {
         conn.Close();
-        conn.Dispose();
       }
     }
 
@@ -166,7 +165,6 @@ namespace Supeng.Data.Sql
       finally
       {
         conn.Close();
-        conn.Dispose();
       }
       return collection;
     }

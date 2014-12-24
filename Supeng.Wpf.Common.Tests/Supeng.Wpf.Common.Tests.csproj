@@ -76,6 +76,9 @@
     <Compile Include="CollectionBindingCurrentItemTest.xaml.cs">
       <DependentUpon>CollectionBindingCurrentItemTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CollectionSearchWithQueryTest.xaml.cs">
+      <DependentUpon>CollectionSearchWithQueryTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EsuInfoCollectionTest.xaml.cs">
       <DependentUpon>EsuInfoCollectionTest.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <DependentUpon>UpdateTest.xaml</DependentUpon>
     </Compile>
     <Page Include="CollectionBindingCurrentItemTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CollectionSearchWithQueryTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

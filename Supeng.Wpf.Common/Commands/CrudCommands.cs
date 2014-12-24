@@ -1,7 +1,7 @@
 ﻿using DevExpress.Xpf.Bars;
 using Supeng.Common.Interfaces;
 
-namespace Supeng.Common.DataOperations
+namespace Supeng.Wpf.Common.Commands
 {
   public class CrudCommands
   {

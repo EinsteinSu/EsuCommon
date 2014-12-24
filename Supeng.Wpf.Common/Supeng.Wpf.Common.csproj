@@ -76,7 +76,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CrudCommands.cs" />
     <Compile Include="Commands\MultiplySelectionCommand.cs" />
+    <Compile Include="ControlEntities\NavBarGroupItem\EsuDisplayNavBarGroup.cs" />
     <Compile Include="Controls\ControlHelper.cs" />
     <Compile Include="Controls\EsuMemoText.cs" />
     <Compile Include="Controls\Models\DateTimeSearchModel.cs" />

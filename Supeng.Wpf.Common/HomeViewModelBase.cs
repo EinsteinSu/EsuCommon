@@ -5,8 +5,8 @@ using System.Windows;
 using System.Windows.Media;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.BasesEntities.DataEntities;
-using Supeng.Common.Entities.ControlEntities.NavBarGroupItem;
 using Supeng.Common.Interfaces;
+using Supeng.Wpf.Common.ControlEntities.NavBarGroupItem;
 using Supeng.Wpf.Common.Controls.ViewModels;
 
 namespace Supeng.Wpf.Common

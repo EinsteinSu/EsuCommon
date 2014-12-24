@@ -3,9 +3,10 @@ using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using DevExpress.Xpf.Bars;
+using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
 
-namespace Supeng.Common.Entities.ControlEntities.NavBarGroupItem
+namespace Supeng.Wpf.Common.ControlEntities.NavBarGroupItem
 {
   public class EsuDisplayNavBarGroup<T> : EsuDisplayItem<T>
   {

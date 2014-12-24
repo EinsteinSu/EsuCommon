@@ -3,8 +3,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Supeng.Common.Entities.ControlEntities.NavBarGroupItem;
 using Supeng.Common.Entities.ObserveCollection;
+using Supeng.Wpf.Common.ControlEntities.NavBarGroupItem;
 
 namespace Supeng.Wpf.Common.Controls.ViewModels
 {

@@ -33,7 +33,6 @@ namespace Supeng.Silverlight.Common.IOs
           string sLine = reader.ReadLine();
           text = sLine;
           reader.Close();
-          stream.Close();
         }
         else
         {
