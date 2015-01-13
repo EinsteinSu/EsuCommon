@@ -96,6 +96,7 @@
     <Compile Include="Strings\StringExtensions.cs" />
     <Compile Include="Strings\StringReplace.cs" />
     <Compile Include="Strings\StringSecurity.cs" />
+    <Compile Include="Threads\EsuTimer.cs" />
     <Compile Include="Threads\IBackgroundData.cs" />
     <Compile Include="Threads\ThreadExtensions.cs" />
     <Compile Include="Threads\ThreadHelper.cs" />
