@@ -29,7 +29,7 @@ namespace Supeng.Common.Tests
     [Test]
     public void TestStringBuild()
     {
-      string data = "Test{0},{1}";
+      const string data = "Test{0},{1}";
       var sb = new StringBuilder();
       sb.EsuAppendFormat(data, "1", "2");
       Assert.AreEqual("Test1,2" + Environment.NewLine, sb.ToString());
