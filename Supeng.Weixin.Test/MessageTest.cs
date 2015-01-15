@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Supeng.Weixin.Common;
 using Supeng.Weixin.Common.Message;
+using Supeng.Weixin.Common.Utility;
 
 namespace Supeng.Weixin.Test
 {
     [TestClass]
-    public class TextMessageTest
+    public class MessageTest
     {
         [TestMethod]
         public void TestMessageContent()
@@ -21,13 +22,24 @@ namespace Supeng.Weixin.Test
         }
 
         [TestMethod]
-        public void TestSendMessage()
+        public void TestSendTextMessage()
         {
             var weixin = new Common.Weixin("wx22e0f747c0c25ab6",
                 "DMLT3v8_c2dUK3KOKnBkSRixC3DrW67wS7HtOf20IHHWcK8ZESjg4EKCJPofkjde");
-            var result = weixin.SendMessage(new TextMessage("This is a test message") { touser = "76507593" });
+            var result = weixin.SendTextMessage(new TextMessage("This is a test message") { touser = "76507593" });
             Console.WriteLine(result);
             Assert.IsTrue(result.errmsg.Equals("ok", StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        [TestMethod]
+        public void TestNewsMessageContent()
+        {
+            var weixin = new Common.Weixin("wx22e0f747c0c25ab6",
+               "DMLT3v8_c2dUK3KOKnBkSRixC3DrW67wS7HtOf20IHHWcK8ZESjg4EKCJPofkjde");
+            var message = new NewsMessage();
+            message.news = new NewsCollection(new[] { new News { title = "test", description = "description", url = "http://hiever.net:1314" } });
+            var result = weixin.SendTextMessage(message);
+            Console.WriteLine(result);
         }
     }
 }

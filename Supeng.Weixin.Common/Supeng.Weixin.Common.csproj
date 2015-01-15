@@ -46,9 +46,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessToken.cs" />
+    <Compile Include="Common\ResultBase.cs" />
+    <Compile Include="Common\WeixinAttribute.cs" />
+    <Compile Include="Message\NewsMessage.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserBase.cs" />
+    <Compile Include="User\UserDetail.cs" />
+    <Compile Include="User\UserResult.cs" />
+    <Compile Include="User\UserStatus.cs" />
     <Compile Include="Message\MessageBase.cs" />
     <Compile Include="Message\MessageResult.cs" />
     <Compile Include="Message\TextMessage.cs" />
+    <Compile Include="Utility\OperateType.cs" />
+    <Compile Include="Utility\WeixinExtensions.cs" />
     <Compile Include="Weixin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\WeixinEntityBase.cs" />
@@ -58,6 +72,12 @@
       <Project>{7b8df593-84e8-4490-9349-776af240b2b1}</Project>
       <Name>Supeng.Http.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

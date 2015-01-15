@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Supeng.Http.Common;
 using Supeng.Weixin.Common.Message;
+using Supeng.Weixin.Common.Properties;
 
 namespace Supeng.Weixin.Common
 {
@@ -24,7 +25,7 @@ namespace Supeng.Weixin.Common
             {
                 if (accessToken == null)
                 {
-                    string url = string.Format("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={0}&corpsecret={1}", corpId, secretId);
+                    string url = string.Format(Resources.ConnectUrl, corpId, secretId);
                     using (var client = new EsuWebClient())
                     {
                         accessToken = client.GetData<AccessToken>(url);
@@ -32,6 +33,19 @@ namespace Supeng.Weixin.Common
                 }
                 return accessToken;
             }
+        }
+
+        public string GetString(string url)
+        {
+            using (var client = new EsuWebClient())
+            {
+                return client.GetString(url);
+            }
+        }
+
+        public T Get<T>(string url)
+        {
+            return JsonConvert.DeserializeObject<T>(GetString(url));
         }
 
         public string Post(string url, string data)
@@ -42,17 +56,12 @@ namespace Supeng.Weixin.Common
             }
         }
 
-        public MessageResult SendMessage(MessageBase message)
+        public T Post<T>(string url, string data)
         {
-            string url = string.Format("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={0}",
-                Token.access_token);
-            return JsonConvert.DeserializeObject<MessageResult>(Post(url, message.ToString()));
-        }
-
-        public bool SendMessageWithResult(MessageBase message)
-        {
-            var result = SendMessage(message);
-            return result.errmsg.Equals("ok", StringComparison.InvariantCultureIgnoreCase);
+            using (var client = new EsuWebClient())
+            {
+                return JsonConvert.DeserializeObject<T>(client.Post(url, data));
+            }
         }
     }
 }
