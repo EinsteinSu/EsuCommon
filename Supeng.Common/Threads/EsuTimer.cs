@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Supeng.Common.IOs;
 using Timer = System.Threading.Timer;
 
 namespace Supeng.Common.Threads
@@ -28,8 +29,24 @@ namespace Supeng.Common.Threads
 
         protected virtual void Do(object state)
         {
-            Progress();
-            timer.Change(distance, Timeout.Infinite);
+            try
+            {
+                Progress();
+            }
+            catch (Exception ex)
+            {
+                LogException(ex.Message);
+            }
+            finally
+            {
+                timer.Change(distance, Timeout.Infinite);
+            }
+        }
+
+        protected virtual void LogException(string errMsg)
+        {
+            var log = new EsuLogs("");
+            log.WriteLogWithDatetime(errMsg);
         }
 
         //do something before your thread start

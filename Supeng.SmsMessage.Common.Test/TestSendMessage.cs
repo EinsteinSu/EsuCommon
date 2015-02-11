@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Supeng.SmsMessage.Common.Test
 {
@@ -21,7 +20,7 @@ namespace Supeng.SmsMessage.Common.Test
             const string userName = "ynhrjs99";
             const string password = "123456";
             var messageSender = new MessageSender(userName, password);
-            var result = messageSender.SendMessage("13888622581", "test message");
+            var result = messageSender.SendMessage("13825634085", "This is a message from server.");
             Assert.AreEqual("成功", result);
         }
     }
