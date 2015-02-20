@@ -9,6 +9,7 @@
     private string phone;
     private string qq;
     private string user;
+    private string weixin;
 
     #region properties
 
@@ -89,6 +90,17 @@
         if (value == address) return;
         address = value;
         NotifyOfPropertyChange(() => Address);
+      }
+    }
+
+    public string Weixin
+    {
+      get { return weixin; }
+      set
+      {
+        if (value == weixin) return;
+        weixin = value;
+        NotifyOfPropertyChange(() => Weixin);
       }
     }
 

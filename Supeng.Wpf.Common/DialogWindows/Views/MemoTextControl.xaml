@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:Supeng.Wpf.Common.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid HorizontalAlignment="Stretch">
         <controls:EsuMemoText Text="{Binding Text,Mode=TwoWay}"/>
     </Grid>
 </UserControl>

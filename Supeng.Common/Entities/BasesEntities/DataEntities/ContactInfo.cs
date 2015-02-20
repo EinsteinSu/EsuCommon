@@ -9,6 +9,7 @@
     private string phone;
     private string qq;
     private string user;
+    private string weixin;
 
     #region properties
 
@@ -56,6 +57,17 @@
         if (value == mobile) return;
         mobile = value;
         NotifyOfPropertyChange(() => Mobile);
+      }
+    }
+
+    public string Weixin
+    {
+      get { return weixin; }
+      set
+      {
+        if (value == weixin) return;
+        weixin = value;
+        NotifyOfPropertyChange(() => Weixin);
       }
     }
 

@@ -76,8 +76,6 @@ C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.d
 C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.dll
 C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.Sql.pdb
 C:\Users\ESU\Documents\Esu\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Data.pdb
-C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.Tests.dll.CodeAnalysisLog.xml
-C:\Users\Einstein\Desktop\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.Tests.dll.lastcodeanalysissucceeded
 C:\Users\esu\Documents\Hrc\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.Tests.dll
 C:\Users\esu\Documents\Hrc\EsuCommon\Supeng.Common.Tests\bin\Debug\Supeng.Common.Tests.pdb
 C:\Users\esu\Documents\Hrc\EsuCommon\Supeng.Common.Tests\bin\Debug\Caliburn.Micro.dll

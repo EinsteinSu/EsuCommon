@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:views="clr-namespace:Supeng.Silverlight.Controls.Views"
-    mc:Ignorable="d" Width="400" Height="300" Title="DialogWindowView"
+    mc:Ignorable="d" Width="400" Height="300" Title="DialogWindowView" FontSize="{Binding FontSize}"
     >
     <Grid>
         <Grid.RowDefinitions>
@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{Binding Content}"/>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Margin="5" Content="确定" Width="80" Command="{Binding OkCommand}" />
-            <Button Margin="5" Content="取消" Width="80" Command="{Binding CancelCommand}" />
+            <Button Margin="5" Content="{Binding OkButtonName}" Width="80" Command="{Binding OkCommand}" Visibility="{Binding OkButtonVisibility}"/>
+            <Button Margin="5" Content="{Binding CancelButtonName}" Width="80" Command="{Binding CancelCommand}" Visibility="{Binding CancelButtonVisibility}"/>
         </StackPanel>
         <views:EsuProgressView Grid.Row="1" DataContext="{Binding Progress}" />
     </Grid>

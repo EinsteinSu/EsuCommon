@@ -50,12 +50,17 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
       get { return string.Empty; }
     }
 
-    public int Height
+    public virtual double FontSize
+    {
+      get { return 12; }
+    }
+
+    public virtual int Height
     {
       get { return 400; }
     }
 
-    public int Width
+    public virtual int Width
     {
       get { return 400; }
     }
@@ -127,8 +132,8 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
           }
           else
           {
-            window.Height = 400;
-            window.Width = 400;
+            window.MinHeight = Height;
+            window.MinWidth = Width;
           }
         }
       }
@@ -137,11 +142,43 @@ namespace Supeng.Silverlight.Controls.ViewModels.DialogWindows
     private void SaveLayout()
     {
       string templateFileName = string.Format("{0}.txt", TemplateName);
+      //not allow window's height less than min height(width too)
+      if (window.Width < Width)
+        window.Width = Width;
+      if (window.Height < Height)
+        window.Height = Height;
       string layout = string.Format("{0},{1}", window.Width, window.Height);
       StreamHelper.WriteText(templateFileName, layout);
     }
 
     protected abstract string DataCheck();
+
+
+    public virtual string OkButtonName
+    {
+      get { return "确定"; }
+    }
+
+    public virtual string CancelButtonName
+    {
+      get { return "取消"; }
+    }
+
+    public virtual Visibility OkButtonVisibility
+    {
+      get
+      {
+        return Visibility.Visible;
+      }
+    }
+
+    public virtual Visibility CancelButtonVisibility
+    {
+      get
+      {
+        return Visibility.Visible;
+      }
+    }
 
     protected virtual void OkClick()
     {

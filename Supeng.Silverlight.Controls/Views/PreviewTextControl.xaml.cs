@@ -40,7 +40,7 @@ namespace Supeng.Silverlight.Controls.Views
 
     private void PreviewClick(object sender, RoutedEventArgs e)
     {
-      DialogWindowHelper.ShowDialogWindow(new MemoTextWindowViewModel(new MemoTextControl(), Text), null);
+      DialogWindowHelper.ShowDialogWindow(new MemoTextWindowViewModel(new MemoTextControl(), Text, "template"), null);
     }
   }
 }
