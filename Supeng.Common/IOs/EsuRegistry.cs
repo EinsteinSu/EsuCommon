@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Win32;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.ObserveCollection;
@@ -46,8 +47,15 @@ namespace Supeng.Common.IOs
       var data = Registry.LocalMachine.GetValue(key);
       if (data == null || string.IsNullOrEmpty(data.ToString()))
       {
-        Registry.LocalMachine.SetValue(key, defaultData);
-        data = defaultData;
+        try
+        {
+          Registry.LocalMachine.SetValue(key, defaultData);
+          data = defaultData;
+        }
+        catch
+        {
+          return defaultData;
+        }
       }
       return data.ToString();
     }
