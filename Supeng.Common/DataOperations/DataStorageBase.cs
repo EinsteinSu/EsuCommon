@@ -33,6 +33,8 @@ namespace Supeng.Common.DataOperations
 
     public abstract IDbCommand GetCommand(string sql, IDataParameter[] parameters = null, CommandType cmdType = CommandType.Text);
 
+    public abstract void ReadData(string sql, Action<IDataReader> todoAction, IDataParameter[] parameters = null, CommandType cmdType = CommandType.Text, IExceptionHandle exceptionHandle = null);
+
     public void ExecuteInBackground(string sql, IBackgroundData<int> backgroundData, IDataParameter[] parameters = null,
       CommandType type = CommandType.Text)
     {

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFilter\FilterModel.cs" />
+    <Compile Include="DataReaderExtensions.cs" />
     <Compile Include="EsuDataEditCollection.cs" />
     <Compile Include="DataFilter\FilterCollection.cs" />
     <Compile Include="SqlScriptCreator.cs" />

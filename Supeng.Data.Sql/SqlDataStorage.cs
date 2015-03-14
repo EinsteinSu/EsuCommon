@@ -75,6 +75,39 @@ namespace Supeng.Data.Sql
       return command;
     }
 
+    public override void ReadData(string sql, Action<IDataReader> todoAction, IDataParameter[] parameters = null, CommandType cmdType = CommandType.Text,
+      IExceptionHandle exceptionHandle = null)
+    {
+      var conn = new SqlConnection(connectionString);
+      conn.Open();
+      try
+      {
+        var command = new SqlCommand(sql, conn) { CommandType = cmdType };
+        ProcessCommandParameter(command, parameters);
+        SqlDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+          if (Cancellation.Token.IsCancellationRequested)
+            break;
+          if (todoAction != null)
+            todoAction(reader);
+        }
+      }
+      catch (SqlException exception)
+      {
+        if (exceptionHandle != null)
+        {
+          exceptionHandle.Handle(exception);
+        }
+        else
+          throw new Exception(exception.Message);
+      }
+      finally
+      {
+        conn.Close();
+      }
+    }
+
     public override void ExecuteWithAPM(string sql, IBackgroundData<int> backgroundData,
       IDataParameter[] parameters = null, CommandType type = CommandType.Text)
     {

@@ -22,7 +22,7 @@ namespace Supeng.Common.Tests
     [Test]
     public void TestJedx()
     {
-      var data = (decimal) 11234115.12D;
+      var data = (decimal)11234115.12D;
       Console.WriteLine(data.GetJedx());
     }
 
@@ -33,6 +33,15 @@ namespace Supeng.Common.Tests
       var sb = new StringBuilder();
       sb.EsuAppendFormat(data, "1", "2");
       Assert.AreEqual("Test1,2" + Environment.NewLine, sb.ToString());
+    }
+
+    [Test]
+    public void GetPassword()
+    {
+      string data = "VjMgLJhGdw0=";
+      var security = new StringSecurity();
+      var password = security.DecryptString(data);
+      Console.WriteLine(password);
     }
   }
 }
