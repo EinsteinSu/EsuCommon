@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChildWindows\IChildWindow.cs" />
+    <Compile Include="Controls\EsuCommand.cs" />
     <Compile Include="Datetimes\DateTimeExtensions.cs" />
     <Compile Include="Entities\BasesEntities\ActionBase.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ApplicationFunction.cs" />

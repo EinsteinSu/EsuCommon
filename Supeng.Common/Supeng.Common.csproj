@@ -55,6 +55,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\EsuCommand.cs" />
     <Compile Include="Controls\IProgress.cs" />
     <Compile Include="DataOperations\DataSaveExtensions.cs" />
     <Compile Include="DataOperations\IDataSave.cs" />
