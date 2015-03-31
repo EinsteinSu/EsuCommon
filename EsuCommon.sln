@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Common", "Supeng.Common\Supeng.Common.csproj", "{808C1F27-1D44-44B5-BDDA-3047AA98052A}"
 EndProject
@@ -90,6 +90,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.SmsMessage.Common", "Supeng.SmsMessage.Common\Supeng.SmsMessage.Common.csproj", "{8E69D9F8-8469-4685-A671-270396F90F97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.SmsMessage.Common.Test", "Supeng.SmsMessage.Common.Test\Supeng.SmsMessage.Common.Test.csproj", "{31A09193-91D4-440B-8994-8ED3A053B602}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Data.MsTest", "Supeng.Data.MsTest\Supeng.Data.MsTest.csproj", "{90DC7D8D-ED29-4249-945B-1259E4074E24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Data.Sql.MsTest", "Supeng.Data.Sql.MsTest\Supeng.Data.Sql.MsTest.csproj", "{CA021E3D-AFD5-492B-9A9F-4C21946218B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -430,6 +434,26 @@ Global
 		{31A09193-91D4-440B-8994-8ED3A053B602}.Hrp-Release|Any CPU.Build.0 = Release|Any CPU
 		{31A09193-91D4-440B-8994-8ED3A053B602}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31A09193-91D4-440B-8994-8ED3A053B602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Hrc-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Hrc-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Hrc-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Hrc-Release|Any CPU.Build.0 = Release|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Hrp-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Hrp-Release|Any CPU.Build.0 = Release|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DC7D8D-ED29-4249-945B-1259E4074E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Hrc-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Hrc-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Hrc-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Hrc-Release|Any CPU.Build.0 = Release|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Hrp-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Hrp-Release|Any CPU.Build.0 = Release|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -470,5 +494,7 @@ Global
 		{734ED8B6-F2E0-4EEA-AF02-6C81E5F30A4E} = {C16A95C6-845D-4F5A-BB2C-D563A5DC2057}
 		{8E69D9F8-8469-4685-A671-270396F90F97} = {9787623C-DA61-4332-933E-562BD1EB5528}
 		{31A09193-91D4-440B-8994-8ED3A053B602} = {9787623C-DA61-4332-933E-562BD1EB5528}
+		{90DC7D8D-ED29-4249-945B-1259E4074E24} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
+		{CA021E3D-AFD5-492B-9A9F-4C21946218B4} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 	EndGlobalSection
 EndGlobal

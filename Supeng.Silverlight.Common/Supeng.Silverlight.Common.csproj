@@ -83,6 +83,7 @@
     <Compile Include="Entities\BasesEntities\DataEntities\UserInfoBase.cs" />
     <Compile Include="Entities\ControlEntities\EsuToolbarButton.cs" />
     <Compile Include="Entities\ControlEntities\NavBarGroupItem\EsuDisplayNavBarGroup.cs" />
+    <Compile Include="Entities\EsuCrudInfoBase.cs" />
     <Compile Include="Entities\EsuInfoBase.cs" />
     <Compile Include="Entities\ObserveCollection\ChangeData.cs" />
     <Compile Include="Entities\ObserveCollection\ChangesCollection.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
     <Compile Include="Interfaces\Controls\IProgress.cs" />
+    <Compile Include="Interfaces\ICrud.cs" />
     <Compile Include="Interfaces\IDataLoad.cs" />
     <Compile Include="Interfaces\IPropertiesRefresh.cs" />
     <Compile Include="IOs\StreamHelper.cs" />

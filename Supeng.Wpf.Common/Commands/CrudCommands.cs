@@ -11,8 +11,8 @@ namespace Supeng.Wpf.Common.Commands
 
     public CrudCommands(ICrud crud)
     {
-      addCommand = new DelegateCommand(crud.Add, () => true);
-      modifyCommand = new DelegateCommand(crud.Modify, () => true);
+      addCommand = new DelegateCommand(crud.Create, () => true);
+      modifyCommand = new DelegateCommand(crud.Update, () => true);
       deleteCommand = new DelegateCommand(crud.Delete, () => true);
     }
 

@@ -2,9 +2,9 @@
 {
   public interface ICrud
   {
-    void Add();
+    void Create();
 
-    void Modify();
+    void Update();
 
     void Delete();
   }
