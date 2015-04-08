@@ -17,6 +17,7 @@
             <Button Content="Script" Command="{Binding GenerateScript}" Width="60" Margin="5" />
             <Button Content="Creator" Command="{Binding GenerateCreator}" Width="60" Margin="5" />
             <Button Content="Entities" Command="{Binding EntitiesCreator}" Width="60" Margin="5" />
+            <Button Content="Procedures" Command="{Binding GetProcedureCommand}" Width="60" Margin="5" />
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

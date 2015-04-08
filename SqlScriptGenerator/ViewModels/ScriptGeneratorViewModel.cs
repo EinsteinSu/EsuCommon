@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.Xpf.Bars;
 using SqlScriptGenerator.Entities;
+using Supeng.Common.Controls;
 using Supeng.Common.Entities;
 using Supeng.Common.Entities.BasesEntities;
 using Supeng.Common.IOs;
@@ -17,6 +18,7 @@ namespace SqlScriptGenerator.ViewModels
     private readonly DelegateCommand entitiesCreator;
     private readonly DelegateCommand generateCreator;
     private readonly DelegateCommand generateScript;
+    private readonly EsuCommand getProcedureCommand;
     private readonly DelegateCommand readCommand;
     private ColumnCollection columnCollection;
     private EsuConnection connection;
@@ -30,6 +32,7 @@ namespace SqlScriptGenerator.ViewModels
       generateCreator = new DelegateCommand(Creator, () => true);
       generateScript = new DelegateCommand(Script, () => true);
       entitiesCreator = new DelegateCommand(Entities, () => true);
+      getProcedureCommand = new EsuCommand(GetProcedure);
     }
 
     #region properties
@@ -104,6 +107,11 @@ namespace SqlScriptGenerator.ViewModels
       get { return entitiesCreator; }
     }
 
+    public EsuCommand GetProcedureCommand
+    {
+      get { return getProcedureCommand; }
+    }
+
     protected virtual void Read()
     {
       var viewModel = new ConnectionEditViewModel(connection);
@@ -121,6 +129,12 @@ namespace SqlScriptGenerator.ViewModels
         Result = columnCollection.GetCreatorString();
     }
 
+    protected virtual void GetProcedure()
+    {
+      if (columnCollection != null)
+        Result = columnCollection.GetAllProcedure();
+    }
+
     protected virtual void Script()
     {
       var sb = new StringBuilder();
@@ -128,8 +142,8 @@ namespace SqlScriptGenerator.ViewModels
       {
         sb.AppendLine(columnCollection.GetMappingParameters());
         sb.AppendLine(columnCollection.GetInsertSqlScript());
-        sb.AppendLine(columnCollection.GetUpdateSql());
-        sb.AppendLine(columnCollection.GetDeleteSql());
+        sb.AppendLine(columnCollection.GetUpdateSqlScript());
+        sb.AppendLine(columnCollection.GetDeleteSqlScript());
         Result = sb.ToString();
       }
     }

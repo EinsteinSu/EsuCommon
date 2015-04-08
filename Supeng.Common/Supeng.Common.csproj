@@ -59,6 +59,7 @@
     <Compile Include="Controls\IProgress.cs" />
     <Compile Include="DataOperations\DataSaveExtensions.cs" />
     <Compile Include="DataOperations\IDataSave.cs" />
+    <Compile Include="DataOperations\IDataSaveWithProcedure.cs" />
     <Compile Include="Entities\BasesEntities\DataEntities\ApplicationFunction.cs" />
     <Compile Include="Entities\BasesEntities\EsuUpgradeInfo.cs" />
     <Compile Include="Entities\BasesEntities\MutiplySelectionEntityBase.cs" />

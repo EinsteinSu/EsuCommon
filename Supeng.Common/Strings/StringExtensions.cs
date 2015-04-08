@@ -58,10 +58,21 @@ namespace Supeng.Common.Strings
       {
         string first = name.Substring(0, 1);
         string other = name.Substring(1, name.Length - 1);
-        return String.Format("{0}{1}", first.ToUpper(), other.ToLower());
+        return String.Format("{0}{1}", first.ToUpper(), other);
       }
       return String.Empty;
     }
+
+      public static string GetLowerCaseName(this string name)
+      {
+          if (!String.IsNullOrEmpty(name))
+          {
+              string first = name.Substring(0, 1);
+              string other = name.Substring(1, name.Length - 1);
+              return String.Format("{0}{1}", first.ToLower(), other);
+          }
+          return String.Empty;
+      }
 
     public static string SplitToString(this IList<string> collection, char c)
     {

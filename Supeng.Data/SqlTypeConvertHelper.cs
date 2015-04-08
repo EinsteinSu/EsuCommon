@@ -12,7 +12,9 @@
         return "int";
       if (sqlType.Contains("decimal"))
         return "decimal";
-      return string.Empty;
+      if (sqlType.Contains("bit"))
+        return "bool";
+      return "string";
     }
   }
 }

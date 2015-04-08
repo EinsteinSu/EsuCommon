@@ -105,6 +105,30 @@ namespace Supeng.Common.DataOperations
         allDone();
     }
 
+    public static void SaveWithProcedure<T>(this EsuInfoCollection<T> collection, DataStorageBase storage,
+      IDataSaveWithProcedure<T> dataSave,
+      ExecuteType type = ExecuteType.Normal, string userID = "System",
+      IDataSaveLog<T> log = null, IExceptionHandle handleException = null, Action startSave = null,
+      Action<ChangeData<T>> doSave = null, Action allDone = null)
+      where T : EsuInfoBase, new()
+    {
+      if (startSave != null)
+        startSave();
+      foreach (var change in collection.ChangedCollection)
+      {
+        storage.Execute(dataSave.GetProcedureName(), dataSave.MappingParameters(change.Data), handleException,
+               CommandType.StoredProcedure);
+        if (log != null)
+          ExecuteSqlScriptByType(log.LogSqlScript(), log.MappingParameters(change, userID), storage, type,
+            handleException);
+        if (doSave != null)
+          doSave(change);
+      }
+      collection.AcceptChanges();
+      if (allDone != null)
+        allDone();
+    }
+
     public static void SaveSingleRecord<T>(this T data, EsuDataState state, DataStorageBase storage,
       IDataSave<T> dataSave,
       IDataSaveLog<T> log = null, ExecuteType type = ExecuteType.Normal, string userID = "System",
@@ -137,12 +161,39 @@ namespace Supeng.Common.DataOperations
         allDone();
     }
 
+    public static void SaveSingleRecordWithProcedure<T>(this T data, EsuDataState state, DataStorageBase storage,
+      IDataSaveWithProcedure<T> dataSave,
+      IDataSaveLog<T> log = null, ExecuteType type = ExecuteType.Normal, string userID = "System",
+      IExceptionHandle handleException = null, Action startSave = null, Action allDone = null) where T : EsuInfoBase
+    {
+      if (startSave != null)
+        startSave();
+      storage.Execute(dataSave.GetProcedureName(), dataSave.MappingParameters(data), handleException,
+              CommandType.StoredProcedure);
+      if (log != null)
+      {
+        var change = new ChangeData<T> { State = state, Data = data, ChangeTime = DateTime.Now };
+        ExecuteSqlScriptByType(log.LogSqlScript(), log.MappingParameters(change, userID), storage, type,
+          handleException);
+      }
+      if (allDone != null)
+        allDone();
+    }
+
     public static void Insert<T>(this T data, DataStorageBase storage, IDataSave<T> dataSave, IDataSaveLog<T> log = null,
       ExecuteType type = ExecuteType.Normal, string userID = "System",
       IExceptionHandle handleException = null, Action startSave = null, Action allDone = null) where T : EsuInfoBase
     {
       SaveSingleRecord(data, EsuDataState.Added, storage, dataSave, log, type, userID, handleException, startSave,
         allDone);
+    }
+
+    public static void InsertWithProcedure<T>(this T data, DataStorageBase storage, IDataSaveWithProcedure<T> dataSave, IDataSaveLog<T> log = null,
+      ExecuteType type = ExecuteType.Normal, string userID = "System",
+      IExceptionHandle handleException = null, Action startSave = null, Action allDone = null) where T : EsuInfoBase
+    {
+      SaveSingleRecordWithProcedure(data, EsuDataState.Added, storage, dataSave, log, type, userID, handleException,
+        startSave, allDone);
     }
 
     public static IList<IDbCommand> InsertCommand<T>(this T data, DataStorageBase storage, IDataSave<T> dataSave,
@@ -169,6 +220,14 @@ namespace Supeng.Common.DataOperations
         allDone);
     }
 
+    public static void UpdateWithProcedure<T>(this T data, DataStorageBase storage, IDataSaveWithProcedure<T> dataSave, IDataSaveLog<T> log = null,
+      ExecuteType type = ExecuteType.Normal, string userID = "System",
+      IExceptionHandle handleException = null, Action startSave = null, Action allDone = null) where T : EsuInfoBase
+    {
+      SaveSingleRecordWithProcedure(data, EsuDataState.Modified, storage, dataSave, log, type, userID, handleException, startSave,
+        allDone);
+    }
+
     public static IList<IDbCommand> UpdateCommand<T>(this T data, DataStorageBase storage, IDataSave<T> dataSave,
       string userID = "System", IDataSaveLog<T> log = null)
       where T : EsuInfoBase, new()
@@ -190,6 +249,14 @@ namespace Supeng.Common.DataOperations
       IExceptionHandle handleException = null, Action startSave = null, Action allDone = null) where T : EsuInfoBase
     {
       SaveSingleRecord(data, EsuDataState.Deleted, storage, dataSave, log, type, userID, handleException, startSave,
+        allDone);
+    }
+
+    public static void DeleteWithProcedure<T>(this T data, DataStorageBase storage, IDataSaveWithProcedure<T> dataSave, IDataSaveLog<T> log = null,
+      ExecuteType type = ExecuteType.Normal, string userID = "System",
+      IExceptionHandle handleException = null, Action startSave = null, Action allDone = null) where T : EsuInfoBase
+    {
+      SaveSingleRecordWithProcedure(data, EsuDataState.Deleted, storage, dataSave, log, type, userID, handleException, startSave,
         allDone);
     }
 

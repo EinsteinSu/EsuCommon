@@ -19,6 +19,7 @@ namespace SqlScriptGenerator.Entities
     private string name;
     private bool pk;
     private string type;
+    private bool notNull;
 
     #region properties
 
@@ -77,6 +78,21 @@ namespace SqlScriptGenerator.Entities
       }
     }
 
+    public string ProcedureType
+    {
+      get { return string.Format("{0}{1}", type, notNull ? string.Empty : " = NULL"); }
+    }
+
+    public bool NotNull
+    {
+      get { return notNull; }
+      set
+      {
+        if (value.Equals(notNull)) return;
+        notNull = value;
+        NotifyOfPropertyChange(() => NotNull);
+      }
+    }
     #endregion
 
     [Display(AutoGenerateField = false)]
@@ -98,12 +114,14 @@ namespace SqlScriptGenerator.Entities
 
     public string PrivateProperty
     {
-      get { return string.Format("private {0} {1};", type.ConvertToSystemType(), name.ToLower()); }
+      get { return string.Format("private {0} {1};", type.ConvertToSystemType(), name.GetLowerCaseName()); }
     }
 
     public string Property
     {
-      get { return string.Format(@"public {0} {1}
+      get
+      {
+        return string.Format(@"public {0} {1}
     【
       get 【 return {2}; 】
       set
@@ -112,12 +130,13 @@ namespace SqlScriptGenerator.Entities
         {2} = value;
         NotifyOfPropertyChange(() => {1});
       】
-    】{3}", type.ConvertToSystemType(), name.GetPascalName(), name.ToLower(), Environment.NewLine).ReplaceBracket(); }
+    】{3}", type.ConvertToSystemType(), name.GetPascalName(), name.GetLowerCaseName(), Environment.NewLine).ReplaceBracket();
+      }
     }
 
     public string ParameterName
     {
-      get { return string.Format("@{0}", name.ToLower()); }
+      get { return string.Format("@{0}", name); }
     }
 
     public string DataEntityName
@@ -142,6 +161,7 @@ namespace SqlScriptGenerator.Entities
         name = reader["columnName"].ToString(),
         pk = reader["primekey"].ToString().Equals("1"),
         type = reader["type"].ToString(),
+        notNull = reader["empty"].ToString().Equals("0"),
         Description = reader["des"].ToString()
       };
       return column;
@@ -270,7 +290,7 @@ order by object_name(a.id),a.colorder";
         insertColumns.TrimEnd(','), insertValue.TrimEnd(','));
     }
 
-    public string GetUpdateSql()
+    public string GetUpdateSqlScript()
     {
       string setColumns = string.Empty;
       int i = 0;
@@ -286,7 +306,7 @@ order by object_name(a.id),a.colorder";
       return string.Format("return \"Update {0} set {1} \";", tableName, setColumns.TrimEnd(','));
     }
 
-    public string GetDeleteSql()
+    public string GetDeleteSqlScript()
     {
       Column pk = this.FirstOrDefault(f => f.Pk);
       if (pk != null)
@@ -298,5 +318,97 @@ order by object_name(a.id),a.colorder";
     }
 
     #endregion
+
+    #region get sql scripts with procedure
+    public string GetInsertSqlScriptWithProcedure()
+    {
+      string insertColumns = string.Empty;
+      string insertValue = string.Empty;
+      var sb = new StringBuilder();
+      sb.AppendLine(string.Format("CREATE PROCEDURE {0}Insert", tableName));
+      sb.AppendLine(ProcedureParams);
+      sb.AppendLine("AS");
+      foreach (Column column in this.Where(w => w.Choice))
+      {
+        insertColumns += string.Format("{0},\r", column.Name);
+        insertValue += string.Format("{0},\r", column.ParameterName);
+      }
+      sb.AppendLine(string.Format("INSERT INTO {0}(", tableName));
+      sb.AppendLine(insertColumns.Trim().TrimEnd(',') + ")");
+      sb.AppendLine("VALUES(");
+      sb.AppendLine(insertValue.Trim().TrimEnd(',') + ")");
+      sb.AppendLine("GO");
+      return sb.ToString();
+    }
+
+    public string GetUpdateSqlScriptWithProcedure()
+    {
+      string setColumns = string.Empty;
+      var sb = new StringBuilder();
+      sb.AppendLine(string.Format("CREATE PROCEDURE {0}Update", tableName));
+      sb.AppendLine(ProcedureParams);
+      sb.AppendLine("AS");
+      setColumns = this.Where(w => !w.Pk && w.Choice)
+          .Aggregate(setColumns, (current, column) => current + string.Format("{0},\r", column.GetSetValue()));
+      sb.AppendLine(string.Format("UPDATE {0}", tableName));
+      sb.AppendLine("SET " + setColumns.Trim().TrimEnd(','));
+      Column pk = this.FirstOrDefault(f => f.Pk);
+      if (pk != null)
+        sb.AppendLine(pk.GetWhereCondition());
+      sb.AppendLine("GO");
+      return sb.ToString();
+    }
+
+    public string GetDeleteSqlScriptWithProcedure()
+    {
+      Column pk = this.FirstOrDefault(f => f.Pk);
+      if (pk != null)
+      {
+        string whereCondition = pk.GetWhereCondition();
+        return string.Format("CREATE PROCEDURE {0}Delete\r {1}\r AS\r DELETE FROM {0} {2}\rGO", tableName,
+            string.Format("{0} {1}", pk.ParameterName, pk.ProcedureType), whereCondition);
+      }
+      return string.Empty;
+    }
+    #endregion
+
+    private string GetExistProcedure(string operation)
+    {
+      var sb = new StringBuilder();
+      string procedureName = string.Format("{0}{1}", tableName, operation);
+      sb.AppendLine(
+          string.Format(
+              "IF EXISTS (SELECT * FROM sys.objects WHERE WHERE name = '{0}' AND type = 'P'", procedureName));
+      sb.AppendLine(string.Format("DROP PROCEDURE [dbo].[{0}]", procedureName));
+      sb.AppendLine("GO");
+      return sb.ToString();
+    }
+
+    private string ProcedureParams
+    {
+      get
+      {
+        string param = this.Where(w => w.Choice)
+            .Aggregate(string.Empty,
+                (current, column) =>
+                    current + string.Format("{0} {1},\r", column.ParameterName, column.ProcedureType));
+        return param.Trim().TrimEnd(',');
+      }
+    }
+
+    public string GetAllProcedure()
+    {
+      var sb = new StringBuilder();
+      sb.AppendLine(string.Format("/*{0} insert procedure*/", tableName));
+      sb.AppendLine(GetExistProcedure("Insert"));
+      sb.AppendLine(GetInsertSqlScriptWithProcedure());
+      sb.AppendLine(string.Format("/*{0} update procedure*/", tableName));
+      sb.AppendLine(GetExistProcedure("Update"));
+      sb.AppendLine(GetUpdateSqlScriptWithProcedure());
+      sb.AppendLine(string.Format("/*{0} delete procedure*/", tableName));
+      sb.AppendLine(GetExistProcedure("Delete"));
+      sb.AppendLine(GetDeleteSqlScriptWithProcedure());
+      return sb.ToString();
+    }
   }
 }
