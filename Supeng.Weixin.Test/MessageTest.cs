@@ -26,7 +26,7 @@ namespace Supeng.Weixin.Test
         {
             var weixin = new Common.Weixin("wx22e0f747c0c25ab6",
                 "DMLT3v8_c2dUK3KOKnBkSRixC3DrW67wS7HtOf20IHHWcK8ZESjg4EKCJPofkjde");
-            var result = weixin.SendTextMessage(new TextMessage("This is a test message") { touser = "76507593" });
+            var result = weixin.SendTextMessage(new TextMessage("恒锐消防咨询测试微信内容") { touser = "76507593" });
             Console.WriteLine(result);
             Assert.IsTrue(result.errmsg.Equals("ok", StringComparison.InvariantCultureIgnoreCase));
         }
