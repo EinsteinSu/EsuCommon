@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace Supeng.Common.Entities.ObserveCollection
 {
-  public class EsuInfoCollection<T> : ObservableCollection<T>, ICloneable where T : EsuInfoBase
+    public class EsuInfoCollection<T> : AsyncObservableCollection<T>, ICloneable where T : EsuInfoBase
   {
     private ChangesCollection<T> changedCollection;
     private T currentItem;

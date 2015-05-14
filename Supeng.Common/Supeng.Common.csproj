@@ -75,6 +75,7 @@
     <Compile Include="Entities\BasesEntities\EsuConnectionBase.cs" />
     <Compile Include="Entities\BasesEntities\TreeEntityBase.cs" />
     <Compile Include="Entities\EsuInfoBase.cs" />
+    <Compile Include="Entities\ObserveCollection\AsyncObservableCollection.cs" />
     <Compile Include="Entities\ObserveCollection\ChangeData.cs" />
     <Compile Include="Entities\ObserveCollection\ChangesCollection.cs" />
     <Compile Include="Entities\ObserveCollection\CollectionWithCurrentItem.cs" />
