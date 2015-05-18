@@ -1,18 +1,25 @@
-﻿using System;
+﻿#region
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+#endregion
 
 namespace Supeng.Common.Strings
 {
   public static class NameHelper
   {
-    readonly static IList<string> CompoundNames = new[] { "欧阳", "慕容" };
+    private static readonly IList<string> CompoundNames = new[] {"欧阳", "慕容"};
 
     public static string GetFirstName(this string name)
     {
-
+      if (string.IsNullOrEmpty(name))
+        return string.Empty;
+      foreach (var compoundName in CompoundNames)
+      {
+        if (name.StartsWith(compoundName))
+          return compoundName;
+      }
+      return name.Substring(0, 1);
     }
   }
 }
