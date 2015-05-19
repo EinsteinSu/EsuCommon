@@ -15,11 +15,11 @@ namespace Supeng.Wpf.Common.Tests
       InitializeComponent();
 
       var collection = new EsuToolBarButtonCollection(EsuButtonToolBarType.TextAndImage);
-      var button = new EsuButtonBase("Test", 0, DoAction) {Description = "Test button"};
+      var button = new EsuButtonBase("Test", 0, DoAction) { Description = "Test button" };
       collection.Add(button);
-      collection.Add((EsuButtonBase) button.Clone());
-      collection.Add((EsuButtonBase) button.Clone());
-      collection.Add((EsuButtonBase) button.Clone());
+      collection.Add((EsuButtonBase)button.Clone());
+      collection.Add((EsuButtonBase)button.Clone());
+      collection.Add((EsuButtonBase)button.Clone());
 
       DataContext = collection;
     }
@@ -32,6 +32,14 @@ namespace Supeng.Wpf.Common.Tests
 
   public class TestData : EsuInfoBase
   {
+    public TestData() { }
+
+    public TestData(string id, string description)
+    {
+      ID = id;
+      Description = description;
+    }
+
     [Display(Name = @"ID")]
     public new string ID
     {

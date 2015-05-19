@@ -125,6 +125,7 @@
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowWithListViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\EsuExceptionWindowBase.cs" />
+    <Compile Include="DialogWindows\ViewModels\FindItemWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\LeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\MemoEditWindowViewModel.cs" />
@@ -132,11 +133,17 @@
     <Compile Include="DialogWindows\ViewModels\MultipleSelectionWindowBaseViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\TreeCollectionSelectionWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\TreeLeftRightWindowViewModelBase.cs" />
+    <Compile Include="DialogWindows\Views\DefaultGridControl.xaml.cs">
+      <DependentUpon>DefaultGridControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DialogWindows\Views\DocumentViewWindow.xaml.cs">
       <DependentUpon>DocumentViewWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\ExceptionControl.xaml.cs">
       <DependentUpon>ExceptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\FindItemControl.xaml.cs">
+      <DependentUpon>FindItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\GridSelectionControl.xaml.cs">
       <DependentUpon>GridSelectionControl.xaml</DependentUpon>
@@ -262,6 +269,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DialogWindows\Views\DefaultGridControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DialogWindows\Views\DialogWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogWindows\Views\ExceptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\FindItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

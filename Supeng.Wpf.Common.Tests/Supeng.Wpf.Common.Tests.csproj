@@ -79,6 +79,9 @@
     <Compile Include="CollectionSearchWithQueryTest.xaml.cs">
       <DependentUpon>CollectionSearchWithQueryTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindowsTest.xaml.cs">
+      <DependentUpon>DialogWindowsTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EsuInfoCollectionTest.xaml.cs">
       <DependentUpon>EsuInfoCollectionTest.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DataCollectionEditWindowTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindowsTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
