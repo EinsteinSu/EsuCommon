@@ -124,11 +124,13 @@
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowWithListViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\EntityPreviewWindow.cs" />
     <Compile Include="DialogWindows\ViewModels\EsuExceptionWindowBase.cs" />
     <Compile Include="DialogWindows\ViewModels\FindItemWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\LeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\MemoEditWindowViewModel.cs" />
+    <Compile Include="DialogWindows\ViewModels\PreviewWindowBase.cs" />
     <Compile Include="DialogWindows\ViewModels\ReportWindowBase.cs" />
     <Compile Include="DialogWindows\ViewModels\MultipleSelectionWindowBaseViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\TreeCollectionSelectionWindowViewModel.cs" />
@@ -165,6 +167,9 @@
     </Compile>
     <Compile Include="DialogWindows\Views\MultipleSelectionControl.xaml.cs">
       <DependentUpon>MultipleSelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\Views\PreviewEntityControl.xaml.cs">
+      <DependentUpon>PreviewEntityControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DialogWindows\Views\TreeSelectionControl.xaml.cs">
       <DependentUpon>TreeSelectionControl.xaml</DependentUpon>
@@ -322,6 +327,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DialogWindows\Views\MultipleSelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\Views\PreviewEntityControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

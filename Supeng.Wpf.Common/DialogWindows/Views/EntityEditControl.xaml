@@ -8,6 +8,6 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <dxlc:DataLayoutControl CurrentItem="{Binding Data,Mode=TwoWay}" />
+        <dxlc:DataLayoutControl CurrentItem="{Binding Data,Mode=TwoWay}"/>
     </Grid>
 </UserControl>
