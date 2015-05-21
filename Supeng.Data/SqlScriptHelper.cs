@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace Supeng.Data
 {
@@ -34,6 +36,17 @@ namespace Supeng.Data
           conditions.Add(string.Format("{0} Like '%{1}%'", column.Key, column.Value));
       }
       return conditions;
+    }
+
+    public static string GetInFilter(this IList<string> list, bool isChar = false)
+    {
+      if (isChar)
+      {
+        var newlist = from data in list
+                      select string.Format("'{0}'", data);
+        return string.Format(" In({0})", string.Join(",", newlist));
+      }
+      return string.Format(" In({0})", string.Join(",", list));
     }
   }
 }

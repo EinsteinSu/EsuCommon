@@ -8,7 +8,7 @@ namespace Supeng.Data.Sql.MsTest
   [TestClass]
   public class SqlStorageTest : DataTestBase
   {
-    
+
     [TestInitialize]
     public void Init()
     {
@@ -28,6 +28,16 @@ namespace Supeng.Data.Sql.MsTest
     {
       string sql = "Delete from TestTable1";
       Storage.Execute(sql);
+    }
+
+    [TestMethod]
+    public void TestGetInFilter()
+    {
+      var list = new List<string>();
+      list.Add("1");
+      list.Add("2");
+      Assert.AreEqual(" In(1,2)", list.GetInFilter());
+      Assert.AreEqual(" In('1','2')", list.GetInFilter(true));
     }
   }
 }
