@@ -59,6 +59,7 @@
     <Compile Include="StringsTest.cs" />
     <Compile Include="TestConnection.cs" />
     <Compile Include="TimeTests.cs" />
+    <Compile Include="TreeCollectionUtilityTests.cs" />
     <Compile Include="VersionTests.cs" />
   </ItemGroup>
   <ItemGroup>

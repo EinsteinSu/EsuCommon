@@ -84,10 +84,12 @@
     <Compile Include="Entities\ObserveCollection\EsuInfoCollection.cs" />
     <Compile Include="Entities\EsuVersion.cs" />
     <Compile Include="Entities\EsuCrudInfoBase.cs" />
+    <Compile Include="Entities\Utilitis\TreeCollectionUtility.cs" />
     <Compile Include="Exceptions\ExceptionExtensions.cs" />
     <Compile Include="Exceptions\IExceptionHandle.cs" />
     <Compile Include="Interfaces\ICrud.cs" />
     <Compile Include="Interfaces\ICrudStorage.cs" />
+    <Compile Include="Interfaces\IChecked.cs" />
     <Compile Include="Interfaces\IDataDisplay.cs" />
     <Compile Include="Interfaces\IDataLoad.cs" />
     <Compile Include="Interfaces\IUpgrade.cs" />
