@@ -13,9 +13,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <views:SearchControlView Width="160" DataContext="{Binding Search}" />
-        <dxg:GridControl Grid.Column="1" AutoPopulateColumns="True" ItemsSource="{Binding Collection}">
+        <dxg:GridControl Grid.Column="1" AutoPopulateColumns="True" ItemsSource="{Binding Collection}" TotalSummarySource="{Binding Summaries}">
             <dxg:GridControl.View>
-                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ShowTotalSummary="False"
+                <dxg:TableView x:Name="view" AutoWidth="True" AllowEditing="False" ShowTotalSummary="{Binding ShowSummary}"
                              ShowSearchPanelMode="Always"  ShowGroupPanel="False" FocusedRow="{Binding Collection.CurrentItem,Mode=TwoWay}" />
             </dxg:GridControl.View>
         </dxg:GridControl>
