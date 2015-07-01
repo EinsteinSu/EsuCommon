@@ -34,6 +34,11 @@ namespace Supeng.Common.Types
       return data.ConvertData(new DateTime(1900, 1, 1));
     }
 
+    public static DateTime? ConvertToNullValueDateTime(this string data)
+    {
+      return data.ConvertData<DateTime?>(null);
+    }
+
     public static string ConvertToCnNumber(this int num)
     {
       switch (num)
