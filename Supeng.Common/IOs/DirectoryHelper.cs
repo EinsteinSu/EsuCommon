@@ -6,11 +6,24 @@ namespace Supeng.Common.IOs
 {
   public static class DirectoryHelper
   {
+    public static string CurrentDirectory
+    {
+      get
+      {
+        var item = Assembly.GetEntryAssembly();
+        if (item == null)
+        {
+          return Environment.CurrentDirectory;
+        }
+        var location = item.Location;
+        return Path.GetDirectoryName(location);
+      }
+    }
     public static string DataDirectory
     {
       get
       {
-        string dataDirectory = string.Format("{0}\\Data\\", Environment.CurrentDirectory);
+        string dataDirectory = string.Format("{0}\\Data\\", CurrentDirectory);
         if (!Directory.Exists(dataDirectory))
           Directory.CreateDirectory(dataDirectory);
         return dataDirectory;
@@ -21,7 +34,7 @@ namespace Supeng.Common.IOs
     {
       get
       {
-        string dataDirectory = string.Format("{0}\\Images\\", Environment.CurrentDirectory);
+        string dataDirectory = string.Format("{0}\\Images\\", CurrentDirectory);
         if (!Directory.Exists(dataDirectory))
           Directory.CreateDirectory(dataDirectory);
         return dataDirectory;
@@ -32,7 +45,7 @@ namespace Supeng.Common.IOs
     {
       get
       {
-        string dataDirectory = string.Format("{0}\\Templates\\", Environment.CurrentDirectory);
+        string dataDirectory = string.Format("{0}\\Templates\\", CurrentDirectory);
         if (!Directory.Exists(dataDirectory))
           Directory.CreateDirectory(dataDirectory);
         return dataDirectory;
@@ -43,7 +56,7 @@ namespace Supeng.Common.IOs
     {
       get
       {
-        string dataDirectory = string.Format("{0}\\Temps\\", Environment.CurrentDirectory);
+        string dataDirectory = string.Format("{0}\\Temps\\", CurrentDirectory);
         if (!Directory.Exists(dataDirectory))
           Directory.CreateDirectory(dataDirectory);
         return dataDirectory;
@@ -64,7 +77,7 @@ namespace Supeng.Common.IOs
     {
       get
       {
-        string dataDirectory = string.Format("{0}\\Logs\\", Environment.CurrentDirectory);
+        string dataDirectory = string.Format("{0}\\Logs\\", CurrentDirectory);
         if (!Directory.Exists(dataDirectory))
           Directory.CreateDirectory(dataDirectory);
         return dataDirectory;

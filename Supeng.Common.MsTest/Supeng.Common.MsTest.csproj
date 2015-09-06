@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DirectoryHelperTest.cs" />
     <Compile Include="EsuRegistryTest.cs" />
     <Compile Include="EsuTimerTest.cs" />
     <Compile Include="StringReplaceTest.cs" />
