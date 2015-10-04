@@ -45,3 +45,8 @@ C:\Users\esu\Documents\Hrc\EsuCommon\Build Dlls For Windows\Supeng.Common.pdb
 C:\Users\esu\Documents\Hrc\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.csprojResolveAssemblyReference.cache
 C:\Users\esu\Documents\Hrc\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.dll
 C:\Users\esu\Documents\Hrc\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.pdb
+C:\Users\Einstein\Documents\Hengrui\EsuCommon\Build Dlls For Windows\Supeng.Common.dll
+C:\Users\Einstein\Documents\Hengrui\EsuCommon\Build Dlls For Windows\Supeng.Common.pdb
+C:\Users\Einstein\Documents\Hengrui\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.dll
+C:\Users\Einstein\Documents\Hengrui\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.pdb
+C:\Users\Einstein\Documents\Hengrui\EsuCommon\Supeng.Common\obj\Debug\Supeng.Common.csprojResolveAssemblyReference.cache

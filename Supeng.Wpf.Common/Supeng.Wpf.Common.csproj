@@ -120,12 +120,14 @@
     <Compile Include="Controls\Views\SearchControlWithDataLayoutView.xaml.cs">
       <DependentUpon>SearchControlWithDataLayoutView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DialogWindows\Models\SelectionModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionEditWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\CollectionSelectionWindowWithListViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\EntityPreviewWindow.cs" />
     <Compile Include="DialogWindows\ViewModels\EsuExceptionWindowBase.cs" />
+    <Compile Include="DialogWindows\ViewModels\FindItemMultiWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\FindItemWindowViewModel.cs" />
     <Compile Include="DialogWindows\ViewModels\LeftRightWindowViewModelBase.cs" />
     <Compile Include="DialogWindows\ViewModels\LoginViewModelBase.cs" />

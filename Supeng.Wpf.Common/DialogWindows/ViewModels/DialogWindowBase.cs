@@ -153,6 +153,11 @@ namespace Supeng.Wpf.Common.DialogWindows.ViewModels
 
     protected abstract string DataCheck();
 
+    public string DataCheckMessage
+    {
+      get { return DataCheck(); }
+    }
+
     protected virtual void OkClick()
     {
       string errMsg = DataCheck();

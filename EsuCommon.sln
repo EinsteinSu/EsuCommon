@@ -97,6 +97,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Data.Sql.MsTest", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.WorkFlow", "Supeng.WorkFlow\Supeng.WorkFlow.csproj", "{331F273B-DA8E-4203-9EBB-CD003CF748D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supeng.Wpf.Common.UnitTest", "Supeng.Wpf.Common.UnitTest\Supeng.Wpf.Common.UnitTest.csproj", "{6EC18093-315E-4FF4-882F-52B0E95127BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -466,6 +468,16 @@ Global
 		{331F273B-DA8E-4203-9EBB-CD003CF748D4}.Hrp-Release|Any CPU.Build.0 = Release|Any CPU
 		{331F273B-DA8E-4203-9EBB-CD003CF748D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{331F273B-DA8E-4203-9EBB-CD003CF748D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Hrc-Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Hrc-Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Hrc-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Hrc-Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Hrp-Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Hrp-Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC18093-315E-4FF4-882F-52B0E95127BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -509,5 +521,6 @@ Global
 		{90DC7D8D-ED29-4249-945B-1259E4074E24} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 		{CA021E3D-AFD5-492B-9A9F-4C21946218B4} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 		{331F273B-DA8E-4203-9EBB-CD003CF748D4} = {C16A95C6-845D-4F5A-BB2C-D563A5DC2057}
+		{6EC18093-315E-4FF4-882F-52B0E95127BE} = {880EA5FF-B4E0-42F3-8EA4-70D5DFBD9A91}
 	EndGlobalSection
 EndGlobal
