@@ -8,9 +8,16 @@ namespace Supeng.Common.IOs
 {
   public class EsuRegistry : EsuInfoBase
   {
+    private readonly IEnumerable<string> keys;
     private EsuInfoCollection<EsuInfoBase> registries;
 
     public EsuRegistry(IEnumerable<string> keys)
+    {
+      this.keys = keys;
+      LoadRegisties();
+    }
+
+    private void LoadRegisties()
     {
       registries = new EsuInfoCollection<EsuInfoBase>();
       foreach (var key in keys)
@@ -22,7 +29,11 @@ namespace Supeng.Common.IOs
 
     public EsuInfoCollection<EsuInfoBase> Registries
     {
-      get { return registries; }
+      get
+      {
+
+        return registries;
+      }
       set
       {
         if (Equals(value, registries)) return;

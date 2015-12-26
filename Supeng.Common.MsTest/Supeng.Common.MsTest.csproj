@@ -61,6 +61,7 @@
     <Compile Include="DirectoryHelperTest.cs" />
     <Compile Include="EsuRegistryTest.cs" />
     <Compile Include="EsuTimerTest.cs" />
+    <Compile Include="FileKeyValueStorageTest.cs" />
     <Compile Include="StringReplaceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TreeCollectionUtilityTests.cs" />
