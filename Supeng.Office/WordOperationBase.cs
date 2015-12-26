@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Reflection;
 using Microsoft.Office.Interop.Word;
 
@@ -39,9 +40,10 @@ namespace Supeng.Office
         wordApp.Visible = showApp;
         result = true;
       }
-      catch
+      catch (Exception ex)
       {
         Quit();
+        throw new Exception(string.Format("Cannot open the file:{0}", wordName), ex);
       }
       return result;
     }
@@ -90,15 +92,25 @@ namespace Supeng.Office
 
       foreach (WordReplaceInfo w in lst)
       {
-        Document.Content.Find.Text = w.Oldsring;
-        object findText = w.Oldsring;
-        object replaceWith = w.Newstring;
-        object replace = WdReplace.wdReplaceAll;
-        Document.Content.Find.ClearFormatting();
-        Document.Content.Find.Execute(ref findText, ref missingValue, ref missingValue, ref missingValue,
-          ref missingValue, ref missingValue, ref missingValue, ref missingValue,
-          ref missingValue, ref replaceWith, ref replace, ref missingValue,
-          ref missingValue, ref missingValue, ref missingValue);
+        if (w.CanReplace)
+        {
+          try
+          {
+            Document.Content.Find.Text = w.Oldsring;
+            object findText = w.Oldsring;
+            object replaceWith = w.Newstring;
+            object replace = WdReplace.wdReplaceAll;
+            Document.Content.Find.ClearFormatting();
+            Document.Content.Find.Execute(ref findText, ref missingValue, ref missingValue, ref missingValue,
+              ref missingValue, ref missingValue, ref missingValue, ref missingValue,
+              ref missingValue, ref replaceWith, ref replace, ref missingValue,
+              ref missingValue, ref missingValue, ref missingValue);
+          }
+          catch (Exception ex)
+          {
+            throw new Exception(string.Format("Replace failed:{0} {1}", w.Oldsring, w.Newstring), ex);
+          }
+        }
       }
     }
 
@@ -148,5 +160,10 @@ namespace Supeng.Office
     public string Oldsring { get; set; }
 
     public string Newstring { get; set; }
+
+    public bool CanReplace
+    {
+      get { return string.IsNullOrEmpty(Oldsring) && string.IsNullOrEmpty(Newstring); }
+    }
   }
 }

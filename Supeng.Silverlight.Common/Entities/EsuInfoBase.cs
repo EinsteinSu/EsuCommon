@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Windows;
 using Caliburn.Micro;
 using Newtonsoft.Json;
 using Supeng.Silverlight.Common.IOs;
+using Action = System.Action;
 
 namespace Supeng.Silverlight.Common.Entities
 {
@@ -85,5 +88,23 @@ namespace Supeng.Silverlight.Common.Entities
     }
 
     #endregion
+
+    protected void EsuNotifyOfPropertyChange<TProperty>(Expression<Func<TProperty>> propertyChange)
+    {
+      if (propertyChange != null)
+      {
+        if (Deployment.Current.CheckAccess())
+        {
+          NotifyOfPropertyChange(propertyChange);
+        }
+        else
+        {
+          Deployment.Current.Dispatcher.BeginInvoke(() =>
+          {
+            NotifyOfPropertyChange(propertyChange);
+          });
+        }
+      }
+    }
   }
 }
