@@ -16,7 +16,7 @@ namespace Supeng.Weixin.Test
         [TestMethod]
         public void TestMessageContent()
         {
-            var message = new TextMessage("This is a test message");
+            var message = new TextMessage("短信【恒锐咨询】");
             message.touser = "76507593";
             Console.WriteLine(message);
         }

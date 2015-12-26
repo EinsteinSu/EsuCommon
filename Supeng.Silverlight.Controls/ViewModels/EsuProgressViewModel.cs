@@ -16,7 +16,7 @@ namespace Supeng.Silverlight.Controls.ViewModels
       {
         if (value == message) return;
         message = value;
-        NotifyOfPropertyChange(() => Message);
+        EsuNotifyOfPropertyChange(() => Message);
       }
     }
 
@@ -27,7 +27,7 @@ namespace Supeng.Silverlight.Controls.ViewModels
       {
         if (value == progressVisibility) return;
         progressVisibility = value;
-        NotifyOfPropertyChange(() => ProgressVisibility);
+        EsuNotifyOfPropertyChange(() => ProgressVisibility);
       }
     }
 
