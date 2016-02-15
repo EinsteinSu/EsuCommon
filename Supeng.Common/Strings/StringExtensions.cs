@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
@@ -52,6 +53,13 @@ namespace Supeng.Common.Strings
       return Encoding.UTF8.GetBytes(data);
     }
 
+    public static string GetChecksum<T>(this T data) where T : class
+    {
+      MD5 md5 = new MD5CryptoServiceProvider();
+      var buffer = md5.ComputeHash(JsonConvert.SerializeObject(data).StringToBytes());
+      return new Guid(buffer).ToString();
+    }
+
     public static string GetPascalName(this string name)
     {
       if (!String.IsNullOrEmpty(name))
@@ -63,16 +71,16 @@ namespace Supeng.Common.Strings
       return String.Empty;
     }
 
-      public static string GetLowerCaseName(this string name)
+    public static string GetLowerCaseName(this string name)
+    {
+      if (!String.IsNullOrEmpty(name))
       {
-          if (!String.IsNullOrEmpty(name))
-          {
-              string first = name.Substring(0, 1);
-              string other = name.Substring(1, name.Length - 1);
-              return String.Format("{0}{1}", first.ToLower(), other);
-          }
-          return String.Empty;
+        string first = name.Substring(0, 1);
+        string other = name.Substring(1, name.Length - 1);
+        return String.Format("{0}{1}", first.ToLower(), other);
       }
+      return String.Empty;
+    }
 
     public static string SplitToString(this IList<string> collection, char c)
     {
