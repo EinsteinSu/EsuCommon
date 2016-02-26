@@ -20,7 +20,7 @@ namespace Supeng.SmsMessage.Common.Test
             const string userName = "ynhrjs99";
             const string password = "123456";
             var messageSender = new MessageSender(userName, password);
-            var result = messageSender.SendMessage("13825634085", "This is a message from server.");
+            var result = messageSender.SendMessage("13825634085", "This is a message from server.【恒锐咨询】");
             Assert.AreEqual("成功", result);
         }
     }
