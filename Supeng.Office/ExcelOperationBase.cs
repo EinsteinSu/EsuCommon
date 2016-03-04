@@ -84,6 +84,18 @@ namespace Supeng.Office
         {
             range.Hyperlink = new ExcelHyperLink(hyperLink);
             range.Value = displayText;
+            range.Style.Font.UnderLine = true;
+            range.Style.Font.Color.SetColor(Color.Blue);
+        }
+
+        public static void AddHyperLinkStyle(this ExcelWorkbook wb)
+        {
+            if (!wb.Styles.NamedStyles.Any(x => x.Name == "Hyperlink"))
+            {
+                var s = wb.Styles.CreateNamedStyle("Hyperlink");
+                s.Style.Font.UnderLine = true;
+                s.Style.Font.Color.SetColor(Color.Blue);
+            }
         }
     }
 

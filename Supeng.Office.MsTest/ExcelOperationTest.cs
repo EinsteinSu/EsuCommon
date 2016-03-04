@@ -15,7 +15,7 @@ namespace Supeng.Office.MsTest
             var excel = new ExcelOperationBase();
             var workSheet = excel.CreateSheet("Test");
             excel.CreateTable(workSheet, new TestTableInsertModel());
-            excel.Save(@"C:\Users\esu\Downloads\test.xlsx");
+            excel.Save(@"D:\test.xlsx");
         }
     }
 
