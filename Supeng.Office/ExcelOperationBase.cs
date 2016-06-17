@@ -19,7 +19,13 @@ namespace Supeng.Office
 
         public ExcelOperationBase(string fileName)
         {
-            _excel = new ExcelPackage(new FileInfo(fileName));
+            var reuslt = new MemoryStream();
+            _excel = new ExcelPackage(reuslt, File.OpenRead(fileName));
+        }
+
+        public ExcelWorksheets Worksheets
+        {
+            get { return _excel.Workbook.Worksheets; }
         }
 
         public ExcelWorksheet CreateSheet(string name, int fontSize = 11, string fontFamily = "Calibri")
@@ -30,10 +36,13 @@ namespace Supeng.Office
             return sheet;
         }
 
-        public void CreateTable<T>(ExcelWorksheet worksheet, IExcelTableInfo<T> excelTableInfo, int startRow = 1)
+        public void CreateTable<T>(ExcelWorksheet worksheet, IExcelTableInfo<T> excelTableInfo, int startRow = 1, bool writeHead = true)
         {
-            CreateHead(worksheet, excelTableInfo.HeadList, startRow);
-            startRow++;
+            if (writeHead)
+            {
+                CreateHead(worksheet, excelTableInfo.HeadList, startRow);
+                startRow++;
+            }
             foreach (T data in excelTableInfo.Data)
             {
                 excelTableInfo.FillRow(worksheet, startRow, data);
@@ -45,6 +54,11 @@ namespace Supeng.Office
         {
             var buffer = _excel.GetAsByteArray();
             File.WriteAllBytes(fileName, buffer);
+        }
+
+        public byte[] GetFileBuffer()
+        {
+            return _excel.GetAsByteArray();
         }
 
         private void CreateHead(ExcelWorksheet worksheet, IList<ExcelTableHead> tableHead, int startRow = 1)
@@ -99,28 +113,5 @@ namespace Supeng.Office
         }
     }
 
-    public interface IExcelTableInfo<T>
-    {
-        IList<ExcelTableHead> HeadList { get; }
 
-        IList<T> Data { get; }
-
-        void FillRow(ExcelWorksheet worksheet, int startRow, T data);
-    }
-
-    public class ExcelTableHead
-    {
-        public ExcelTableHead()
-        {
-            Color = Color.Gainsboro;
-        }
-
-        public string HeadText { get; set; }
-
-        public int Width { get; set; }
-
-        public Color Color { get; set; }
-
-        //todo: add more properties that provide create excel head
-    }
 }

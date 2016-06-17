@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelOperationBase.cs" />
+    <Compile Include="IExcelTableInfo.cs" />
     <Compile Include="WordOperationBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
