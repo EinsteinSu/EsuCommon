@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F5132CB8-C424-4B57-8D57-D3429FB883A8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Supeng.Examination.DataAccess</RootNamespace>
+    <AssemblyName>Supeng.Examination.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExaDataContext.cs" />
+    <Compile Include="Migrations\201606300703079_examination-1.cs" />
+    <Compile Include="Migrations\201606300703079_examination-1.Designer.cs">
+      <DependentUpon>201606300703079_examination-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606300820038_examination-2.cs" />
+    <Compile Include="Migrations\201606300820038_examination-2.Designer.cs">
+      <DependentUpon>201606300820038_examination-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606300825487_examination-question.cs" />
+    <Compile Include="Migrations\201606300825487_examination-question.Designer.cs">
+      <DependentUpon>201606300825487_examination-question.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606300829045_examination-question-1.cs" />
+    <Compile Include="Migrations\201606300829045_examination-question-1.Designer.cs">
+      <DependentUpon>201606300829045_examination-question-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607010435253_examination-question-3.cs" />
+    <Compile Include="Migrations\201607010435253_examination-question-3.Designer.cs">
+      <DependentUpon>201607010435253_examination-question-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607010438109_examination-question-4.cs" />
+    <Compile Include="Migrations\201607010438109_examination-question-4.Designer.cs">
+      <DependentUpon>201607010438109_examination-question-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607010654299_userprofile-1.cs" />
+    <Compile Include="Migrations\201607010654299_userprofile-1.Designer.cs">
+      <DependentUpon>201607010654299_userprofile-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607010745055_user-examination-1.cs" />
+    <Compile Include="Migrations\201607010745055_user-examination-1.Designer.cs">
+      <DependentUpon>201607010745055_user-examination-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607010754392_user-examination-2.cs" />
+    <Compile Include="Migrations\201607010754392_user-examination-2.Designer.cs">
+      <DependentUpon>201607010754392_user-examination-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607010758055_user-examination-3.cs" />
+    <Compile Include="Migrations\201607010758055_user-examination-3.Designer.cs">
+      <DependentUpon>201607010758055_user-examination-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Supeng.Examination.Model\Supeng.Examination.Model.csproj">
+      <Project>{B2AC9397-D7D0-477A-9C31-B6504E4E56EE}</Project>
+      <Name>Supeng.Examination.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606300703079_examination-1.resx">
+      <DependentUpon>201606300703079_examination-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606300820038_examination-2.resx">
+      <DependentUpon>201606300820038_examination-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606300825487_examination-question.resx">
+      <DependentUpon>201606300825487_examination-question.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606300829045_examination-question-1.resx">
+      <DependentUpon>201606300829045_examination-question-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010435253_examination-question-3.resx">
+      <DependentUpon>201607010435253_examination-question-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010438109_examination-question-4.resx">
+      <DependentUpon>201607010438109_examination-question-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010654299_userprofile-1.resx">
+      <DependentUpon>201607010654299_userprofile-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010745055_user-examination-1.resx">
+      <DependentUpon>201607010745055_user-examination-1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010754392_user-examination-2.resx">
+      <DependentUpon>201607010754392_user-examination-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010758055_user-examination-3.resx">
+      <DependentUpon>201607010758055_user-examination-3.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

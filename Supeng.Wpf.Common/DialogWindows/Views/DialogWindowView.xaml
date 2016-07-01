@@ -3,6 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:views="clr-namespace:Supeng.Wpf.Common.Controls.Views"
         Title="DialogWindowView" Icon="{Binding Logo}" Height="300" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding OkCommand}"/>
+    </Window.InputBindings>
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
