@@ -51,6 +51,10 @@ namespace Supeng.Office
         {
             foreach (var item in replaces)
             {
+                if (string.IsNullOrEmpty(item.Newstring))
+                {
+                    item.Newstring = " ";
+                }
                 _doc.ReplaceText(item.Oldsring, item.Newstring);
             }
         }
@@ -58,13 +62,13 @@ namespace Supeng.Office
 
     public static class DocXTableExtensions
     {
-        public static void SetColumn(this Table table, int cellIndex, int width, string text)
+        public static void SetColumn(this Table table, int cellIndex, int width, string text, int row = 0)
         {
             if (width != 0)
             {
-                table.Rows[0].Cells[cellIndex].Width = width;
+                table.Rows[row].Cells[cellIndex].Width = width;
             }
-            table.Rows[0].Cells[cellIndex].Paragraphs[0].Append(text);
+            table.Rows[row].Cells[cellIndex].Paragraphs[0].Append(text);
         }
     }
 }
