@@ -55,4 +55,13 @@ namespace Supeng.Office
             }
         }
     }
+
+    public static class DocXTableExtensions
+    {
+        public static void SetColumn(this Table table, int cellIndex, int width, string text)
+        {
+            table.Rows[0].Cells[cellIndex].Width = width;
+            table.Rows[0].Cells[cellIndex].Paragraphs[0].Append(text);
+        }
+    }
 }
